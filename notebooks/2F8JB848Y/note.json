@@ -1,0 +1,585 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n# Music Recommendator\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:06:43.575",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eMusic Recommendator\u003c/h1\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404160920_724976566",
+      "id": "20200525-105600_876779769",
+      "dateCreated": "2020-05-25 10:56:00.920",
+      "dateStarted": "2020-05-25 11:06:43.592",
+      "dateFinished": "2020-05-25 11:06:43.596",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Preparing the Data\n\nLet\u0027s start by downloading the data :\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:10.074",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003ePreparing the Data\u003c/h2\u003e\n\u003cp\u003eLet\u0026rsquo;s start by downloading the data :\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404204036_-155805845",
+      "id": "20200525-105644_555166138",
+      "dateCreated": "2020-05-25 10:56:44.037",
+      "dateStarted": "2020-05-25 11:07:10.074",
+      "dateFinished": "2020-05-25 11:07:10.079",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\ncd /data\nif [[ ! -f profiledata_06-May-2005.tar.xz ]]\nthen \n    echo \"Downloading profiledata_06-May-2005.tar.xz\"\n    curl --silent https://drive.switch.ch/index.php/s/gK6l44wTWixlaeC/download -o profiledata_06-May-2005.tar.xz\nfi\ntar xfv profiledata_06-May-2005.tar.xz\nls -lhF profiledata_06-May-2005",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:06:43.805",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false,
+          "completionKey": "TAB"
+        },
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "profiledata_06-May-2005/\nprofiledata_06-May-2005/README.txt\nprofiledata_06-May-2005/user_artist_data.txt\nprofiledata_06-May-2005/artist_data.txt\nprofiledata_06-May-2005/artist_alias.txt\ntotal 464M\n-rw-r--r-- 1 1000 1000 2.8M May  6  2005 artist_alias.txt\n-rw-r--r-- 1 1000 1000  54M May  6  2005 artist_data.txt\n-rw-r--r-- 1 1000 1000 1.3K May 10  2005 README.txt\n-rw-r--r-- 1 1000 1000 407M May  5  2005 user_artist_data.txt\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590395388698_1190528192",
+      "id": "20200525-082948_1820188021",
+      "dateCreated": "2020-05-25 08:29:48.698",
+      "dateStarted": "2020-05-25 11:06:43.819",
+      "dateFinished": "2020-05-25 11:06:52.692",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNext, read the user artist data and transform it in a Dataframe with two columns \"user\" and \"artist\" :",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:10.122",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eNext, read the user artist data and transform it in a Dataframe with two columns \u0026ldquo;user\u0026rdquo; and \u0026ldquo;artist\u0026rdquo; :\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404376466_270920040",
+      "id": "20200525-105936_1453333316",
+      "dateCreated": "2020-05-25 10:59:36.466",
+      "dateStarted": "2020-05-25 11:07:10.124",
+      "dateFinished": "2020-05-25 11:07:10.141",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:06:52.836",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "1000002 1 55\n1000002 1000006 33\n1000002 1000007 8\n1000002 1000009 144\n1000002 1000010 314\n+---------+---------+-----------+-----------+\n|min(user)|max(user)|min(artist)|max(artist)|\n+---------+---------+-----------+-----------+\n|       90|  2443548|          1|   10794401|\n+---------+---------+-----------+-----------+\n\nrawUserArtistData: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nuserArtistDF: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d6",
+            "http://172.17.0.2:4040/jobs/job?id\u003d7"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590403079984_-213506736",
+      "id": "20200525-103759_1452771728",
+      "dateCreated": "2020-05-25 10:37:59.984",
+      "dateStarted": "2020-05-25 11:06:52.849",
+      "dateFinished": "2020-05-25 11:07:06.901",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNext, read the raw artist data and transform it in a Dataframe with two columns \"id\" and \"name\" :",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:10.228",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eNext, read the raw artist data and transform it in a Dataframe with two columns \u0026ldquo;id\u0026rdquo; and \u0026ldquo;name\u0026rdquo; :\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404636907_1121945544",
+      "id": "20200525-110356_1897971030",
+      "dateCreated": "2020-05-25 11:03:56.907",
+      "dateStarted": "2020-05-25 11:07:10.236",
+      "dateFinished": "2020-05-25 11:07:10.264",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval rawArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_data.txt\")\nval artistByID \u003d rawArtistData.flatMap { line \u003d\u003e\n    val (id, name) \u003d line.span(_ !\u003d \u0027\\t\u0027)\n    if (name.isEmpty) None\n    else {\n        try Some((id.toInt, name.trim))\n        catch {\n            case _: NumberFormatException \u003d\u003e None\n        }\n    }\n}.toDF(\"id\", \"name\")",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:07.083",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "rawArtistData: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nartistByID: org.apache.spark.sql.DataFrame \u003d [id: int, name: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404632088_1692483147",
+      "id": "20200525-110352_2143376873",
+      "dateCreated": "2020-05-25 11:03:52.088",
+      "dateStarted": "2020-05-25 11:07:07.096",
+      "dateFinished": "2020-05-25 11:07:07.611",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nNext, read the alias artist data and transform it in a Map with artist id for the key and alias for value :",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:24.265",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eNext, read the alias artist data and transform it in a Map with artist id for the key and alias for value :\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404719724_1188961969",
+      "id": "20200525-110519_1836651915",
+      "dateCreated": "2020-05-25 11:05:19.724",
+      "dateStarted": "2020-05-25 11:07:24.267",
+      "dateFinished": "2020-05-25 11:07:24.279",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval rawArtistAlias \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_alias.txt\")\nval artistAlias \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((artist.toInt, alias.toInt))\n}.collect().toMap\n//artistAlias.head\n\nartistByID.filter($\"id\" isin (1208690, 1003926)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:07.821",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 92.6833,
+              "optionOpen": false
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+----------------+\n|     id|            name|\n+-------+----------------+\n|1208690|Collective Souls|\n|1003926| Collective Soul|\n+-------+----------------+\n\nrawArtistAlias: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nartistAlias: scala.collection.immutable.Map[Int,Int] \u003d Map(1208690 -\u003e 1003926, 2012757 -\u003e 4569, 6949139 -\u003e 1085752, 1109727 -\u003e 1239120, 6772751 -\u003e 1244705, 2070533 -\u003e 1021544, 1157679 -\u003e 2194, 9969617 -\u003e 5630, 2034496 -\u003e 1116214, 6764342 -\u003e 40, 1272489 -\u003e 1278238, 2108744 -\u003e 1009267, 10349857 -\u003e 1000052, 2145319 -\u003e 1020463, 2126338 -\u003e 2717, 10165456 -\u003e 1001169, 6779368 -\u003e 1239506, 10278137 -\u003e 1001523, 9939075 -\u003e 1329390, 2037201 -\u003e 1274155, 1248585 -\u003e 2885, 1106945 -\u003e 1399, 6811322 -\u003e 1019016, 9978396 -\u003e 1784, 6676961 -\u003e 1086433, 2117821 -\u003e 2611, 6863616 -\u003e 1277013, 6895480 -\u003e 1000993, 6831632 -\u003e 1246136, 1001719 -\u003e 1009727, 10135633 -\u003e 4250, 7029291 -\u003e 1034635, 6967939 -\u003e 1002734, 6864694 -\u003e 1017311, 1237279 -\u003e 1029..."
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d8",
+            "http://172.17.0.2:4040/jobs/job?id\u003d9"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590403815626_-1753499650",
+      "id": "20200525-105015_1244952508",
+      "dateCreated": "2020-05-25 10:50:15.626",
+      "dateStarted": "2020-05-25 11:07:07.838",
+      "dateFinished": "2020-05-25 11:07:09.851",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Building a First Model",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:07:33.026",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eBuilding a First Model\u003c/h2\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404072119_591799774",
+      "id": "20200525-105432_1663212423",
+      "dateCreated": "2020-05-25 10:54:32.119",
+      "dateStarted": "2020-05-25 11:07:33.026",
+      "dateFinished": "2020-05-25 11:07:33.029",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d\n        bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\")\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias)\ntrainData.show\ntrainData.cache()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:26:05.151",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-------+-----+\n|   user| artist|count|\n+-------+-------+-----+\n|1000002|      1|   55|\n|1000002|1000006|   33|\n|1000002|1000007|    8|\n|1000002|1000009|  144|\n|1000002|1000010|  314|\n|1000002|1000013|    8|\n|1000002|1000014|   42|\n|1000002|1000017|   69|\n|1000002|1000024|  329|\n|1000002|1000025|    1|\n|1000002|1000028|   17|\n|1000002|1000031|   47|\n|1000002|1000033|   15|\n|1000002|1000042|    1|\n|1000002|1000045|    1|\n|1000002|1000054|    2|\n|1000002|1000055|   25|\n|1000002|1000056|    4|\n|1000002|1000059|    2|\n|1000002|1000062|   71|\n+-------+-------+-----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\nbuildCounts: (rawUserArtistData: org.apache.spark.sql.Dataset[String], bArtistAlias: org.apache.spark.broadcast.Broadcast[Map[Int,Int]])org.apache.spark.sql.DataFrame\nbArtistAlias: org.apache.spark.broadcast.Broadcast[scala.collection.immutable.Map[Int,Int]] \u003d Broadcast(24)\ntrainData: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int ... 1 more field]\nres13: trainData.type \u003d [user: int, artist: int ... 1 more field]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d10"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590404829942_-1453554254",
+      "id": "20200525-110709_1785781047",
+      "dateCreated": "2020-05-25 11:07:09.942",
+      "dateStarted": "2020-05-25 11:26:05.168",
+      "dateFinished": "2020-05-25 11:26:06.263",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nimport org.apache.spark.ml.recommendation._\nimport scala.util.Random\n\nval model \u003d new ALS().\n    setSeed(Random.nextLong()).\n    setImplicitPrefs(true).\n    setRank(10).\n    setRegParam(0.01).\n    setAlpha(1.0).\n    setMaxIter(5).\n    setUserCol(\"user\").\n    setItemCol(\"artist\").\n    setRatingCol(\"count\").\n    setPredictionCol(\"prediction\").\n    fit(trainData)",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:26:55.054",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_d5d4d1f16598\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d11",
+            "http://172.17.0.2:4040/jobs/job?id\u003d12",
+            "http://172.17.0.2:4040/jobs/job?id\u003d13",
+            "http://172.17.0.2:4040/jobs/job?id\u003d14",
+            "http://172.17.0.2:4040/jobs/job?id\u003d15",
+            "http://172.17.0.2:4040/jobs/job?id\u003d16",
+            "http://172.17.0.2:4040/jobs/job?id\u003d17",
+            "http://172.17.0.2:4040/jobs/job?id\u003d18",
+            "http://172.17.0.2:4040/jobs/job?id\u003d19",
+            "http://172.17.0.2:4040/jobs/job?id\u003d20",
+            "http://172.17.0.2:4040/jobs/job?id\u003d21",
+            "http://172.17.0.2:4040/jobs/job?id\u003d22",
+            "http://172.17.0.2:4040/jobs/job?id\u003d23",
+            "http://172.17.0.2:4040/jobs/job?id\u003d24",
+            "http://172.17.0.2:4040/jobs/job?id\u003d25"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590405875128_638740172",
+      "id": "20200525-112435_1359988035",
+      "dateCreated": "2020-05-25 11:24:35.128",
+      "dateStarted": "2020-05-25 11:26:55.070",
+      "dateFinished": "2020-05-25 11:31:10.275",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 11:26:55.055",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1590406015054_509388477",
+      "id": "20200525-112655_1737810644",
+      "dateCreated": "2020-05-25 11:26:55.054",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "music-recommendator",
+  "id": "2F8JB848Y",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

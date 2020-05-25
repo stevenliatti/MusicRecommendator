@@ -163,9 +163,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
+      "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.printSchema\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-05-25 11:06:52.836",
+      "dateUpdated": "2020-05-25 19:55:21.547",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -188,7 +188,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "1000002 1 55\n1000002 1000006 33\n1000002 1000007 8\n1000002 1000009 144\n1000002 1000010 314\n+---------+---------+-----------+-----------+\n|min(user)|max(user)|min(artist)|max(artist)|\n+---------+---------+-----------+-----------+\n|       90|  2443548|          1|   10794401|\n+---------+---------+-----------+-----------+\n\nrawUserArtistData: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nuserArtistDF: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int]\n"
+            "data": "1000002 1 55\n1000002 1000006 33\n1000002 1000007 8\n1000002 1000009 144\n1000002 1000010 314\nroot\n |-- user: integer (nullable \u003d false)\n |-- artist: integer (nullable \u003d false)\n\n+---------+---------+-----------+-----------+\n|min(user)|max(user)|min(artist)|max(artist)|\n+---------+---------+-----------+-----------+\n|       90|  2443548|          1|   10794401|\n+---------+---------+-----------+-----------+\n\nrawUserArtistData: org.apache.spark.sql.Dataset[String] \u003d [value: string]\nuserArtistDF: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int]\n"
           }
         ]
       },
@@ -199,8 +199,8 @@
           "tooltip": "View in Spark web UI",
           "group": "spark",
           "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d6",
-            "http://172.17.0.2:4040/jobs/job?id\u003d7"
+            "http://172.17.0.2:4040/jobs/job?id\u003d41",
+            "http://172.17.0.2:4040/jobs/job?id\u003d42"
           ],
           "interpreterSettingId": "spark"
         }
@@ -209,8 +209,8 @@
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
       "dateCreated": "2020-05-25 10:37:59.984",
-      "dateStarted": "2020-05-25 11:06:52.849",
-      "dateFinished": "2020-05-25 11:07:06.901",
+      "dateStarted": "2020-05-25 19:23:52.964",
+      "dateFinished": "2020-05-25 19:24:07.094",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -291,6 +291,100 @@
       "dateCreated": "2020-05-25 11:03:52.088",
       "dateStarted": "2020-05-25 11:07:07.096",
       "dateFinished": "2020-05-25 11:07:07.611",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Data cleaning",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 19:33:18.957",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eData cleaning\u003c/h2\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590435187191_-89465193",
+      "id": "20200525-193307_1015155615",
+      "dateCreated": "2020-05-25 19:33:07.191",
+      "dateStarted": "2020-05-25 19:33:18.958",
+      "dateFinished": "2020-05-25 19:33:18.962",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nartistByID.printSchema\nval unknownId \u003d artistByID.filter($\"name\" \u003d\u003d\u003d \"[unknown]\").select($\"id\").head.getInt(0)\nval userArtistCleanedDF \u003d userArtistDF.filter($\"artist\" !\u003d\u003d unknownId)\nprintln(userArtistDF.count, userArtistCleanedDF.count)",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 19:53:13.093",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\nroot\n |-- id: integer (nullable \u003d false)\n |-- name: string (nullable \u003d true)\n\n(24296858,24270046)\nunknownId: Int \u003d 1034635\nuserArtistCleanedDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d68",
+            "http://172.17.0.2:4040/jobs/job?id\u003d69",
+            "http://172.17.0.2:4040/jobs/job?id\u003d70"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590433847707_-111937048",
+      "id": "20200525-191047_202061251",
+      "dateCreated": "2020-05-25 19:10:47.707",
+      "dateStarted": "2020-05-25 19:53:13.116",
+      "dateFinished": "2020-05-25 19:53:43.050",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -437,9 +531,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d\n        bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\")\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias)\ntrainData.show\ntrainData.cache()",
+      "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\n// Cleaning data in bonus\n\n/**\n * Convert count musics to approximatively years of listening\n */\ndef countToYear(count: Int): Boolean \u003d {\n    val avgSongMinutesLength \u003d 4.0\n    avgSongMinutesLength * count.toDouble / 60.0 / 24.0 / 365.0 \u003c 2\n}\n \ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    val unknownId \u003d artistByID.filter($\"name\" \u003d\u003d\u003d \"[unknown]\").select($\"id\").head.getInt(0)\n    val userArtistCleanedDF \u003d userArtistDF.filter($\"artist\" !\u003d\u003d unknownId)\n    \n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\").filter($\"artist\" !\u003d\u003d unknownId)\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias).filter($\"count\" \u003c 400000)\ntrainData.orderBy(desc(\"count\")).show\ntrainData.cache()",
       "user": "anonymous",
-      "dateUpdated": "2020-05-25 11:26:05.151",
+      "dateUpdated": "2020-05-25 20:41:35.172",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -462,7 +556,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+-------+-----+\n|   user| artist|count|\n+-------+-------+-----+\n|1000002|      1|   55|\n|1000002|1000006|   33|\n|1000002|1000007|    8|\n|1000002|1000009|  144|\n|1000002|1000010|  314|\n|1000002|1000013|    8|\n|1000002|1000014|   42|\n|1000002|1000017|   69|\n|1000002|1000024|  329|\n|1000002|1000025|    1|\n|1000002|1000028|   17|\n|1000002|1000031|   47|\n|1000002|1000033|   15|\n|1000002|1000042|    1|\n|1000002|1000045|    1|\n|1000002|1000054|    2|\n|1000002|1000055|   25|\n|1000002|1000056|    4|\n|1000002|1000059|    2|\n|1000002|1000062|   71|\n+-------+-------+-----+\nonly showing top 20 rows\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\nbuildCounts: (rawUserArtistData: org.apache.spark.sql.Dataset[String], bArtistAlias: org.apache.spark.broadcast.Broadcast[Map[Int,Int]])org.apache.spark.sql.DataFrame\nbArtistAlias: org.apache.spark.broadcast.Broadcast[scala.collection.immutable.Map[Int,Int]] \u003d Broadcast(24)\ntrainData: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int ... 1 more field]\nres13: trainData.type \u003d [user: int, artist: int ... 1 more field]\n"
+            "data": "warning: there were two deprecation warnings; re-run with -deprecation for details\n+-------+-------+------+\n|   user| artist| count|\n+-------+-------+------+\n|1059637|1026440|155895|\n|2069889|1002095|101076|\n|2020513|1007801| 88908|\n|1073421|1004440| 67548|\n|2023977|1007903| 62815|\n|2023977|   2823| 51039|\n|2014936|     82| 36083|\n|2069337|1006134| 34800|\n|2013784|1004059| 32768|\n|2069337|1007027| 31321|\n|1073435|1105069| 30043|\n|2023977|1000156| 29983|\n|1052225|1256375| 29933|\n|2017397|1000427| 26394|\n|1045479|1000113| 26135|\n|2062243|6901343| 26107|\n|1039100|1275996| 25858|\n|1053554|    478| 25303|\n|2017397|1004296| 24876|\n|2216281|   5705| 24067|\n+-------+-------+------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\ncountToYear: (count: Int)Boolean\nbuildCounts: (rawUserArtistData: org.apache.spark.sql.Dataset[String], bArtistAlias: org.apache.spark.broadcast.Broadcast[Map[Int,Int]])org.apache.spark.sql.DataFrame\nbArtistAlias: org.apache.spark.broadcast.Broadcast[scala.collection.immutable.Map[Int,Int]] \u003d Broadcast(200)\ntrainData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 1 more field]\nres61: trainData.type \u003d [user: int, artist: int ... 1 more field]\n"
           }
         ]
       },
@@ -473,7 +567,8 @@
           "tooltip": "View in Spark web UI",
           "group": "spark",
           "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d10"
+            "http://172.17.0.2:4040/jobs/job?id\u003d83",
+            "http://172.17.0.2:4040/jobs/job?id\u003d84"
           ],
           "interpreterSettingId": "spark"
         }
@@ -482,8 +577,8 @@
       "jobName": "paragraph_1590404829942_-1453554254",
       "id": "20200525-110709_1785781047",
       "dateCreated": "2020-05-25 11:07:09.942",
-      "dateStarted": "2020-05-25 11:26:05.168",
-      "dateFinished": "2020-05-25 11:26:06.263",
+      "dateStarted": "2020-05-25 20:41:35.193",
+      "dateFinished": "2020-05-25 20:42:07.059",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },

@@ -553,18 +553,265 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%spark\nmodel.userFactors.show(1, truncate \u003d false)",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 13:45:12.973",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+-------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                 |\n+---+-------------------------------------------------------------------------------------------------------------------------+\n|90 |[-0.1929583, -0.20927481, 0.6924134, -0.42349207, 0.3064742, -0.18101022, 0.021725446, 0.0802548, 0.9158208, -0.45152816]|\n+---+-------------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d26"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590406015054_509388477",
+      "id": "20200525-112655_1737810644",
+      "dateCreated": "2020-05-25 11:26:55.054",
+      "dateStarted": "2020-05-25 13:45:12.991",
+      "dateFinished": "2020-05-25 13:45:13.451",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Spot Checking Recommendations",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 13:47:08.032",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eSpot Checking Recommendations\u003c/h2\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1590414421056_1572219800",
+      "id": "20200525-134701_1337255895",
+      "dateCreated": "2020-05-25 13:47:01.056",
+      "dateStarted": "2020-05-25 13:47:08.032",
+      "dateFinished": "2020-05-25 13:47:08.041",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval userID \u003d 2093760\nval existingArtistIDs \u003d trainData.filter($\"user\" \u003d\u003d\u003d userID).select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (existingArtistIDs:_*)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 13:45:39.594",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+---------------+\n|     id|           name|\n+-------+---------------+\n|   1180|     David Gray|\n|    378|  Blackalicious|\n|    813|     Jurassic 5|\n|1255340|The Saw Doctors|\n|    942|         Xzibit|\n+-------+---------------+\n\nuserID: Int \u003d 2093760\nexistingArtistIDs: Array[Int] \u003d Array(1180, 1255340, 378, 813, 942)\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d27",
+            "http://172.17.0.2:4040/jobs/job?id\u003d28"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590414312973_773327109",
+      "id": "20200525-134512_2071793608",
+      "dateCreated": "2020-05-25 13:45:12.973",
+      "dateStarted": "2020-05-25 13:45:39.609",
+      "dateFinished": "2020-05-25 13:45:41.815",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ndef makeRecommendations(model: ALSModel, userID: Int, howMany: Int): DataFrame \u003d {\n    val toRecommend \u003d model.itemFactors.select($\"id\".as(\"artist\")).withColumn(\"user\", lit(userID))\n    model.transform(toRecommend).select(\"artist\", \"prediction\").orderBy($\"prediction\".desc).limit(howMany)\n}\n\nval topRecommendations \u003d makeRecommendations(model, userID, 5)\ntopRecommendations.show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 13:54:53.842",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----------+\n| artist| prediction|\n+-------+-----------+\n|   2814| 0.02799661|\n|1001819|0.027789475|\n|1300642|0.027623104|\n|1037970|0.027504664|\n|1007614|0.026829945|\n+-------+-----------+\n\nmakeRecommendations: (model: org.apache.spark.ml.recommendation.ALSModel, userID: Int, howMany: Int)org.apache.spark.sql.DataFrame\ntopRecommendations: org.apache.spark.sql.DataFrame \u003d [artist: int, prediction: float]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d29"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590414339594_-358168064",
+      "id": "20200525-134539_310376515",
+      "dateCreated": "2020-05-25 13:45:39.594",
+      "dateStarted": "2020-05-25 13:54:53.862",
+      "dateFinished": "2020-05-25 13:55:06.511",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval recommendedArtistIDs \u003d topRecommendations.select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (recommendedArtistIDs:_*)).show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-05-25 13:55:19.792",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+----------+\n|     id|      name|\n+-------+----------+\n|   2814|   50 Cent|\n|1007614|     Jay-Z|\n|1037970|Kanye West|\n|1001819|      2Pac|\n|1300642|  The Game|\n+-------+----------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(2814, 1001819, 1300642, 1037970, 1007614)\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d30",
+            "http://172.17.0.2:4040/jobs/job?id\u003d31"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1590414893842_841620200",
+      "id": "20200525-135453_1946076405",
+      "dateCreated": "2020-05-25 13:54:53.842",
+      "dateStarted": "2020-05-25 13:55:19.814",
+      "dateFinished": "2020-05-25 13:55:30.294",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-05-25 11:26:55.055",
+      "dateUpdated": "2020-05-25 13:55:19.793",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1590406015054_509388477",
-      "id": "20200525-112655_1737810644",
-      "dateCreated": "2020-05-25 11:26:55.054",
+      "jobName": "paragraph_1590414919792_1966495056",
+      "id": "20200525-135519_1912337093",
+      "dateCreated": "2020-05-25 13:55:19.792",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }

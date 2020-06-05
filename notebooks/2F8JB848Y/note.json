@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Music Recommendator\n\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:44:55.620",
+      "dateUpdated": "2020-06-05 08:28:48.982",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -36,15 +36,15 @@
       "jobName": "paragraph_1590404160920_724976566",
       "id": "20200525-105600_876779769",
       "dateCreated": "2020-05-25 10:56:00.920",
-      "dateStarted": "2020-06-03 10:44:55.686",
-      "dateFinished": "2020-06-03 10:44:57.727",
+      "dateStarted": "2020-06-05 08:28:49.118",
+      "dateFinished": "2020-06-05 08:28:51.043",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Preparing the Data\n\nLet\u0027s start by downloading the data :\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:44:57.786",
+      "dateUpdated": "2020-06-05 08:28:51.117",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -77,15 +77,15 @@
       "jobName": "paragraph_1590404204036_-155805845",
       "id": "20200525-105644_555166138",
       "dateCreated": "2020-05-25 10:56:44.037",
-      "dateStarted": "2020-06-03 10:44:57.958",
-      "dateFinished": "2020-06-03 10:44:57.980",
+      "dateStarted": "2020-06-05 08:28:51.286",
+      "dateFinished": "2020-06-05 08:28:51.305",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\ncd /data\nif [[ ! -d profiledata_06-May-2005 ]]\nthen\n    if [[ ! -f profiledata_06-May-2005.tar.xz ]]\n    then \n        echo \"Downloading profiledata_06-May-2005.tar.xz\"\n        curl --silent https://drive.switch.ch/index.php/s/gK6l44wTWixlaeC/download -o profiledata_06-May-2005.tar.xz\n        echo \"Extracting to profiledata_06-May-2005\"\n        tar xfv profiledata_06-May-2005.tar.xz\n    fi\nfi\nls -lhF profiledata_06-May-2005",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:44:58.062",
+      "dateUpdated": "2020-06-05 08:28:51.386",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -116,15 +116,15 @@
       "jobName": "paragraph_1590395388698_1190528192",
       "id": "20200525-082948_1820188021",
       "dateCreated": "2020-05-25 08:29:48.698",
-      "dateStarted": "2020-06-03 10:44:58.162",
-      "dateFinished": "2020-06-03 10:45:00.303",
+      "dateStarted": "2020-06-05 08:28:51.550",
+      "dateFinished": "2020-06-05 08:28:53.660",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the user artist data and transform it in a Dataframe with two columns \"user\" and \"artist\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:00.359",
+      "dateUpdated": "2020-06-05 08:28:53.747",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -157,15 +157,15 @@
       "jobName": "paragraph_1590404376466_270920040",
       "id": "20200525-105936_1453333316",
       "dateCreated": "2020-05-25 10:59:36.466",
-      "dateStarted": "2020-06-03 10:45:00.431",
-      "dateFinished": "2020-06-03 10:45:00.447",
+      "dateStarted": "2020-06-05 08:28:53.830",
+      "dateFinished": "2020-06-05 08:28:53.844",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.printSchema\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:00.531",
+      "dateUpdated": "2020-06-05 08:28:53.929",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -209,15 +209,15 @@
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
       "dateCreated": "2020-05-25 10:37:59.984",
-      "dateStarted": "2020-06-03 10:45:00.603",
-      "dateFinished": "2020-06-03 10:45:30.008",
+      "dateStarted": "2020-06-05 08:28:54.025",
+      "dateFinished": "2020-06-05 08:29:22.550",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the raw artist data and transform it in a Dataframe with two columns \"id\" and \"name\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:30.044",
+      "dateUpdated": "2020-06-05 08:29:22.561",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -250,15 +250,15 @@
       "jobName": "paragraph_1590404636907_1121945544",
       "id": "20200525-110356_1897971030",
       "dateCreated": "2020-05-25 11:03:56.907",
-      "dateStarted": "2020-06-03 10:45:30.099",
-      "dateFinished": "2020-06-03 10:45:30.112",
+      "dateStarted": "2020-06-05 08:29:22.688",
+      "dateFinished": "2020-06-05 08:29:22.696",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_data.txt\")\nval artistByID \u003d rawArtistData.flatMap { line \u003d\u003e\n    val (id, name) \u003d line.span(_ !\u003d \u0027\\t\u0027)\n    if (name.isEmpty) None\n    else {\n        try Some((id.toInt, name.trim))\n        catch {\n            case _: NumberFormatException \u003d\u003e None\n        }\n    }\n}.toDF(\"id\", \"name\")",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:30.199",
+      "dateUpdated": "2020-06-05 08:29:22.788",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -289,15 +289,15 @@
       "jobName": "paragraph_1590404632088_1692483147",
       "id": "20200525-110352_2143376873",
       "dateCreated": "2020-05-25 11:03:52.088",
-      "dateStarted": "2020-06-03 10:45:30.250",
-      "dateFinished": "2020-06-03 10:45:31.046",
+      "dateStarted": "2020-06-05 08:29:22.858",
+      "dateFinished": "2020-06-05 08:29:23.665",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the alias artist data and transform it in a Map with artist id for the key and alias for value :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:31.068",
+      "dateUpdated": "2020-06-05 08:29:23.759",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -330,15 +330,15 @@
       "jobName": "paragraph_1590404719724_1188961969",
       "id": "20200525-110519_1836651915",
       "dateCreated": "2020-05-25 11:05:19.724",
-      "dateStarted": "2020-06-03 10:45:31.238",
-      "dateFinished": "2020-06-03 10:45:31.258",
+      "dateStarted": "2020-06-05 08:29:23.883",
+      "dateFinished": "2020-06-05 08:29:23.892",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nval rawArtistAlias \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_alias.txt\")\nval artistAlias \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((artist.toInt, alias.toInt))\n}.collect().toMap\n//artistAlias.head\n\nartistByID.filter($\"id\" isin (1208690, 1003926)).show()",
+      "text": "%spark\nval rawArtistAlias \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_alias.txt\")\nval artistAlias \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((artist.toInt, alias.toInt))\n}.collect().toMap\n\nartistByID.filter($\"id\" isin (1208690, 1003926)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:31.324",
+      "dateUpdated": "2020-06-05 09:21:47.308",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -390,15 +390,15 @@
       "jobName": "paragraph_1590403815626_-1753499650",
       "id": "20200525-105015_1244952508",
       "dateCreated": "2020-05-25 10:50:15.626",
-      "dateStarted": "2020-06-03 10:45:31.446",
-      "dateFinished": "2020-06-03 10:45:34.592",
+      "dateStarted": "2020-06-05 08:29:24.046",
+      "dateFinished": "2020-06-05 08:29:26.569",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\n// Cleaning data in bonus\n\n/**\n * Convert count musics to approximatively years of listening\n */\ndef countToYear(count: Int): Boolean \u003d {\n    val avgSongMinutesLength \u003d 4.0\n    avgSongMinutesLength * count.toDouble / 60.0 / 24.0 / 365.0 \u003c 2\n}\n \ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    val unknownId \u003d artistByID.filter($\"name\" \u003d\u003d\u003d \"[unknown]\").select($\"id\").head.getInt(0)\n    val userArtistCleanedDF \u003d userArtistDF.filter($\"artist\" !\u003d\u003d unknownId)\n    \n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\").filter($\"artist\" !\u003d\u003d unknownId)\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias).filter($\"count\" \u003c 400000)\ntrainData.orderBy(desc(\"count\")).show\ntrainData.cache()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:45:34.644",
+      "dateUpdated": "2020-06-05 08:29:26.647",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -442,15 +442,15 @@
       "jobName": "paragraph_1590404829942_-1453554254",
       "id": "20200525-110709_1785781047",
       "dateCreated": "2020-05-25 11:07:09.942",
-      "dateStarted": "2020-06-03 10:45:34.682",
-      "dateFinished": "2020-06-03 10:46:00.817",
+      "dateStarted": "2020-06-05 08:29:26.693",
+      "dateFinished": "2020-06-05 08:29:51.555",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:00.900",
+      "dateUpdated": "2020-06-05 08:29:51.615",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -482,15 +482,15 @@
       "jobName": "paragraph_1590414919792_1966495056",
       "id": "20200525-135519_1912337093",
       "dateCreated": "2020-05-25 13:55:19.792",
-      "dateStarted": "2020-06-03 10:46:00.931",
-      "dateFinished": "2020-06-03 10:46:00.935",
+      "dateStarted": "2020-06-05 08:29:51.684",
+      "dateFinished": "2020-06-05 08:29:51.698",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Describe statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:01.030",
+      "dateUpdated": "2020-06-05 08:29:51.783",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -523,15 +523,15 @@
       "jobName": "paragraph_1590590237186_-623096228",
       "id": "20200527-143717_23609195",
       "dateCreated": "2020-05-27 14:37:17.186",
-      "dateStarted": "2020-06-03 10:46:01.070",
-      "dateFinished": "2020-06-03 10:46:01.080",
+      "dateStarted": "2020-06-05 08:29:51.832",
+      "dateFinished": "2020-06-05 08:29:51.842",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userSummary \u003d trainData.describe(\"user\")\nuserSummary.show\n\nval artistSummary \u003d trainData.describe(\"artist\")\nartistSummary.show\n\nval countSummary \u003d trainData.describe(\"count\")\ncountSummary.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:01.169",
+      "dateUpdated": "2020-06-05 08:29:51.931",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -576,15 +576,15 @@
       "jobName": "paragraph_1590590249472_873829545",
       "id": "20200527-143729_1355604663",
       "dateCreated": "2020-05-27 14:37:29.472",
-      "dateStarted": "2020-06-03 10:46:01.205",
-      "dateFinished": "2020-06-03 10:46:44.747",
+      "dateStarted": "2020-06-05 08:29:51.994",
+      "dateFinished": "2020-06-05 08:30:32.319",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Data fusion\nCompute a Dataframe with user id, artist id, artist name and count for later uses.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:44.837",
+      "dateUpdated": "2020-06-05 08:30:32.321",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -617,15 +617,15 @@
       "jobName": "paragraph_1590594064315_1755221963",
       "id": "20200527-154104_1970292027",
       "dateCreated": "2020-05-27 15:41:04.315",
-      "dateStarted": "2020-06-03 10:46:44.867",
-      "dateFinished": "2020-06-03 10:46:44.881",
+      "dateStarted": "2020-06-05 08:30:32.405",
+      "dateFinished": "2020-06-05 08:30:32.413",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userArtistNamesCountDF \u003d \n    trainData\n    .join(artistByID, artistByID(\"id\") \u003d\u003d\u003d trainData(\"artist\"))\n    .select(\"user\", \"artist\", \"name\", \"count\")\nuserArtistNamesCountDF.cache\nuserArtistNamesCountDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:44.967",
+      "dateUpdated": "2020-06-05 08:30:32.502",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -668,15 +668,15 @@
       "jobName": "paragraph_1590590062800_2109207725",
       "id": "20200527-143422_594483041",
       "dateCreated": "2020-05-27 14:34:22.800",
-      "dateStarted": "2020-06-03 10:46:45.010",
-      "dateFinished": "2020-06-03 10:46:54.978",
+      "dateStarted": "2020-06-05 08:30:32.541",
+      "dateFinished": "2020-06-05 08:30:42.490",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around users",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 12:34:15.273",
+      "dateUpdated": "2020-06-05 08:30:42.548",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -709,15 +709,15 @@
       "jobName": "paragraph_1591187646397_321240090",
       "id": "20200603-123406_1776470630",
       "dateCreated": "2020-06-03 12:34:06.397",
-      "dateStarted": "2020-06-03 12:34:15.274",
-      "dateFinished": "2020-06-03 12:34:15.277",
+      "dateStarted": "2020-06-05 08:30:42.581",
+      "dateFinished": "2020-06-05 08:30:42.585",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet users number",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:55.016",
+      "dateUpdated": "2020-06-05 08:30:42.681",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -750,15 +750,15 @@
       "jobName": "paragraph_1590747813508_-1257535935",
       "id": "20200529-102333_1988446988",
       "dateCreated": "2020-05-29 10:23:33.508",
-      "dateStarted": "2020-06-03 10:46:55.064",
-      "dateFinished": "2020-06-03 10:46:55.067",
+      "dateStarted": "2020-06-05 08:30:42.722",
+      "dateFinished": "2020-06-05 08:30:42.726",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval distinctUsersNumber \u003d userArtistNamesCountDF.select(\"user\").distinct.count\nprintln(distinctUsersNumber)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:46:55.163",
+      "dateUpdated": "2020-06-05 08:30:42.822",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -801,15 +801,15 @@
       "jobName": "paragraph_1590747828635_-1911174006",
       "id": "20200529-102348_186273132",
       "dateCreated": "2020-05-29 10:23:48.636",
-      "dateStarted": "2020-06-03 10:46:55.204",
-      "dateFinished": "2020-06-03 10:47:39.179",
+      "dateStarted": "2020-06-05 08:30:42.861",
+      "dateFinished": "2020-06-05 08:31:29.195",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s see the listen\u0027s total per user and sort it by the higher.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 12:55:42.799",
+      "dateUpdated": "2020-06-05 08:31:29.205",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -842,15 +842,15 @@
       "jobName": "paragraph_1591188912275_1259738258",
       "id": "20200603-125512_896180722",
       "dateCreated": "2020-06-03 12:55:12.275",
-      "dateStarted": "2020-06-03 12:55:42.799",
-      "dateFinished": "2020-06-03 12:55:42.803",
+      "dateStarted": "2020-06-05 08:31:29.272",
+      "dateFinished": "2020-06-05 08:31:29.279",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nval userListenArtists \u003d userArtistNamesCountDF.groupBy(\"user\").sum(\"count\").select($\"user\", $\"sum(count)\" as \"total\")\nlistenedArtistsDF.cache\n\nval mostUserListenArtists \u003d userListenArtists.sort(desc(\"total\"))\nmostUserListenArtists.show\n\nz.show()",
+      "text": "%spark\nval userListenArtists \u003d userArtistNamesCountDF.groupBy(\"user\").sum(\"count\").select($\"user\", $\"sum(count)\" as \"total\")\nuserListenArtists.cache\n\nval mostUserListenArtists \u003d userListenArtists.sort(desc(\"total\"))\nmostUserListenArtists.show\n\nz.show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 13:15:42.116",
+      "dateUpdated": "2020-06-05 09:24:03.140",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -925,19 +925,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+------+\n|   user| total|\n+-------+------+\n|2069337|393515|\n|2023977|285978|\n|1059637|241350|\n|1046559|183972|\n|1052461|175822|\n|1070932|168977|\n|1031009|167028|\n|2020513|165642|\n|2062243|151482|\n|2069889|143092|\n|1001440|136266|\n|2014936|135235|\n|2017397|134032|\n|1024631|122303|\n|1007308|111274|\n|2064012|108640|\n|2023742|102030|\n|1058890| 98472|\n|1021940| 97318|\n|1059245| 96037|\n+-------+------+\nonly showing top 20 rows\n\n"
-          },
-          {
-            "type": "TABLE",
-            "data": "user\ttotal\n2069337\t393515\n2023977\t285978\n1059637\t241350\n1046559\t183972\n1052461\t175822\n1070932\t168977\n1031009\t167028\n2020513\t165642\n2062243\t151482\n2069889\t143092\n1001440\t136266\n2014936\t135235\n2017397\t134032\n1024631\t122303\n1007308\t111274\n2064012\t108640\n2023742\t102030\n1058890\t98472\n1021940\t97318\n1059245\t96037\n1070641\t93444\n2070757\t91752\n2288164\t91125\n1009943\t85390\n1063644\t83369\n2000668\t82360\n1048402\t81826\n1047812\t81714\n1017610\t80707\n2023686\t80476\n1059334\t80122\n2007381\t79581\n2030069\t77958\n1052054\t77802\n2010008\t77721\n1073421\t77485\n1072684\t76681\n1059765\t76062\n1076906\t75961\n1035511\t75741\n1026084\t75277\n2005710\t74949\n2010581\t74885\n1000647\t74024\n1042223\t73973\n1029563\t73685\n1055449\t73484\n1021501\t73314\n1041919\t73019\n2102019\t72855\n2005779\t72658\n1003806\t72625\n1061830\t72525\n1021441\t72333\n1022223\t72083\n1026119\t70679\n1004028\t70331\n2039243\t69560\n1054006\t69396\n2013900\t69120\n1039876\t68341\n2017396\t68295\n2040944\t67647\n2006262\t67160\n1049310\t66670\n1067352\t66468\n1054960\t65711\n1070811\t65589\n1023797\t64770\n1003082\t64242\n1060615\t64122\n1041241\t64013\n1006530\t63741\n1026495\t63419\n1058914\t62985\n1000764\t62419\n1020985\t62246\n1064240\t61862\n2007573\t61786\n1063056\t61427\n1024420\t61290\n1041823\t61215\n2024005\t60772\n1010307\t60651\n2004899\t60140\n2120416\t59991\n1000932\t59631\n1077252\t59273\n1071998\t59135\n2016026\t58967\n1015748\t58839\n2050254\t58524\n1043751\t58365\n1073896\t58219\n2008108\t57940\n1047972\t57541\n2012505\t57524\n2040803\t57436\n2019990\t57291\n2054778\t56856\n1039116\t56854\n1060952\t56839\n2057914\t56718\n1038029\t56578\n1037825\t55523\n1041615\t55479\n2041536\t55439\n1024743\t55222\n2015363\t54872\n2016547\t54531\n2066287\t54519\n1044496\t54378\n2011215\t54369\n1056317\t54258\n1007372\t54222\n1049114\t54200\n1045125\t54144\n2013574\t54094\n1044648\t54061\n1000197\t54048\n2015419\t53933\n1062095\t53922\n2014339\t53575\n1030769\t53374\n2033901\t53300\n1042115\t53299\n1045464\t53171\n2019859\t52923\n2101646\t52867\n2036201\t52836\n2070559\t52708\n1062331\t52488\n1066718\t52307\n2073857\t52175\n2017148\t52003\n1054290\t51993\n1031403\t51851\n1061070\t51828\n1070439\t51821\n2010971\t51800\n2083814\t51750\n2066966\t51533\n1045293\t51509\n2027044\t51329\n1061226\t51117\n1058675\t51043\n1062802\t50832\n1039100\t50443\n1005852\t50380\n2030923\t50293\n1067482\t50081\n1040331\t49746\n1052234\t49746\n1021626\t49738\n2008619\t49453\n1039264\t49283\n2169016\t49266\n1064127\t49188\n1045479\t49039\n1003268\t49010\n1060352\t48871\n1049948\t48845\n1073340\t48794\n1069941\t48671\n2034492\t48638\n2260402\t48322\n1025800\t48320\n2019291\t48284\n2005262\t48246\n1031965\t48243\n2024255\t48064\n2058707\t48048\n1049861\t48043\n2071666\t48010\n1001535\t47910\n2109964\t47828\n1073616\t47781\n2004698\t47650\n1072273\t47643\n2008397\t47478\n1061434\t47473\n1002511\t47253\n2005539\t47236\n2077476\t47193\n1022903\t47125\n1051369\t47104\n1051794\t47090\n1039276\t47086\n1049342\t47022\n2034978\t46991\n1038490\t46793\n1004646\t46714\n1053461\t46585\n2024822\t46440\n1024554\t46385\n2024408\t46354\n1013013\t46282\n1071922\t46179\n1047618\t46071\n1049975\t46068\n2005320\t45984\n1005353\t45931\n2077359\t45908\n2033635\t45906\n2298756\t45380\n1005409\t45293\n2076618\t45235\n1008266\t45203\n1052906\t44869\n2072858\t44830\n2153382\t44804\n2010756\t44706\n1054893\t44655\n2025154\t44573\n1040317\t44470\n1037240\t44294\n2005518\t44002\n1060179\t43957\n1048804\t43948\n2083163\t43888\n2027626\t43877\n1034944\t43854\n1036787\t43813\n1041591\t43763\n1008311\t43753\n2051575\t43750\n2072248\t43647\n1040783\t43643\n1001190\t43595\n2083483\t43594\n2150071\t43588\n1034042\t43504\n1005076\t43417\n1052650\t43409\n2037192\t43382\n1052225\t43381\n1035088\t43284\n1003441\t43231\n1039498\t43125\n1025857\t43068\n2017087\t43044\n2050912\t42996\n2081588\t42786\n2035786\t42705\n1068617\t42611\n2048309\t42535\n2165315\t42526\n2016468\t42492\n2134296\t42448\n1068260\t42397\n1021999\t42341\n1064902\t42227\n2112741\t42190\n1070159\t42140\n2005333\t42081\n2160374\t42058\n1004259\t41998\n2004408\t41983\n1071527\t41893\n1027034\t41846\n2066194\t41832\n2012140\t41809\n2113893\t41758\n1038826\t41605\n1072841\t41536\n1052108\t41526\n2013123\t41404\n1030652\t41399\n2133975\t41277\n2066854\t41224\n1058160\t41216\n1027457\t41083\n1001867\t41082\n1044094\t40888\n1000611\t40768\n1055088\t40760\n2043442\t40708\n2002244\t40686\n2064988\t40644\n1074655\t40613\n1026410\t40548\n2006109\t40535\n2031907\t40431\n2006426\t40401\n2083596\t40274\n2050881\t40227\n2060709\t40194\n1064212\t40143\n2081230\t40056\n2173451\t39943\n2010247\t39913\n2039411\t39850\n1058932\t39788\n1055720\t39703\n1046976\t39679\n2004799\t39639\n2086971\t39634\n1063393\t39591\n1059284\t39567\n1017542\t39540\n2106248\t39510\n2109550\t39403\n1008812\t39259\n2033045\t39258\n1073095\t39234\n2114145\t39158\n2036122\t39124\n1021239\t39019\n2019913\t39008\n2144916\t38987\n7585\t38963\n1066687\t38875\n1039318\t38863\n2145918\t38842\n1029545\t38796\n2017834\t38756\n2030691\t38729\n1056255\t38714\n2032949\t38692\n1023863\t38615\n1062485\t38613\n2071103\t38566\n1036986\t38530\n1036940\t38507\n2160109\t38459\n1046062\t38452\n1064077\t38378\n1043983\t38376\n1000288\t38376\n2010445\t38302\n1053554\t38224\n1021549\t38181\n1042923\t38170\n1001562\t38112\n2053182\t38060\n1053908\t37972\n1063879\t37967\n2006239\t37922\n1049203\t37891\n2068088\t37859\n2016128\t37854\n2113918\t37850\n2116258\t37813\n1071105\t37771\n1069977\t37722\n2050310\t37719\n2060980\t37671\n1064060\t37607\n2043021\t37554\n1058542\t37448\n1063153\t37391\n1001118\t37314\n2187732\t37262\n2016686\t37253\n1044992\t37163\n2060832\t37161\n2237492\t37104\n2042801\t37086\n1025770\t37023\n1062748\t37004\n2086125\t36958\n2089838\t36944\n1059592\t36927\n1010131\t36918\n2036998\t36899\n2072296\t36890\n2008305\t36877\n2049652\t36870\n2049131\t36851\n1024369\t36841\n1052637\t36834\n2072222\t36806\n2085558\t36779\n2116356\t36755\n1058293\t36751\n1067960\t36738\n1066803\t36726\n1040093\t36694\n2283682\t36664\n1071846\t36640\n1007409\t36609\n2032004\t36606\n1060725\t36549\n2181569\t36477\n1037823\t36475\n2153647\t36457\n1006478\t36432\n1049494\t36391\n2014644\t36362\n1055268\t36261\n1018761\t36238\n2175863\t36237\n1037282\t36198\n1046116\t36106\n1027420\t36098\n2131971\t36094\n2147461\t36080\n2066332\t36070\n2037319\t36055\n2015276\t36040\n2012544\t36039\n1053427\t36034\n2216329\t36025\n1038035\t35996\n1025790\t35985\n2026580\t35959\n2061557\t35907\n2040815\t35858\n1047668\t35827\n1025828\t35744\n1004213\t35739\n2184924\t35735\n1059833\t35717\n1040132\t35682\n2030867\t35671\n1007092\t35653\n2015928\t35617\n2133916\t35615\n2027551\t35604\n2104631\t35588\n2217230\t35511\n2046099\t35502\n2025300\t35480\n1008050\t35477\n2035266\t35450\n2127969\t35410\n1043686\t35394\n1063488\t35380\n2074604\t35372\n2119871\t35334\n1007512\t35302\n1004584\t35280\n2020632\t35266\n1045481\t35199\n1056789\t35142\n2137140\t35104\n1074846\t35083\n2019544\t35073\n1039284\t35002\n1073038\t34909\n2015371\t34896\n2104830\t34823\n2017719\t34817\n2023036\t34807\n2098685\t34800\n1020308\t34797\n2026348\t34720\n2020205\t34693\n2012128\t34659\n1017287\t34646\n2023038\t34630\n2055705\t34588\n2059878\t34542\n2185290\t34536\n2019884\t34507\n1061471\t34489\n2203078\t34489\n1070844\t34352\n2243168\t34343\n2183497\t34327\n2024962\t34280\n2161809\t34229\n1010068\t34207\n2070886\t34172\n2069081\t34148\n2089368\t34131\n2067332\t34128\n1037666\t34108\n2018101\t34099\n2013784\t34072\n1072865\t34061\n1059198\t34046\n1006121\t34027\n1077099\t34011\n1008730\t34005\n1051276\t34003\n2005645\t33969\n1051908\t33933\n2142559\t33903\n2014225\t33878\n1046217\t33835\n1023639\t33786\n2006013\t33755\n2019752\t33752\n2130928\t33705\n1008438\t33664\n1073435\t33644\n2044879\t33620\n2073882\t33619\n2011153\t33616\n2003704\t33535\n2027509\t33529\n2019928\t33454\n2079179\t33437\n2023584\t33412\n2045199\t33393\n1006472\t33383\n2043178\t33357\n2072389\t33313\n1000248\t33253\n1046577\t33193\n1043122\t33146\n1027403\t33086\n1050974\t33031\n1039362\t33028\n1021124\t32990\n1009606\t32968\n2174953\t32964\n2216281\t32951\n2012182\t32922\n2008442\t32905\n2180727\t32843\n1044694\t32749\n1001310\t32742\n2129561\t32707\n1024606\t32688\n2202950\t32663\n2020786\t32655\n1021112\t32601\n2020386\t32596\n1056439\t32581\n2020216\t32561\n1066703\t32537\n2127432\t32521\n2101672\t32511\n2276357\t32457\n1005841\t32449\n2062410\t32437\n1055778\t32402\n2085319\t32393\n2008390\t32390\n2040288\t32355\n1026880\t32298\n1072252\t32295\n1005635\t32282\n1039207\t32280\n1045014\t32269\n2203045\t32232\n2039069\t32218\n1006561\t32155\n1054862\t32089\n2057590\t32082\n1066327\t32079\n1066575\t32043\n2109302\t32038\n2013651\t32028\n2100800\t32011\n2076566\t31996\n2012261\t31968\n1071035\t31951\n1041679\t31902\n1060908\t31898\n2074889\t31887\n2107471\t31880\n2009373\t31879\n2113742\t31872\n2015138\t31867\n1066208\t31845\n1045621\t31829\n1054347\t31826\n2087072\t31821\n2004750\t31817\n2147387\t31816\n1062330\t31784\n1024605\t31776\n2038335\t31749\n1002222\t31744\n2053517\t31682\n1043605\t31635\n2014273\t31610\n2072249\t31605\n1007564\t31569\n2048316\t31544\n2175533\t31522\n1037974\t31510\n2011243\t31469\n1064207\t31465\n2221949\t31443\n1052037\t31395\n2147072\t31392\n2035204\t31390\n1060644\t31384\n2020277\t31374\n2294923\t31367\n2015804\t31320\n2035525\t31211\n1043737\t31184\n1000199\t31183\n1077362\t31161\n2078417\t31160\n2070264\t31156\n1049766\t31148\n2224783\t31136\n2043762\t31112\n1071515\t31048\n2139079\t31023\n1055432\t31018\n2160849\t31009\n2023125\t30985\n1073226\t30972\n2147884\t30955\n2144492\t30917\n2062390\t30899\n1037162\t30885\n1005985\t30876\n2076207\t30812\n2067296\t30811\n1064168\t30809\n2176786\t30800\n2062368\t30795\n1067952\t30793\n2012806\t30792\n2080016\t30783\n1070318\t30779\n2089146\t30778\n1040536\t30776\n2222692\t30776\n2075471\t30770\n2121203\t30751\n2197018\t30748\n2079933\t30746\n1057054\t30667\n2135599\t30658\n2020477\t30651\n2005921\t30650\n2087257\t30643\n2056340\t30609\n2257599\t30596\n1044015\t30573\n2177651\t30571\n2100694\t30561\n1051353\t30496\n2069411\t30473\n1038950\t30473\n2051766\t30471\n2002221\t30440\n2043361\t30434\n1051568\t30425\n1055735\t30404\n1063407\t30397\n2045348\t30388\n2013192\t30386\n2062584\t30366\n1016462\t30317\n2009432\t30317\n1049160\t30315\n1069913\t30288\n1007801\t30260\n1044891\t30259\n1062222\t30249\n2254727\t30242\n2214962\t30225\n1055807\t30203\n2123154\t30188\n1004971\t30187\n1000098\t30166\n2004448\t30155\n1065897\t30132\n1001223\t30077\n1053245\t30073\n1000190\t30056\n2056211\t30046\n2131326\t30041\n2021433\t30028\n2135758\t30022\n1009580\t30019\n2050763\t30019\n1020357\t30012\n1039855\t30012\n2105914\t30007\n1029678\t29998\n1021574\t29998\n1070518\t29936\n1036634\t29903\n1045501\t29890\n2161595\t29842\n1037344\t29840\n2065550\t29839\n1059315\t29828\n2023197\t29778\n1056559\t29776\n2193127\t29750\n2241032\t29743\n2189399\t29720\n1016665\t29717\n2222719\t29713\n2063453\t29703\n1040284\t29700\n1005959\t29689\n1021470\t29689\n1044283\t29680\n2015796\t29665\n1023016\t29638\n2043566\t29619\n2011144\t29618\n2178742\t29596\n1035021\t29529\n1047127\t29528\n2005910\t29505\n2096691\t29489\n1003017\t29475\n1073236\t29448\n2023179\t29435\n1074392\t29417\n2204589\t29361\n1000968\t29335\n1039908\t29311\n1027030\t29299\n1043557\t29282\n1039614\t29229\n1041044\t29222\n1055656\t29220\n1045315\t29218\n2015436\t29213\n1044767\t29196\n2084673\t29196\n2047531\t29175\n2200013\t29167\n2101817\t29158\n2004958\t29143\n2023736\t29113\n2114237\t29103\n1037443\t29094\n2026201\t29077\n2287095\t29069\n2084510\t29065\n2293601\t29061\n1067080\t29029\n1048161\t29028\n2078827\t29010\n2183447\t29008\n1056318\t29000\n1038770\t28986\n2124523\t28969\n1005622\t28951\n1059305\t28936\n2241456\t28908\n2057889\t28903\n2164727\t28863\n2108768\t28839\n1050213\t28826\n1051866\t28825\n2132136\t28796\n2209396\t28781\n2020120\t28772\n2128360\t28770\n1003655\t28769\n1050873\t28736\n1038421\t28730\n2006283\t28704\n1048953\t28682\n2098536\t28662\n1000555\t28659\n1001307\t28657\n2012582\t28654\n1046442\t28634\n581\t28630\n2260819\t28616\n2059627\t28599\n1021507\t28589\n2147630\t28573\n2073364\t28567\n2058161\t28554\n2048673\t28552\n1003731\t28548\n1052884\t28547\n2250782\t28542\n2011487\t28542\n1055194\t28511\n1060655\t28505\n1002624\t28501\n2094925\t28492\n2036959\t28482\n1026529\t28447\n2043927\t28398\n2039561\t28395\n2185418\t28327\n2159149\t28287\n1037947\t28278\n1021541\t28274\n2201328\t28268\n2076624\t28253\n2203300\t28234\n1038870\t28147\n2128545\t28141\n1044231\t28137\n2231396\t28126\n2244606\t28110\n1072133\t28104\n2109951\t28084\n1016152\t28061\n2047506\t28054\n2165453\t28051\n1064510\t28040\n2035051\t28039\n2098726\t28028\n1001777\t28027\n2157954\t28024\n2128081\t28015\n2070081\t28013\n1046081\t28009\n1059295\t27990\n1071451\t27977\n2207460\t27960\n1001070\t27910\n1003451\t27901\n2017438\t27889\n2037533\t27888\n2009719\t27838\n2063267\t27808\n2011129\t27797\n2020506\t27791\n2303980\t27791\n2088711\t27776\n2214656\t27730\n1063022\t27714\n1053832\t27693\n1002167\t27676\n2042518\t27671\n2124394\t27629\n1051518\t27627\n2020246\t27615\n2078421\t27591\n1070514\t27590\n1003319\t27554\n2030187\t27551\n1071787\t27454\n1042684\t27440\n1021886\t27436\n2076956\t27424\n1056373\t27401\n2015671\t27383\n2240590\t27383\n1058596\t27380\n2023734\t27350\n2074380\t27349\n2117924\t27340\n1006069\t27331\n2015662\t27329\n2186155\t27315\n2108179\t27313\n1067697\t27304\n2048942\t27286\n2045396\t27283\n1056506\t27279\n2048332\t27270\n1054047\t27259\n2128302\t27207\n2056471\t27203\n2253457\t27144\n1008083\t27108\n2048229\t27063\n1021843\t27043\n2179401\t27042\n2088179\t27035\n1000769\t27026\n2018618\t26999\n2035486\t26982\n2038737\t26977\n1070058\t26961\n1038197\t26928\n2158512\t26906\n1052236\t26901\n1064253\t26898\n1009320\t26866\n2151591\t26842\n2207687\t26840\n1020855\t26811\n1049472\t26807\n1061950\t26806\n2214888\t26805\n2136556\t26802\n2002031\t26790\n2225341\t26777\n2078960\t26771\n2086593\t26756\n1006903\t26753\n1001220\t26749\n2047696\t26738\n1017881\t26724\n2019951\t26677\n2079939\t26672\n1030469\t26666\n2234124\t26656\n2035606\t26650\n2094539\t26639\n2072242\t26603\n2220548\t26595\n2018033\t26563\n2009749\t26545\n1043564\t26542\n2005106\t26529\n2135742\t26528\n2028728\t26508\n1068356\t26495\n2008303\t26493\n2188858\t26468\n2033391\t26450\n1048750\t26448\n1053763\t26446\n2107316\t26416\n1044540\t26414\n2041212\t26397\n2006498\t26362\n1066241\t26331\n2010523\t26325\n2074083\t26325\n2216992\t26316\n1020881\t26314\n1072997\t26303\n1044422\t26303\n2203600\t26297\n2058087\t26282\n1052410\t26277\n2033419\t26191\n1002830\t26186\n1043734\t26129\n1026047\t26125\n2021010\t26096\n2035403\t26084\n2176615\t26052\n1053325\t26050\n1052028\t26032\n1052978\t26031\n2162891\t26024\n2026960\t26008\n2186230\t26006\n1054663\t25983\n1063064\t25980\n1021966\t25974\n1044528\t25949\n2006427\t25948\n2006092\t25931\n1003589\t25930\n2006093\t25912\n1054650\t25908\n1039416\t25905\n2057876\t25899\n1009926\t25887\n2033292\t25883\n1037302\t25876\n1027331\t25876\n2004719\t25856\n2005117\t25820\n2066418\t25818\n2267709\t25814\n2299954\t25805\n2041261\t25795\n1077262\t25794\n1001746\t25770\n2069413\t25762\n2067636\t25757\n1070872\t25747\n1038435\t25741\n2015788\t25721\n1021923\t25718\n1039322\t25712\n2133873\t25708\n2023399\t25702\n1043521\t25690\n1038380\t25674\n2036697\t25669\n1005975\t25668\n2067264\t25645\n2030377\t25641\n2020472\t25626\n1058776\t25624\n2202279\t25610\n2110860\t25594\n1060074\t25579\n1009813\t25578\n1031916\t25568\n1063125\t25568\n1065971\t25559\n1000454\t25536\n1037848\t25532\n2103228\t25528\n1073439\t25522\n2021126\t25517\n2002976\t25482\n1070732\t25476\n2008698\t25470\n1064059\t25462\n2117355\t25450\n2268277\t25440\n2093052\t25437\n1039020\t25427\n2023287\t25403\n2012593\t25382\n1031338\t25371\n1002165\t25367\n2199359\t25343\n1043283\t25338\n2092405\t25336\n1073342\t25329\n1001905\t25329\n1045559\t25321\n8492\t25321\n2067899\t25320\n2066847\t25319\n"
-          },
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"result-alert alert-warning\" role\u003d\"alert\"\u003e\u003cbutton type\u003d\"button\" class\u003d\"close\" data-dismiss\u003d\"alert\" aria-label\u003d\"Close\"\u003e\u003cspan aria-hidden\u003d\"true\"\u003e\u0026times;\u003c/span\u003e\u003c/button\u003e\u003cstrong\u003eOutput is truncated\u003c/strong\u003e to 1000 rows. Learn more about \u003cstrong\u003ezeppelin.spark.maxResult\u003c/strong\u003e\u003c/div\u003e\n"
-          },
-          {
-            "type": "TEXT",
-            "data": "userListenArtists: org.apache.spark.sql.DataFrame \u003d [user: int, total: bigint]\nmostUserListenArtists: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, total: bigint]\n"
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\n+-------+------+\n|   user| total|\n+-------+------+\n|2069337|393515|\n|2023977|285978|\n|1059637|241350|\n|1046559|183972|\n|1052461|175822|\n|1070932|168977|\n|1031009|167028|\n|2020513|165642|\n|2062243|151482|\n|2069889|143092|\n|1001440|136266|\n|2014936|135235|\n|2017397|134032|\n|1024631|122303|\n|1007308|111274|\n|2064012|108640|\n|2023742|102030|\n|1058890| 98472|\n|1021940| 97318|\n|1059245| 96037|\n+-------+------+\nonly showing top 20 rows\n\nZeppelinContext doesn\u0027t support to show type: scala.runtime.BoxedUnit\n()userListenArtists: org.apache.spark.sql.DataFrame \u003d [user: int, total: bigint]\nmostUserListenArtists: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, total: bigint]\n"
           }
         ]
       },
@@ -948,8 +936,7 @@
           "tooltip": "View in Spark web UI",
           "group": "spark",
           "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d55",
-            "http://172.17.0.2:4040/jobs/job?id\u003d56"
+            "http://172.17.0.2:4040/jobs/job?id\u003d11"
           ],
           "interpreterSettingId": "spark"
         }
@@ -958,8 +945,8 @@
       "jobName": "paragraph_1591187663060_-889404448",
       "id": "20200603-123423_567139667",
       "dateCreated": "2020-06-03 12:34:23.060",
-      "dateStarted": "2020-06-03 13:12:24.576",
-      "dateFinished": "2020-06-03 13:13:11.405",
+      "dateStarted": "2020-06-05 09:24:03.178",
+      "dateFinished": "2020-06-05 09:24:19.631",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1033,18 +1020,6 @@
             "data": "+-------+--------------------+------+\n|   user|                name| total|\n+-------+--------------------+------+\n|1059637| My Chemical Romance|155895|\n|2069889| Something Corporate|101076|\n|2020513|      Mates of State| 89592|\n|1073421|    Guided by Voices| 67548|\n|2023977|            Maroon 5| 62815|\n|2023977|   Alanis Morissette| 51039|\n|2014936|          Pink Floyd| 36083|\n|2069337|        Sage Francis| 34800|\n|2013784|     Cannibal Corpse| 32768|\n|2069337|          Jawbreaker| 31321|\n|1073435|ASIAN KUNG-FU GEN...| 30043|\n|2023977|          Guano Apes| 29983|\n|1052225|               浜崎あゆみ| 29933|\n|2017397|     New Found Glory| 26394|\n|1045479|         The Beatles| 26135|\n|2062243|           Music 205| 26107|\n|1039100|              R.E.M.| 25858|\n|1053554|    Boards of Canada| 25303|\n|2017397|              Thrice| 24876|\n|2216281|           Rammstein| 24067|\n+-------+--------------------+------+\nonly showing top 20 rows\n\nuserDifferentArtists: org.apache.spark.sql.DataFrame \u003d [user: int, name: string ... 1 more field]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d77"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1591189886953_-1586584012",
@@ -1125,19 +1100,6 @@
             "data": "148077\n+-------+------------------+\n|summary|             count|\n+-------+------------------+\n|  count|            148077|\n|   mean|162.66439757693632|\n| stddev|215.38131877586378|\n|    min|                 1|\n|    max|              6734|\n+-------+------------------+\n\nartistsPerUser: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, count: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d114",
-            "http://172.17.0.2:4040/jobs/job?id\u003d115"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1591192747866_1333042132",
@@ -1301,18 +1263,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d11"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590747287371_1343407231",
       "id": "20200529-101447_1422946071",
@@ -1392,18 +1342,6 @@
             "data": "+--------------------+-------+\n|                name|  total|\n+--------------------+-------+\n|           Radiohead|2502596|\n|         The Beatles|2259825|\n|           Green Day|1931143|\n|           Metallica|1543430|\n|          Pink Floyd|1399665|\n|     Nine Inch Nails|1361977|\n|        Modest Mouse|1328969|\n|         Bright Eyes|1234773|\n|             Nirvana|1203348|\n|                Muse|1148684|\n| Death Cab for Cutie|1117277|\n|Red Hot Chili Pep...|1088701|\n|       Elliott Smith|1080542|\n|           Rammstein|1047119|\n|         Linkin Park|1028921|\n|                  U2|1015494|\n|           Nightwish|1010869|\n|            Coldplay|1001417|\n|    System of a Down| 986483|\n|            Interpol| 979770|\n+--------------------+-------+\nonly showing top 20 rows\n\nlistenedArtistsDF: org.apache.spark.sql.DataFrame \u003d [name: string, total: bigint]\nmostListenedArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, total: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d12"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590595127492_295793374",
@@ -1516,18 +1454,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d39"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591184778153_1332693355",
       "id": "20200603-114618_1503339983",
@@ -1609,18 +1535,6 @@
             "data": "+--------------------+-----+\n|                name|total|\n+--------------------+-----+\n|Joe Budden, A Tea...|    1|\n|Rae \u0026 Chritian - ...|    1|\n|Alex Melcher, Peh...|    1|\n|Dolly Parton - Mi...|    1|\n|        Oneiropagida|    1|\n|          Bravissimo|    1|\n|The Middle Spunk ...|    1|\n|The Last Emperor ...|    1|\n|      12 Urban Tribe|    1|\n|3EO35A5QUKMQXL3WV...|    1|\n|         Jon Eberson|    1|\n|gwar - Preskool P...|    1|\n|Ayla-Liebe-Atb Remix|    1|\n|macy gray (bugz i...|    1|\n|Boys to Men \u0026 Cha...|    1|\n|Apani B. Fly Emce...|    1|\n|  Makaveli ft. Storm|    1|\n|       Opération raï|    1|\n|Parle ft jadakiss...|    1|\n|Lil Kim, Mya, Pin...|    1|\n+--------------------+-----+\nonly showing top 20 rows\n\nleastListenedArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, total: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d13"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590591187326_-770675715",
@@ -1704,18 +1618,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d45"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590591575297_993223126",
       "id": "20200527-145935_127174988",
@@ -1769,7 +1671,7 @@
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 12:02:26.524",
+      "dateUpdated": "2020-06-05 08:28:03.137",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1855,19 +1757,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d52",
-            "http://172.17.0.2:4040/jobs/job?id\u003d53"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591185436485_-2090136469",
       "id": "20200603-115716_703615281",
@@ -1948,19 +1837,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d15",
-            "http://172.17.0.2:4040/jobs/job?id\u003d16"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590749376871_1302947423",
       "id": "20200529-104936_1595594524",
@@ -2012,9 +1888,538 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%md\n## Around mispelled artists names\n\nLet\u0027s see which artists are the most misspelled. First compute a Map with the correct artist id as key and the list of \"bad\" ids associated as value.",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:05:53.738",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eAround mispelled artists names\u003c/h2\u003e\n\u003cp\u003eLet\u0026rsquo;s see which artists are the most misspelled. First compute a Map with the correct artist id as key and the list of \u0026ldquo;bad\u0026rdquo; ids associated as value.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591349459271_383008968",
+      "id": "20200605-093059_1465513130",
+      "dateCreated": "2020-06-05 09:30:59.271",
+      "dateStarted": "2020-06-05 12:05:53.738",
+      "dateFinished": "2020-06-05 12:05:53.746",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval aliasToListWrongNames \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((alias.toInt, artist.toInt))\n}\n.collect\n.groupBy { case (k, v) \u003d\u003e k }\n.map { case (k, v) \u003d\u003e (k, v.map { case (_, v2) \u003d\u003e v2 } ) }",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:02:54.748",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "aliasToListWrongNames: scala.collection.immutable.Map[Int,Array[Int]] \u003d Map(1024902 -\u003e Array(7031865, 10126186, 6779755, 9932604), 1015734 -\u003e Array(6673210, 1136741, 1245178, 2143731, 10329891, 1333615, 1101501), 6717723 -\u003e Array(10057398, 1252688, 6652734, 6701651, 6865044), 1004327 -\u003e Array(6679302, 6664492, 6664471, 6664500, 6823491, 6635742, 6632559, 2169048, 6762318, 6657467, 2131746, 6672038, 1103218, 7021176, 6817192, 1163863), 2163 -\u003e Array(10288454, 1025190, 6632837, 10290466, 1240348), 9945889 -\u003e Array(6781150, 6706888), 1195124 -\u003e Array(6993413), 6610733 -\u003e Array(6610799), 1018501 -\u003e Array(6762855, 2027662, 1025548), 645 -\u003e Array(1161813), 6952452 -\u003e Array(6967331), 1022943 -\u003e Array(1202878), 1236718 -\u003e Array(1014752, 9990287), 6696247 -\u003e Array(1099549, 6628091, 2087079), 69 ..."
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d29"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1591349478013_-1221883526",
+      "id": "20200605-093118_1002665108",
+      "dateCreated": "2020-06-05 09:31:18.013",
+      "dateStarted": "2020-06-05 12:02:54.784",
+      "dateFinished": "2020-06-05 12:02:55.783",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval artistsWithMostWrongAlias \u003d aliasToListWrongNames.map { case (k,v) \u003d\u003e (k, v.length) }.toList.toDF(\"artist\", \"count\")\nartistsWithMostWrongAlias.describe(\"count\").show\nartistsWithMostWrongAlias.sort(desc(\"count\")).show",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:23:49.988",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "artist": "string",
+                      "count": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default",
+                  "stacked": false
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "artist",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "count",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|             count|\n+-------+------------------+\n|  count|             22478|\n|   mean| 8.492392561615802|\n| stddev|28.895991802786074|\n|    min|                 1|\n|    max|              1204|\n+-------+------------------+\n\n+-------+-----+\n| artist|count|\n+-------+-----+\n|1000024| 1204|\n|1034635|  955|\n|     82|  671|\n|1003694|  656|\n|   1854|  656|\n|1000113|  629|\n|    930|  628|\n|    979|  620|\n|1000107|  537|\n|    976|  536|\n|   1182|  527|\n|   1205|  451|\n|   1274|  450|\n|   4061|  424|\n|1001646|  424|\n|1000323|  413|\n|2003588|  390|\n|1256375|  385|\n|1247272|  373|\n|1008093|  365|\n+-------+-----+\nonly showing top 20 rows\n\nartistsWithMostWrongAlias: org.apache.spark.sql.DataFrame \u003d [artist: int, count: int]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d35",
+            "http://172.17.0.2:4040/jobs/job?id\u003d36"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1591358782492_650459347",
+      "id": "20200605-120622_212507654",
+      "dateCreated": "2020-06-05 12:06:22.492",
+      "dateStarted": "2020-06-05 12:23:50.031",
+      "dateFinished": "2020-06-05 12:23:51.687",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nWe can see there is 22\u0027478 artists names misspelled and the worst has it 1204 times ! Let\u0027s see who this artist is.",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:27:46.177",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eWe can see there is 22\u0026rsquo;478 artists names misspelled and the worst has it 1204 times ! Let\u0026rsquo;s see who this artist is.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591359950223_1486741864",
+      "id": "20200605-122550_1931951013",
+      "dateCreated": "2020-06-05 12:25:50.223",
+      "dateStarted": "2020-06-05 12:27:46.178",
+      "dateFinished": "2020-06-05 12:27:46.183",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nartistByID.select(\"name\").filter(\"id \u003d\u003d 1000024\").show",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:32:21.449",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------+\n|     name|\n+---------+\n|Metallica|\n+---------+\n\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d40"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360073285_1319920019",
+      "id": "20200605-122753_1932124994",
+      "dateCreated": "2020-06-05 12:27:53.285",
+      "dateStarted": "2020-06-05 12:32:21.486",
+      "dateFinished": "2020-06-05 12:32:24.624",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nOh no ! It\u0027s Metallica ! How is that even possible ? Let\u0027s see the 1204 errors.",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:48:51.276",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eOh no ! It\u0026rsquo;s Metallica ! How is that even possible ? Let\u0026rsquo;s see the 1204 errors.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360484448_-1576468597",
+      "id": "20200605-123444_670068784",
+      "dateCreated": "2020-06-05 12:34:44.448",
+      "dateStarted": "2020-06-05 12:48:51.277",
+      "dateFinished": "2020-06-05 12:48:51.284",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval aliasIdsToMetallica \u003d aliasToListWrongNames.getOrElse(1000024, Array()).toList.toDF(\"id\")\nval aliasNamesToMetallica \u003d aliasIdsToMetallica.join(artistByID, artistByID(\"id\") \u003d\u003d\u003d aliasIdsToMetallica(\"id\"))\naliasNamesToMetallica.show(false)",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:51:37.363",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------+--------+-----------------------------------------------+\n|id      |id      |name                                           |\n+--------+--------+-----------------------------------------------+\n|1240322 |1240322 |Metallica \u0026 The SF Symphony Orchestra          |\n|10113173|10113173|Metallica - B\u0026P - 14                           |\n|10024375|10024375|Metallica - B\u0026P - 21                           |\n|10024376|10024376|Metallica - ...And Justice For All -           |\n|10024488|10024488|Metallica - B\u0026P - 24                           |\n|1136616 |1136616 |30B10001806F00287800.Metallica and The SF      |\n|7004497 |7004497 |Metallica \u0026 San-Francisco-Orchester            |\n|10025794|10025794|Metallica - Live in Belgrade 26.6              |\n|10186355|10186355|Metallica Some Kind of Monster                 |\n|6945944 |6945944 |03. Metallica                                  |\n|1246630 |1246630 |Metallica \u0026 Michael Kamen                      |\n|1138243 |1138243 |Metallica -[Disc 2(10)                         |\n|6946149 |6946149 |Metallica -1987- Garage Days                   |\n|1247944 |1247944 |Metallica 06                                   |\n|6672703 |6672703 |Metallica -1998- Garage Inc,disc I             |\n|9934619 |9934619 |Metallica \u0026 San Fran                           |\n|7031937 |7031937 || METALLICA                                    |\n|6991351 |6991351 |Metallica (w                                   |\n|2038418 |2038418 |METALLICA@Apoptygma Berzerk                   |\n|9918437 |9918437 |Metallica - Live 2004-05-28 - Helsinki, Finland|\n+--------+--------+-----------------------------------------------+\nonly showing top 20 rows\n\naliasIdsToMetallica: org.apache.spark.sql.DataFrame \u003d [id: int]\naliasNamesToMetallica: org.apache.spark.sql.DataFrame \u003d [id: int, id: int ... 1 more field]\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://172.17.0.2:4040/jobs/job?id\u003d44"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360540945_-407387076",
+      "id": "20200605-123540_921478601",
+      "dateCreated": "2020-06-05 12:35:40.945",
+      "dateStarted": "2020-06-05 12:51:37.411",
+      "dateFinished": "2020-06-05 12:51:37.828",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\nBefore run the portion of code above, we think that the name \"Metallica\" was misspelled. However, as we can see, it\u0027s more a name with some details or additions than just bad spelling.",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 13:07:59.103",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eBefore run the portion of code above, we think that the name \u0026ldquo;Metallica\u0026rdquo; was misspelled. However, as we can see, it\u0026rsquo;s more a name with some details or additions than just bad spelling.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1591361344864_135508832",
+      "id": "20200605-124904_747511390",
+      "dateCreated": "2020-06-05 12:49:04.864",
+      "dateStarted": "2020-06-05 13:07:59.103",
+      "dateFinished": "2020-06-05 13:07:59.114",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:52.974",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360612973_-988257281",
+      "id": "20200605-123652_1363583381",
+      "dateCreated": "2020-06-05 12:36:52.973",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:53.705",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360613704_931012254",
+      "id": "20200605-123653_1092685122",
+      "dateCreated": "2020-06-05 12:36:53.704",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:54.039",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360614038_-244132693",
+      "id": "20200605-123654_1194085714",
+      "dateCreated": "2020-06-05 12:36:54.039",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:56.480",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360616479_-1593573708",
+      "id": "20200605-123656_22045573",
+      "dateCreated": "2020-06-05 12:36:56.479",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:56.709",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360616708_-1595920036",
+      "id": "20200605-123656_1067093774",
+      "dateCreated": "2020-06-05 12:36:56.708",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-05 12:36:54.004",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1591360614004_217257177",
+      "id": "20200605-123654_995248947",
+      "dateCreated": "2020-06-05 12:36:54.004",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%md\n## Building a First Model",
       "user": "anonymous",
-      "dateUpdated": "2020-06-03 10:48:04.950",
+      "dateUpdated": "2020-06-05 09:31:16.088",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2047,8 +2452,8 @@
       "jobName": "paragraph_1590404072119_591799774",
       "id": "20200525-105432_1663212423",
       "dateCreated": "2020-05-25 10:54:32.119",
-      "dateStarted": "2020-06-03 10:48:04.993",
-      "dateFinished": "2020-06-03 10:48:04.997",
+      "dateStarted": "2020-06-05 09:31:16.088",
+      "dateFinished": "2020-06-05 09:31:16.093",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2081,32 +2486,6 @@
             "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_ec7cf34b997f\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d17",
-            "http://172.17.0.2:4040/jobs/job?id\u003d18",
-            "http://172.17.0.2:4040/jobs/job?id\u003d19",
-            "http://172.17.0.2:4040/jobs/job?id\u003d20",
-            "http://172.17.0.2:4040/jobs/job?id\u003d21",
-            "http://172.17.0.2:4040/jobs/job?id\u003d22",
-            "http://172.17.0.2:4040/jobs/job?id\u003d23",
-            "http://172.17.0.2:4040/jobs/job?id\u003d24",
-            "http://172.17.0.2:4040/jobs/job?id\u003d25",
-            "http://172.17.0.2:4040/jobs/job?id\u003d26",
-            "http://172.17.0.2:4040/jobs/job?id\u003d27",
-            "http://172.17.0.2:4040/jobs/job?id\u003d28",
-            "http://172.17.0.2:4040/jobs/job?id\u003d29",
-            "http://172.17.0.2:4040/jobs/job?id\u003d30",
-            "http://172.17.0.2:4040/jobs/job?id\u003d31"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590405875128_638740172",
@@ -2146,18 +2525,6 @@
             "data": "+---+--------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                  |\n+---+--------------------------------------------------------------------------------------------------------------------------+\n|90 |[0.029493244, 0.15901206, 0.51303715, 0.91269195, 0.33935696, 0.1631303, 0.31652638, -0.63819027, -0.40553758, 0.09596333]|\n+---+--------------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d32"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590406015054_509388477",
@@ -2239,19 +2606,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d33",
-            "http://172.17.0.2:4040/jobs/job?id\u003d34"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590414312973_773327109",
       "id": "20200525-134512_2071793608",
@@ -2291,18 +2645,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d35"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590414339594_-358168064",
       "id": "20200525-134539_310376515",
@@ -2341,19 +2683,6 @@
             "data": "+-------+----------------+\n|     id|            name|\n+-------+----------------+\n|1000320|            MxPx|\n|1013931|  Tegan and Sara|\n|1164352|          Eisley|\n|1006809|Five Iron Frenzy|\n|1014716|       Relient K|\n+-------+----------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1006809, 1164352, 1014716, 1000320, 1013931)\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d36",
-            "http://172.17.0.2:4040/jobs/job?id\u003d37"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590414893842_841620200",

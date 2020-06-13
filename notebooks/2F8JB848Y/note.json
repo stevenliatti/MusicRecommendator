@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Music Recommendator\n\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:18.572",
+      "dateUpdated": "2020-06-13 11:01:27.363",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -36,15 +36,15 @@
       "jobName": "paragraph_1590404160920_724976566",
       "id": "20200525-105600_876779769",
       "dateCreated": "2020-05-25 10:56:00.920",
-      "dateStarted": "2020-06-12 14:14:18.690",
-      "dateFinished": "2020-06-12 14:14:21.044",
+      "dateStarted": "2020-06-13 11:01:27.586",
+      "dateFinished": "2020-06-13 11:01:29.673",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Preparing the Data\n\nLet\u0027s start by downloading the data :\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:21.091",
+      "dateUpdated": "2020-06-13 11:01:29.684",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -77,15 +77,15 @@
       "jobName": "paragraph_1590404204036_-155805845",
       "id": "20200525-105644_555166138",
       "dateCreated": "2020-05-25 10:56:44.037",
-      "dateStarted": "2020-06-12 14:14:21.326",
-      "dateFinished": "2020-06-12 14:14:21.354",
+      "dateStarted": "2020-06-13 11:01:30.012",
+      "dateFinished": "2020-06-13 11:01:30.040",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\ncd /data\nif [[ ! -d profiledata_06-May-2005 ]]\nthen\n    if [[ ! -f profiledata_06-May-2005.tar.xz ]]\n    then \n        echo \"Downloading profiledata_06-May-2005.tar.xz\"\n        curl --silent https://drive.switch.ch/index.php/s/gK6l44wTWixlaeC/download -o profiledata_06-May-2005.tar.xz\n        echo \"Extracting to profiledata_06-May-2005\"\n        tar xfv profiledata_06-May-2005.tar.xz\n    fi\nfi\nls -lhF profiledata_06-May-2005",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:21.423",
+      "dateUpdated": "2020-06-13 11:01:30.112",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -116,15 +116,15 @@
       "jobName": "paragraph_1590395388698_1190528192",
       "id": "20200525-082948_1820188021",
       "dateCreated": "2020-05-25 08:29:48.698",
-      "dateStarted": "2020-06-12 14:14:21.613",
-      "dateFinished": "2020-06-12 14:14:23.694",
+      "dateStarted": "2020-06-13 11:01:30.314",
+      "dateFinished": "2020-06-13 11:01:32.457",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the user artist data and transform it in a Dataframe with two columns \"user\" and \"artist\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:23.714",
+      "dateUpdated": "2020-06-13 11:01:32.512",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -157,15 +157,15 @@
       "jobName": "paragraph_1590404376466_270920040",
       "id": "20200525-105936_1453333316",
       "dateCreated": "2020-05-25 10:59:36.466",
-      "dateStarted": "2020-06-12 14:14:23.896",
-      "dateFinished": "2020-06-12 14:14:23.909",
+      "dateStarted": "2020-06-13 11:01:32.660",
+      "dateFinished": "2020-06-13 11:01:32.673",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.printSchema\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:23.995",
+      "dateUpdated": "2020-06-13 11:01:32.758",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -209,15 +209,15 @@
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
       "dateCreated": "2020-05-25 10:37:59.984",
-      "dateStarted": "2020-06-12 14:14:24.099",
-      "dateFinished": "2020-06-12 14:14:41.057",
+      "dateStarted": "2020-06-13 11:01:32.914",
+      "dateFinished": "2020-06-13 11:02:01.567",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the raw artist data and transform it in a Dataframe with two columns \"id\" and \"name\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:41.112",
+      "dateUpdated": "2020-06-13 11:02:01.657",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -250,15 +250,15 @@
       "jobName": "paragraph_1590404636907_1121945544",
       "id": "20200525-110356_1897971030",
       "dateCreated": "2020-05-25 11:03:56.907",
-      "dateStarted": "2020-06-12 14:14:41.253",
-      "dateFinished": "2020-06-12 14:14:41.280",
+      "dateStarted": "2020-06-13 11:02:01.766",
+      "dateFinished": "2020-06-13 11:02:01.779",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_data.txt\")\nval artistByID \u003d rawArtistData.flatMap { line \u003d\u003e\n    val (id, name) \u003d line.span(_ !\u003d \u0027\\t\u0027)\n    if (name.isEmpty) None\n    else {\n        try Some((id.toInt, name.trim))\n        catch {\n            case _: NumberFormatException \u003d\u003e None\n        }\n    }\n}.toDF(\"id\", \"name\")",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:41.347",
+      "dateUpdated": "2020-06-13 11:02:01.867",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -289,15 +289,15 @@
       "jobName": "paragraph_1590404632088_1692483147",
       "id": "20200525-110352_2143376873",
       "dateCreated": "2020-05-25 11:03:52.088",
-      "dateStarted": "2020-06-12 14:14:41.460",
-      "dateFinished": "2020-06-12 14:14:42.242",
+      "dateStarted": "2020-06-13 11:02:01.991",
+      "dateFinished": "2020-06-13 11:02:02.766",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the alias artist data and transform it in a Map with artist id for the key and alias for value :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:42.259",
+      "dateUpdated": "2020-06-13 11:02:02.790",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -330,15 +330,15 @@
       "jobName": "paragraph_1590404719724_1188961969",
       "id": "20200525-110519_1836651915",
       "dateCreated": "2020-05-25 11:05:19.724",
-      "dateStarted": "2020-06-12 14:14:42.467",
-      "dateFinished": "2020-06-12 14:14:42.484",
+      "dateStarted": "2020-06-13 11:02:03.130",
+      "dateFinished": "2020-06-13 11:02:03.159",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawArtistAlias \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_alias.txt\")\nval artistAlias \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((artist.toInt, alias.toInt))\n}.collect().toMap\n\nartistByID.filter($\"id\" isin (1208690, 1003926)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:42.567",
+      "dateUpdated": "2020-06-13 11:02:03.211",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -390,15 +390,15 @@
       "jobName": "paragraph_1590403815626_-1753499650",
       "id": "20200525-105015_1244952508",
       "dateCreated": "2020-05-25 10:50:15.626",
-      "dateStarted": "2020-06-12 14:14:42.662",
-      "dateFinished": "2020-06-12 14:14:45.270",
+      "dateStarted": "2020-06-13 11:02:03.345",
+      "dateFinished": "2020-06-13 11:02:06.299",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\n// Cleaning data in bonus\n\n/**\n * Convert count musics to approximatively years of listening\n */\ndef countToYear(count: Int): Boolean \u003d {\n    val avgSongMinutesLength \u003d 4.0\n    avgSongMinutesLength * count.toDouble / 60.0 / 24.0 / 365.0 \u003c 2\n}\n \ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    val unknownId \u003d artistByID.filter($\"name\" \u003d\u003d\u003d \"[unknown]\").select($\"id\").head.getInt(0)\n    val userArtistCleanedDF \u003d userArtistDF.filter($\"artist\" !\u003d\u003d unknownId)\n    \n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\").filter($\"artist\" !\u003d\u003d unknownId)\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias).filter($\"count\" \u003c 400000)\ntrainData.orderBy(desc(\"count\")).show\ntrainData.cache()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:14:45.364",
+      "dateUpdated": "2020-06-13 11:02:06.347",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -442,15 +442,15 @@
       "jobName": "paragraph_1590404829942_-1453554254",
       "id": "20200525-110709_1785781047",
       "dateCreated": "2020-05-25 11:07:09.942",
-      "dateStarted": "2020-06-12 14:14:45.439",
-      "dateFinished": "2020-06-12 14:15:10.608",
+      "dateStarted": "2020-06-13 11:02:06.449",
+      "dateFinished": "2020-06-13 11:02:31.908",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 11:40:19.597",
+      "dateUpdated": "2020-06-13 09:07:10.261",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -482,15 +482,15 @@
       "jobName": "paragraph_1590414919792_1966495056",
       "id": "20200525-135519_1912337093",
       "dateCreated": "2020-05-25 13:55:19.792",
-      "dateStarted": "2020-06-12 11:40:19.694",
-      "dateFinished": "2020-06-12 11:40:19.703",
+      "dateStarted": "2020-06-13 09:07:10.335",
+      "dateFinished": "2020-06-13 09:07:10.344",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Describe statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 11:40:19.793",
+      "dateUpdated": "2020-06-13 09:07:10.433",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -523,15 +523,15 @@
       "jobName": "paragraph_1590590237186_-623096228",
       "id": "20200527-143717_23609195",
       "dateCreated": "2020-05-27 14:37:17.186",
-      "dateStarted": "2020-06-12 11:40:19.877",
-      "dateFinished": "2020-06-12 11:40:19.890",
+      "dateStarted": "2020-06-13 09:07:10.495",
+      "dateFinished": "2020-06-13 09:07:10.503",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userSummary \u003d trainData.describe(\"user\")\nuserSummary.show\n\nval artistSummary \u003d trainData.describe(\"artist\")\nartistSummary.show\n\nval countSummary \u003d trainData.describe(\"count\")\ncountSummary.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 11:40:19.977",
+      "dateUpdated": "2020-06-13 09:07:10.594",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -562,15 +562,15 @@
       "jobName": "paragraph_1590590249472_873829545",
       "id": "20200527-143729_1355604663",
       "dateCreated": "2020-05-27 14:37:29.472",
-      "dateStarted": "2020-06-12 11:40:20.042",
-      "dateFinished": "2020-06-12 11:41:02.770",
+      "dateStarted": "2020-06-13 09:07:10.662",
+      "dateFinished": "2020-06-13 09:07:50.114",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Data fusion\nCompute a Dataframe with user id, artist id, artist name and count for later uses.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 11:41:02.779",
+      "dateUpdated": "2020-06-13 09:07:50.189",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -603,15 +603,15 @@
       "jobName": "paragraph_1590594064315_1755221963",
       "id": "20200527-154104_1970292027",
       "dateCreated": "2020-05-27 15:41:04.315",
-      "dateStarted": "2020-06-12 11:41:03.015",
-      "dateFinished": "2020-06-12 11:41:03.080",
+      "dateStarted": "2020-06-13 09:07:50.241",
+      "dateFinished": "2020-06-13 09:07:50.246",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userArtistNamesCountDF \u003d \n    trainData\n    .join(artistByID, artistByID(\"id\") \u003d\u003d\u003d trainData(\"artist\"))\n    .select(\"user\", \"artist\", \"name\", \"count\")\nuserArtistNamesCountDF.cache\nuserArtistNamesCountDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:15:17.824",
+      "dateUpdated": "2020-06-13 11:02:31.975",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -654,15 +654,15 @@
       "jobName": "paragraph_1590590062800_2109207725",
       "id": "20200527-143422_594483041",
       "dateCreated": "2020-05-27 14:34:22.800",
-      "dateStarted": "2020-06-12 14:15:17.887",
-      "dateFinished": "2020-06-12 14:16:00.560",
+      "dateStarted": "2020-06-13 11:02:32.102",
+      "dateFinished": "2020-06-13 11:03:18.193",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around users",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:43:52.502",
+      "dateUpdated": "2020-06-13 09:08:00.196",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -695,15 +695,15 @@
       "jobName": "paragraph_1591187646397_321240090",
       "id": "20200603-123406_1776470630",
       "dateCreated": "2020-06-03 12:34:06.397",
-      "dateStarted": "2020-06-12 07:43:52.554",
-      "dateFinished": "2020-06-12 07:43:52.558",
+      "dateStarted": "2020-06-13 09:08:00.255",
+      "dateFinished": "2020-06-13 09:08:00.261",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet users number",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:43:52.654",
+      "dateUpdated": "2020-06-13 09:08:00.355",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -736,15 +736,15 @@
       "jobName": "paragraph_1590747813508_-1257535935",
       "id": "20200529-102333_1988446988",
       "dateCreated": "2020-05-29 10:23:33.508",
-      "dateStarted": "2020-06-12 07:43:52.709",
-      "dateFinished": "2020-06-12 07:43:52.722",
+      "dateStarted": "2020-06-13 09:08:00.405",
+      "dateFinished": "2020-06-13 09:08:00.408",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval distinctUsersNumber \u003d userArtistNamesCountDF.select(\"user\").distinct.count\nprintln(distinctUsersNumber)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:43:52.808",
+      "dateUpdated": "2020-06-13 09:08:00.504",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -775,15 +775,15 @@
       "jobName": "paragraph_1590747828635_-1911174006",
       "id": "20200529-102348_186273132",
       "dateCreated": "2020-05-29 10:23:48.636",
-      "dateStarted": "2020-06-12 07:43:52.860",
-      "dateFinished": "2020-06-12 07:44:36.889",
+      "dateStarted": "2020-06-13 09:08:00.560",
+      "dateFinished": "2020-06-13 09:08:45.117",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s see the listen\u0027s total per user and sort it by the higher.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:44:36.895",
+      "dateUpdated": "2020-06-13 09:08:45.211",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -816,15 +816,15 @@
       "jobName": "paragraph_1591188912275_1259738258",
       "id": "20200603-125512_896180722",
       "dateCreated": "2020-06-03 12:55:12.275",
-      "dateStarted": "2020-06-12 07:44:36.984",
-      "dateFinished": "2020-06-12 07:44:36.988",
+      "dateStarted": "2020-06-13 09:08:45.274",
+      "dateFinished": "2020-06-13 09:08:45.279",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userListenArtists \u003d userArtistNamesCountDF.groupBy(\"user\").sum(\"count\").select($\"user\", $\"sum(count)\" as \"total\")\nuserListenArtists.cache\n\nval mostUserListenArtists \u003d userListenArtists.sort(desc(\"total\"))\nmostUserListenArtists.show\n\nz.show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:44:37.084",
+      "dateUpdated": "2020-06-13 09:08:45.374",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -907,15 +907,15 @@
       "jobName": "paragraph_1591187663060_-889404448",
       "id": "20200603-123423_567139667",
       "dateCreated": "2020-06-03 12:34:23.060",
-      "dateStarted": "2020-06-12 07:44:37.126",
-      "dateFinished": "2020-06-12 07:44:53.872",
+      "dateStarted": "2020-06-13 09:08:45.435",
+      "dateFinished": "2020-06-13 09:09:01.963",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe first user made almost 400\u0027000 plays !\nWe can see that a user has listend \"My Chemical Romance\" almost 156\u0027000 times.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:44:53.940",
+      "dateUpdated": "2020-06-13 09:09:02.047",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -948,15 +948,15 @@
       "jobName": "paragraph_1591188952139_313158455",
       "id": "20200603-125552_1479982108",
       "dateCreated": "2020-06-03 12:55:52.139",
-      "dateStarted": "2020-06-12 07:44:53.991",
-      "dateFinished": "2020-06-12 07:44:53.995",
+      "dateStarted": "2020-06-13 09:09:02.101",
+      "dateFinished": "2020-06-13 09:09:02.107",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userDifferentArtists \u003d userArtistNamesCountDF.groupBy(\"user\", \"name\").sum(\"count\").select($\"user\", $\"name\", $\"sum(count)\" as \"total\")\nuserDifferentArtists.cache\nuserDifferentArtists.sort(desc(\"total\")).show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:44:54.090",
+      "dateUpdated": "2020-06-13 09:09:02.201",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -987,15 +987,15 @@
       "jobName": "paragraph_1591189886953_-1586584012",
       "id": "20200603-131126_294603452",
       "dateCreated": "2020-06-03 13:11:26.953",
-      "dateStarted": "2020-06-12 07:44:54.137",
-      "dateFinished": "2020-06-12 07:45:58.578",
+      "dateStarted": "2020-06-13 09:09:02.253",
+      "dateFinished": "2020-06-13 09:10:10.354",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNow let\u0027s see how many different artists the users listen in average.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:45:58.598",
+      "dateUpdated": "2020-06-13 09:10:10.417",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1028,15 +1028,15 @@
       "jobName": "paragraph_1591195070440_23860404",
       "id": "20200603-143750_192146411",
       "dateCreated": "2020-06-03 14:37:50.440",
-      "dateStarted": "2020-06-12 07:45:58.690",
-      "dateFinished": "2020-06-12 07:45:58.694",
+      "dateStarted": "2020-06-13 09:10:10.468",
+      "dateFinished": "2020-06-13 09:10:10.473",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval artistsPerUser \u003d userDifferentArtists.groupBy(\"user\").count.sort(desc(\"count\"))\nartistsPerUser.cache\n\nprintln(artistsPerUser.count)\nartistsPerUser.describe(\"count\").show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:45:58.788",
+      "dateUpdated": "2020-06-13 09:10:10.567",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1067,15 +1067,15 @@
       "jobName": "paragraph_1591192747866_1333042132",
       "id": "20200603-135907_210380760",
       "dateCreated": "2020-06-03 13:59:07.866",
-      "dateStarted": "2020-06-12 07:45:58.848",
-      "dateFinished": "2020-06-12 07:46:26.203",
+      "dateStarted": "2020-06-13 09:10:10.610",
+      "dateFinished": "2020-06-13 09:10:37.643",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nUsers listen to 162 artists in average.\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:26.270",
+      "dateUpdated": "2020-06-13 09:10:37.736",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1108,15 +1108,15 @@
       "jobName": "paragraph_1591195139834_1725271268",
       "id": "20200603-143859_2131322575",
       "dateCreated": "2020-06-03 14:38:59.834",
-      "dateStarted": "2020-06-12 07:46:26.386",
-      "dateFinished": "2020-06-12 07:46:26.399",
+      "dateStarted": "2020-06-13 09:10:37.788",
+      "dateFinished": "2020-06-13 09:10:37.791",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around artists",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:26.478",
+      "dateUpdated": "2020-06-13 09:10:37.887",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1149,15 +1149,15 @@
       "jobName": "paragraph_1590589883731_1756040608",
       "id": "20200527-143123_948169887",
       "dateCreated": "2020-05-27 14:31:23.731",
-      "dateStarted": "2020-06-12 07:46:26.537",
-      "dateFinished": "2020-06-12 07:46:26.540",
+      "dateStarted": "2020-06-13 09:10:37.929",
+      "dateFinished": "2020-06-13 09:10:37.931",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet artists number",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:26.636",
+      "dateUpdated": "2020-06-13 09:10:38.028",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1190,15 +1190,15 @@
       "jobName": "paragraph_1590747661487_613552488",
       "id": "20200529-102101_551270995",
       "dateCreated": "2020-05-29 10:21:01.487",
-      "dateStarted": "2020-06-12 07:46:26.683",
-      "dateFinished": "2020-06-12 07:46:26.686",
+      "dateStarted": "2020-06-13 09:10:38.081",
+      "dateFinished": "2020-06-13 09:10:38.084",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval distinctArtistsNumber \u003d userArtistNamesCountDF.select(\"artist\").distinct.count\nprintln(distinctArtistsNumber)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:26.783",
+      "dateUpdated": "2020-06-13 09:10:38.181",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1229,15 +1229,15 @@
       "jobName": "paragraph_1590747287371_1343407231",
       "id": "20200529-101447_1422946071",
       "dateCreated": "2020-05-29 10:14:47.371",
-      "dateStarted": "2020-06-12 07:46:26.828",
-      "dateFinished": "2020-06-12 07:46:30.769",
+      "dateStarted": "2020-06-13 09:10:38.223",
+      "dateFinished": "2020-06-13 09:10:42.371",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet the total amount music listened for each artist and most listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:30.831",
+      "dateUpdated": "2020-06-13 09:10:42.426",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1270,15 +1270,15 @@
       "jobName": "paragraph_1591187513078_516772673",
       "id": "20200603-123153_1820679292",
       "dateCreated": "2020-06-03 12:31:53.078",
-      "dateStarted": "2020-06-12 07:46:30.890",
-      "dateFinished": "2020-06-12 07:46:30.894",
+      "dateStarted": "2020-06-13 09:10:42.472",
+      "dateFinished": "2020-06-13 09:10:42.475",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval listenedArtistsDF \u003d userArtistNamesCountDF.groupBy(\"name\").sum(\"count\").select($\"name\", $\"sum(count)\" as \"total\")\nlistenedArtistsDF.cache\n\nval mostListenedArtistsDF \u003d listenedArtistsDF.sort(desc(\"total\"))\nmostListenedArtistsDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:30.990",
+      "dateUpdated": "2020-06-13 09:10:42.572",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1309,15 +1309,15 @@
       "jobName": "paragraph_1590595127492_295793374",
       "id": "20200527-155847_268656697",
       "dateCreated": "2020-05-27 15:58:47.492",
-      "dateStarted": "2020-06-12 07:46:31.032",
-      "dateFinished": "2020-06-12 07:46:53.779",
+      "dateStarted": "2020-06-13 09:10:42.626",
+      "dateFinished": "2020-06-13 09:10:57.436",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nz.show(mostListenedArtistsDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:32.026",
+      "dateUpdated": "2020-06-13 09:10:57.448",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1420,15 +1420,15 @@
       "jobName": "paragraph_1591184778153_1332693355",
       "id": "20200603-114618_1503339983",
       "dateCreated": "2020-06-03 11:46:18.153",
-      "dateStarted": "2020-06-12 07:46:53.909",
-      "dateFinished": "2020-06-12 07:46:55.271",
+      "dateStarted": "2020-06-13 09:10:57.531",
+      "dateFinished": "2020-06-13 09:10:58.834",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet least listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:55.309",
+      "dateUpdated": "2020-06-13 09:10:58.931",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1448,28 +1448,20 @@
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eGet least listened artists.\u003c/p\u003e\n\u003c/div\u003e"
-          }
-        ]
-      },
       "apps": [],
       "jobName": "paragraph_1590590069212_-1581829751",
       "id": "20200527-143429_153738922",
       "dateCreated": "2020-05-27 14:34:29.212",
-      "dateStarted": "2020-06-12 07:46:55.381",
-      "dateFinished": "2020-06-12 07:46:55.392",
+      "dateStarted": "2020-06-13 09:10:58.986",
+      "dateFinished": "2020-06-13 09:10:58.989",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval leastListenedArtistsDF \u003d listenedArtistsDF.sort(\"total\")\nleastListenedArtistsDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:55.480",
+      "dateUpdated": "2020-06-13 09:10:59.085",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1502,15 +1494,15 @@
       "jobName": "paragraph_1590591187326_-770675715",
       "id": "20200527-145307_1643419744",
       "dateCreated": "2020-05-27 14:53:07.326",
-      "dateStarted": "2020-06-12 07:46:55.527",
-      "dateFinished": "2020-06-12 07:46:56.466",
+      "dateStarted": "2020-06-13 09:10:59.158",
+      "dateFinished": "2020-06-13 09:11:00.203",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThere is not much infos, a lot of artists are at one listen.\nShow how many artist are listened less or equal than 10 times, and the frequence for 1 to ten.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:56.527",
+      "dateUpdated": "2020-06-13 09:11:00.258",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1543,15 +1535,15 @@
       "jobName": "paragraph_1590591212556_783515315",
       "id": "20200527-145332_475861656",
       "dateCreated": "2020-05-27 14:53:32.556",
-      "dateStarted": "2020-06-12 07:46:56.587",
-      "dateFinished": "2020-06-12 07:46:56.593",
+      "dateStarted": "2020-06-13 09:11:00.306",
+      "dateFinished": "2020-06-13 09:11:00.311",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval lessThanTenTimesListenedArtistsDF \u003d listenedArtistsDF.filter(\"total \u003c\u003d 10\")\nval count \u003d lessThanTenTimesListenedArtistsDF.count\nval ratio \u003d count.toDouble / distinctArtistsNumber.toDouble",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:56.686",
+      "dateUpdated": "2020-06-13 09:11:00.405",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1584,15 +1576,15 @@
       "jobName": "paragraph_1590591575297_993223126",
       "id": "20200527-145935_127174988",
       "dateCreated": "2020-05-27 14:59:35.297",
-      "dateStarted": "2020-06-12 07:46:56.743",
-      "dateFinished": "2020-06-12 07:46:57.849",
+      "dateStarted": "2020-06-13 09:11:00.447",
+      "dateFinished": "2020-06-13 09:11:01.684",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nMore than one million are listened less or equal than ten times, it\u0027s about 75% of all artists.\nNow let\u0027s see the distribution :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:46:57.943",
+      "dateUpdated": "2020-06-13 09:11:01.747",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1625,15 +1617,15 @@
       "jobName": "paragraph_1591187115117_-1426829179",
       "id": "20200603-122515_1618842214",
       "dateCreated": "2020-06-03 12:25:15.117",
-      "dateStarted": "2020-06-12 07:46:57.993",
-      "dateFinished": "2020-06-12 07:46:57.999",
+      "dateStarted": "2020-06-13 09:11:01.795",
+      "dateFinished": "2020-06-13 09:11:01.800",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:13:30.093",
+      "dateUpdated": "2020-06-13 11:01:09.116",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1723,15 +1715,15 @@
       "jobName": "paragraph_1591185436485_-2090136469",
       "id": "20200603-115716_703615281",
       "dateCreated": "2020-06-03 11:57:16.485",
-      "dateStarted": "2020-06-12 07:46:58.149",
-      "dateFinished": "2020-06-12 07:47:03.055",
+      "dateStarted": "2020-06-13 09:11:01.945",
+      "dateFinished": "2020-06-13 09:11:06.779",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe most artists are listened only one time.\n\nNow compute mean and median of total count listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:03.152",
+      "dateUpdated": "2020-06-13 09:11:06.849",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1764,15 +1756,15 @@
       "jobName": "paragraph_1590750174894_1903396402",
       "id": "20200529-110254_1497574704",
       "dateCreated": "2020-05-29 11:02:54.895",
-      "dateStarted": "2020-06-12 07:47:03.203",
-      "dateFinished": "2020-06-12 07:47:03.213",
+      "dateStarted": "2020-06-13 09:11:06.893",
+      "dateFinished": "2020-06-13 09:11:06.906",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mean \u003d listenedArtistsDF.agg(avg(\"total\")).head.getDouble(0)\n\nval median \u003d listenedArtistsDF.stat.approxQuantile(\"total\", Array(0.5), 0.01)(0)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:03.301",
+      "dateUpdated": "2020-06-13 09:11:06.993",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1803,15 +1795,15 @@
       "jobName": "paragraph_1590749376871_1302947423",
       "id": "20200529-104936_1595594524",
       "dateCreated": "2020-05-29 10:49:36.871",
-      "dateStarted": "2020-06-12 07:47:03.344",
-      "dateFinished": "2020-06-12 07:47:05.740",
+      "dateStarted": "2020-06-13 09:11:07.046",
+      "dateFinished": "2020-06-13 09:11:09.409",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see that half of the artists were listened to less than three times, which can be considered a discovery or even a mistake. ",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:05.746",
+      "dateUpdated": "2020-06-13 09:11:09.447",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1844,15 +1836,15 @@
       "jobName": "paragraph_1590762899249_-1376030230",
       "id": "20200529-143459_1353245403",
       "dateCreated": "2020-05-29 14:34:59.250",
-      "dateStarted": "2020-06-12 07:47:05.837",
-      "dateFinished": "2020-06-12 07:47:05.841",
+      "dateStarted": "2020-06-13 09:11:09.510",
+      "dateFinished": "2020-06-13 09:11:09.514",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around mispelled artists names\n\nLet\u0027s see which artists are the most misspelled. First compute a Map with the correct artist id as key and the list of \"bad\" ids associated as value.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:05.937",
+      "dateUpdated": "2020-06-13 09:11:09.609",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1885,15 +1877,15 @@
       "jobName": "paragraph_1591349459271_383008968",
       "id": "20200605-093059_1465513130",
       "dateCreated": "2020-06-05 09:30:59.271",
-      "dateStarted": "2020-06-12 07:47:05.979",
-      "dateFinished": "2020-06-12 07:47:05.985",
+      "dateStarted": "2020-06-13 09:11:09.661",
+      "dateFinished": "2020-06-13 09:11:09.665",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval aliasToListWrongNames \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((alias.toInt, artist.toInt))\n}\n.collect\n.groupBy { case (k, v) \u003d\u003e k }\n.map { case (k, v) \u003d\u003e (k, v.map { case (_, v2) \u003d\u003e v2 } ) }",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:06.079",
+      "dateUpdated": "2020-06-13 09:11:09.760",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1924,15 +1916,15 @@
       "jobName": "paragraph_1591349478013_-1221883526",
       "id": "20200605-093118_1002665108",
       "dateCreated": "2020-06-05 09:31:18.013",
-      "dateStarted": "2020-06-12 07:47:06.117",
-      "dateFinished": "2020-06-12 07:47:07.124",
+      "dateStarted": "2020-06-13 09:11:09.803",
+      "dateFinished": "2020-06-13 09:11:10.905",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval artistsWithMostWrongAlias \u003d aliasToListWrongNames.map { case (k,v) \u003d\u003e (k, v.length) }.toList.toDF(\"artist\", \"count\")\nartistsWithMostWrongAlias.describe(\"count\").show\nartistsWithMostWrongAlias.sort(desc(\"count\")).show\nval ratio \u003d artistsWithMostWrongAlias.count.toDouble / distinctArtistsNumber.toDouble",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 08:01:25.650",
+      "dateUpdated": "2020-06-13 09:11:11.003",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2027,15 +2019,15 @@
       "jobName": "paragraph_1591358782492_650459347",
       "id": "20200605-120622_212507654",
       "dateCreated": "2020-06-05 12:06:22.492",
-      "dateStarted": "2020-06-12 08:01:25.695",
-      "dateFinished": "2020-06-12 08:01:26.916",
+      "dateStarted": "2020-06-13 09:11:11.044",
+      "dateFinished": "2020-06-13 09:11:12.564",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see there is 22\u0027478 artists names (~ 1.5% of total artists number) misspelled and the worst has it 1204 times ! Let\u0027s see who this artist is.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 08:02:37.752",
+      "dateUpdated": "2020-06-13 09:11:12.645",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2068,15 +2060,15 @@
       "jobName": "paragraph_1591359950223_1486741864",
       "id": "20200605-122550_1931951013",
       "dateCreated": "2020-06-05 12:25:50.223",
-      "dateStarted": "2020-06-12 08:02:37.755",
-      "dateFinished": "2020-06-12 08:02:37.760",
+      "dateStarted": "2020-06-13 09:11:12.684",
+      "dateFinished": "2020-06-13 09:11:12.690",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nartistByID.select(\"name\").filter(\"id \u003d\u003d 1000024\").show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:08.501",
+      "dateUpdated": "2020-06-13 09:11:12.784",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2107,15 +2099,15 @@
       "jobName": "paragraph_1591360073285_1319920019",
       "id": "20200605-122753_1932124994",
       "dateCreated": "2020-06-05 12:27:53.285",
-      "dateStarted": "2020-06-12 07:47:08.542",
-      "dateFinished": "2020-06-12 07:47:10.054",
+      "dateStarted": "2020-06-13 09:11:12.832",
+      "dateFinished": "2020-06-13 09:11:14.297",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nOh no ! It\u0027s Metallica ! How is that even possible ? Let\u0027s see the 1204 errors.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:10.143",
+      "dateUpdated": "2020-06-13 09:11:14.332",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2148,15 +2140,15 @@
       "jobName": "paragraph_1591360484448_-1576468597",
       "id": "20200605-123444_670068784",
       "dateCreated": "2020-06-05 12:34:44.448",
-      "dateStarted": "2020-06-12 07:47:10.183",
-      "dateFinished": "2020-06-12 07:47:10.187",
+      "dateStarted": "2020-06-13 09:11:14.374",
+      "dateFinished": "2020-06-13 09:11:14.380",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval aliasIdsToMetallica \u003d aliasToListWrongNames.getOrElse(1000024, Array()).toList.toDF(\"id\")\nval aliasNamesToMetallica \u003d aliasIdsToMetallica.join(artistByID, artistByID(\"id\") \u003d\u003d\u003d aliasIdsToMetallica(\"id\"))\naliasNamesToMetallica.show(false)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:10.283",
+      "dateUpdated": "2020-06-13 09:11:14.473",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2187,15 +2179,15 @@
       "jobName": "paragraph_1591360540945_-407387076",
       "id": "20200605-123540_921478601",
       "dateCreated": "2020-06-05 12:35:40.945",
-      "dateStarted": "2020-06-12 07:47:10.320",
-      "dateFinished": "2020-06-12 07:47:10.883",
+      "dateStarted": "2020-06-13 09:11:14.520",
+      "dateFinished": "2020-06-13 09:11:15.046",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nBefore run the portion of code above, we think that the name \"Metallica\" was misspelled. However, as we can see, it\u0027s more a name with some details or additions than just bad spelling.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:10.920",
+      "dateUpdated": "2020-06-13 09:11:15.120",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2228,21 +2220,26 @@
       "jobName": "paragraph_1591361344864_135508832",
       "id": "20200605-124904_747511390",
       "dateCreated": "2020-06-05 12:49:04.864",
-      "dateStarted": "2020-06-12 07:47:10.969",
-      "dateFinished": "2020-06-12 07:47:10.973",
+      "dateStarted": "2020-06-13 09:11:15.166",
+      "dateFinished": "2020-06-13 09:11:15.169",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\n",
+      "text": "%md\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.068",
+      "dateUpdated": "2020-06-13 13:06:15.197",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
-        "editorSetting": {}
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown"
       },
       "settings": {
         "params": {},
@@ -2256,9 +2253,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n# A look with GraphX",
+      "text": "%md\n# A look with GraphX\n\nNow, we put this data in a graph with [GraphX](https://spark.apache.org/docs/latest/graphx-programming-guide.html).\nOur nodes will be the users and the artists and edges the relation listens count between user and artist.\nBecause users id and artists id can be equal, we need to generate a unique id for each nodes, call it VertexId.\nFrom userArtistNamesCountDF, we can extract two RDDs, users and artists, and zip it with the unique id (an \"auto increment\" id).",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.158",
+      "dateUpdated": "2020-06-13 09:24:43.647",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2282,7 +2279,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eA look with GraphX\u003c/h1\u003e\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eA look with GraphX\u003c/h1\u003e\n\u003cp\u003eNow, we put this data in a graph with \u003ca href\u003d\"https://spark.apache.org/docs/latest/graphx-programming-guide.html\"\u003eGraphX\u003c/a\u003e.\u003cbr/\u003eOur nodes will be the users and the artists and edges the relation listens count between user and artist.\u003cbr/\u003eBecause users id and artists id can be equal, we need to generate a unique id for each nodes, call it VertexId.\u003cbr/\u003eFrom userArtistNamesCountDF, we can extract two RDDs, users and artists, and zip it with the unique id (an \u0026ldquo;auto increment\u0026rdquo; id).\u003c/p\u003e\n\u003c/div\u003e"
           }
         ]
       },
@@ -2290,20 +2287,28 @@
       "jobName": "paragraph_1591360613704_931012254",
       "id": "20200605-123653_1092685122",
       "dateCreated": "2020-06-05 12:36:53.704",
-      "dateStarted": "2020-06-12 07:47:11.198",
-      "dateFinished": "2020-06-12 07:47:11.201",
+      "dateStarted": "2020-06-13 09:24:43.647",
+      "dateFinished": "2020-06-13 09:24:43.655",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\n\nimport org.apache.spark.graphx._\nimport spark.implicits._\nimport org.apache.spark.rdd._\n//import scala.collection.JavaConverters._\n\nval subDF \u003d userArtistNamesCountDF.limit(100000)\n\nval users \u003d subDF.select(\"user\").distinct.rdd.map(_.getInt(0)).zipWithIndex.map(_.swap)\nval len \u003d users.count\nval artists \u003d subDF.select(\"artist\").distinct.rdd.map(_.getInt(0)).zipWithIndex.map(_.swap).map { case (vertexId, id) \u003d\u003e (vertexId + len, id) }\n\nusers.cache\nartists.cache\n\n//users.collect.takeRight(10).foreach(println)\n//artists.collect.take(10).foreach(println)\n\nval nodesRDD: RDD[(VertexId, Int)] \u003d users.union(artists)\n//nodesRDD.collect.foreach(println)\n//val nodesDF \u003d nodesRDD.toDF(\"vertexId\", \"id\")\n//nodesDF.show\n\nval edges: RDD[Edge[Int]] \u003d subDF.map{ line \u003d\u003e\n    val userId \u003d line.getInt(0)\n    val artistId \u003d line.getInt(1)\n    val userVertexId \u003d users.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d userId }.first._1\n    val artistVertexId \u003d artists.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d artistId }.first._1\n    val count \u003d line.getInt(2)\n    Edge(userVertexId, artistVertexId, count)\n}.rdd\n\nval graph \u003d Graph(nodesRDD, edges)\n\n",
+      "text": "%spark\n\nimport org.apache.spark.graphx._\nimport org.apache.spark.rdd._\n\nval subDF \u003d userArtistNamesCountDF.limit(1000000)\n\nval users \u003d subDF\n    .select(\"user\") // select only users\n    .distinct // remove duplicates\n    .rdd // convert to rdd (for graph creation needs)\n    .map(_.getInt(0)) // convert it to a list of INTs\n    .zipWithIndex // add the \"auto increment\" unique id, or VertexId\n    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]\n    \nval lastUserId \u003d users.count\n\nval artists \u003d subDF\n    .select(\"artist\") // select only artists\n    .distinct // remove duplicates\n    .rdd // convert to rdd (for graph creation needs)\n    .map(_.getInt(0)) // convert it to a list of INTs\n    .zipWithIndex // add the \"auto increment\" unique id, or VertexId\n    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]\n    .map { case (vertexId, id) \u003d\u003e (vertexId + lastUserId, id) } // to maintain unique VertexId, add users.count to each artist VertexId\n\nusers.cache\nartists.cache\n\nval nodes: RDD[(VertexId, Int)] \u003d users.union(artists)\n//nodes.collect.foreach(println)\n//val nodesDF \u003d nodes.toDF(\"vertexId\", \"id\")\n//nodesDF.show\n\nval edges: RDD[Edge[Int]] \u003d subDF.map { line \u003d\u003e\n    val userId \u003d line.getInt(0)\n    val artistId \u003d line.getInt(1)\n    val userVertexId \u003d users.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d userId }.first._1\n    val artistVertexId \u003d artists.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d artistId }.first._1\n    val count \u003d line.getInt(2)\n    Edge(userVertexId, artistVertexId, count)\n}.rdd\n\nval graph \u003d Graph(nodes, edges)\ngraph.cache\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 14:16:24.939",
+      "dateUpdated": "2020-06-13 13:05:34.954",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
-        "results": {},
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 219.067,
+              "optionOpen": false
+            }
+          }
+        },
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
@@ -2321,7 +2326,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.graphx._\nimport spark.implicits._\nimport org.apache.spark.rdd._\nsubDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 2 more fields]\nusers: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[60] at map at \u003cconsole\u003e:51\nlen: Long \u003d 56222\nartists: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[71] at map at \u003cconsole\u003e:53\nnodesRDD: org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Int)] \u003d UnionRDD[72] at union at \u003cconsole\u003e:61\nedges: org.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]] \u003d MapPartitionsRDD[80] at rdd at \u003cconsole\u003e:73\ngraph: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@13dc6e53\n"
+            "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd._\nsubDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 2 more fields]\nusers: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[225] at map at \u003cconsole\u003e:75\nlastUserId: Long \u003d 122976\nartists: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[236] at map at \u003cconsole\u003e:86\nnodes: org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Int)] \u003d UnionRDD[237] at union at \u003cconsole\u003e:91\nedges: org.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]] \u003d MapPartitionsRDD[245] at rdd at \u003cconsole\u003e:103\ngraph: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@499bd280\nres8: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@499b..."
           }
         ]
       },
@@ -2332,7 +2337,7 @@
           "tooltip": "View in Spark web UI",
           "group": "spark",
           "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d7"
+            "http://172.17.0.2:4040/jobs/job?id\u003d18"
           ],
           "interpreterSettingId": "spark"
         }
@@ -2341,37 +2346,15 @@
       "jobName": "paragraph_1591963450776_-167988045",
       "id": "20200612-120410_1277165834",
       "dateCreated": "2020-06-12 12:04:10.776",
-      "dateStarted": "2020-06-12 14:16:25.010",
-      "dateFinished": "2020-06-12 14:16:58.162",
+      "dateStarted": "2020-06-13 13:05:35.428",
+      "dateFinished": "2020-06-13 13:05:45.882",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.374",
-      "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {}
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1591371959861_980084277",
-      "id": "20200605-154559_348256179",
-      "dateCreated": "2020-06-05 15:45:59.861",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%spark\n",
-      "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.460",
+      "dateUpdated": "2020-06-13 09:11:21.283",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2393,7 +2376,7 @@
     {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.548",
+      "dateUpdated": "2020-06-13 09:11:21.345",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2415,7 +2398,7 @@
     {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.619",
+      "dateUpdated": "2020-06-13 09:11:21.405",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2437,7 +2420,7 @@
     {
       "text": "%md\n## Building a First Model",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.693",
+      "dateUpdated": "2020-06-13 09:11:21.462",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2470,15 +2453,15 @@
       "jobName": "paragraph_1590404072119_591799774",
       "id": "20200525-105432_1663212423",
       "dateCreated": "2020-05-25 10:54:32.119",
-      "dateStarted": "2020-06-12 07:47:11.731",
-      "dateFinished": "2020-06-12 07:47:11.733",
+      "dateStarted": "2020-06-13 09:11:21.523",
+      "dateFinished": "2020-06-13 09:11:21.525",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nimport org.apache.spark.ml.recommendation._\nimport scala.util.Random\n\nval model \u003d new ALS().\n    setSeed(Random.nextLong()).\n    setImplicitPrefs(true).\n    setRank(10).\n    setRegParam(0.01).\n    setAlpha(1.0).\n    setMaxIter(5).\n    setUserCol(\"user\").\n    setItemCol(\"artist\").\n    setRatingCol(\"count\").\n    setPredictionCol(\"prediction\").\n    fit(trainData)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:47:11.831",
+      "dateUpdated": "2020-06-13 09:11:21.615",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2501,7 +2484,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_1cef0428a592\n"
+            "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_a553edf378f6\n"
           }
         ]
       },
@@ -2509,15 +2492,15 @@
       "jobName": "paragraph_1590405875128_638740172",
       "id": "20200525-112435_1359988035",
       "dateCreated": "2020-05-25 11:24:35.128",
-      "dateStarted": "2020-06-12 07:47:11.866",
-      "dateFinished": "2020-06-12 07:50:08.067",
+      "dateStarted": "2020-06-13 09:11:21.668",
+      "dateFinished": "2020-06-13 09:14:06.629",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nmodel.userFactors.show(1, truncate \u003d false)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:08.130",
+      "dateUpdated": "2020-06-13 09:14:06.665",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2540,7 +2523,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+---+---------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                             |\n+---+---------------------------------------------------------------------------------------------------------------------+\n|90 |[0.04804907, -0.30871326, -0.8534306, 0.2669859, 0.1918899, 0.7198455, -0.5866574, -0.6360977, 0.3444158, 0.30163965]|\n+---+---------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
+            "data": "+---+---------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                   |\n+---+---------------------------------------------------------------------------------------------------------------------------+\n|90 |[0.91663164, 0.201931, -0.54313356, -0.091792636, 0.62411255, 0.15482032, 0.3598661, -0.13965687, -0.85327905, -0.71733993]|\n+---+---------------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
           }
         ]
       },
@@ -2548,15 +2531,15 @@
       "jobName": "paragraph_1590406015054_509388477",
       "id": "20200525-112655_1737810644",
       "dateCreated": "2020-05-25 11:26:55.054",
-      "dateStarted": "2020-06-12 07:50:08.182",
-      "dateFinished": "2020-06-12 07:50:08.881",
+      "dateStarted": "2020-06-13 09:14:06.735",
+      "dateFinished": "2020-06-13 09:14:07.075",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Spot Checking Recommendations",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:08.882",
+      "dateUpdated": "2020-06-13 09:14:07.134",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2589,15 +2572,15 @@
       "jobName": "paragraph_1590414421056_1572219800",
       "id": "20200525-134701_1337255895",
       "dateCreated": "2020-05-25 13:47:01.056",
-      "dateStarted": "2020-06-12 07:50:08.977",
-      "dateFinished": "2020-06-12 07:50:08.980",
+      "dateStarted": "2020-06-13 09:14:07.186",
+      "dateFinished": "2020-06-13 09:14:07.189",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userID \u003d 1059637\nval existingArtistIDs \u003d trainData.filter($\"user\" \u003d\u003d\u003d userID).select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (existingArtistIDs:_*)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:09.077",
+      "dateUpdated": "2020-06-13 09:14:07.283",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2628,15 +2611,15 @@
       "jobName": "paragraph_1590414312973_773327109",
       "id": "20200525-134512_2071793608",
       "dateCreated": "2020-05-25 13:45:12.973",
-      "dateStarted": "2020-06-12 07:50:09.118",
-      "dateFinished": "2020-06-12 07:50:10.389",
+      "dateStarted": "2020-06-13 09:14:07.319",
+      "dateFinished": "2020-06-13 09:14:09.003",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\ndef makeRecommendations(model: ALSModel, userID: Int, howMany: Int): DataFrame \u003d {\n    val toRecommend \u003d model.itemFactors.select($\"id\".as(\"artist\")).withColumn(\"user\", lit(userID))\n    model.transform(toRecommend).select(\"artist\", \"prediction\").orderBy($\"prediction\".desc).limit(howMany)\n}\n\nval topRecommendations \u003d makeRecommendations(model, userID, 5)\ntopRecommendations.show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:10.418",
+      "dateUpdated": "2020-06-13 09:14:09.022",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2659,7 +2642,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+----------+\n| artist|prediction|\n+-------+----------+\n|1000263| 1.1791464|\n|1002470|  1.156694|\n|1002216| 1.1385893|\n|1003176|  1.132622|\n|1004440| 1.1299304|\n+-------+----------+\n\nmakeRecommendations: (model: org.apache.spark.ml.recommendation.ALSModel, userID: Int, howMany: Int)org.apache.spark.sql.DataFrame\ntopRecommendations: org.apache.spark.sql.DataFrame \u003d [artist: int, prediction: float]\n"
+            "data": "+-------+----------+\n| artist|prediction|\n+-------+----------+\n|1164352| 1.2510964|\n|1007611| 1.2214336|\n|1000508| 1.2153449|\n|1002458| 1.2064558|\n|1013931| 1.1902857|\n+-------+----------+\n\nmakeRecommendations: (model: org.apache.spark.ml.recommendation.ALSModel, userID: Int, howMany: Int)org.apache.spark.sql.DataFrame\ntopRecommendations: org.apache.spark.sql.DataFrame \u003d [artist: int, prediction: float]\n"
           }
         ]
       },
@@ -2667,15 +2650,15 @@
       "jobName": "paragraph_1590414339594_-358168064",
       "id": "20200525-134539_310376515",
       "dateCreated": "2020-05-25 13:45:39.594",
-      "dateStarted": "2020-06-12 07:50:10.474",
-      "dateFinished": "2020-06-12 07:50:21.146",
+      "dateStarted": "2020-06-13 09:14:09.084",
+      "dateFinished": "2020-06-13 09:14:19.615",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval recommendedArtistIDs \u003d topRecommendations.select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (recommendedArtistIDs:_*)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:21.188",
+      "dateUpdated": "2020-06-13 09:14:19.698",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2698,7 +2681,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+--------------------+\n|     id|                name|\n+-------+--------------------+\n|1004440|    Guided by Voices|\n|1003176|Dashboard Confess...|\n|1002470|          Elton John|\n|1002216|        The Darkness|\n|1000263|     Jimmy Eat World|\n+-------+--------------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1000263, 1002470, 1002216, 1003176, 1004440)\n"
+            "data": "+-------+--------------------+\n|     id|                name|\n+-------+--------------------+\n|1007611|      Flogging Molly|\n|1013931|      Tegan and Sara|\n|1000508|Me First and the ...|\n|1164352|              Eisley|\n|1002458|        The Aquabats|\n+-------+--------------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1164352, 1007611, 1000508, 1002458, 1013931)\n"
           }
         ]
       },
@@ -2706,15 +2689,15 @@
       "jobName": "paragraph_1590414893842_841620200",
       "id": "20200525-135453_1946076405",
       "dateCreated": "2020-05-25 13:54:53.842",
-      "dateStarted": "2020-06-12 07:50:21.239",
-      "dateFinished": "2020-06-12 07:50:30.797",
+      "dateStarted": "2020-06-13 09:14:19.738",
+      "dateFinished": "2020-06-13 09:14:29.174",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-12 07:50:30.846",
+      "dateUpdated": "2020-06-13 09:14:29.250",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,

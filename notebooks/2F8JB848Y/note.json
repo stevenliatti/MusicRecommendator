@@ -192,19 +192,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d0",
-            "http://172.17.0.2:4040/jobs/job?id\u003d1"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
@@ -373,19 +360,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d2",
-            "http://172.17.0.2:4040/jobs/job?id\u003d3"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590403815626_-1753499650",
       "id": "20200525-105015_1244952508",
@@ -424,19 +398,6 @@
             "data": "warning: there were two deprecation warnings; re-run with -deprecation for details\n+-------+-------+------+\n|   user| artist| count|\n+-------+-------+------+\n|1059637|1026440|155895|\n|2069889|1002095|101076|\n|2020513|1007801| 88908|\n|1073421|1004440| 67548|\n|2023977|1007903| 62815|\n|2023977|   2823| 51039|\n|2014936|     82| 36083|\n|2069337|1006134| 34800|\n|2013784|1004059| 32768|\n|2069337|1007027| 31321|\n|1073435|1105069| 30043|\n|2023977|1000156| 29983|\n|1052225|1256375| 29933|\n|2017397|1000427| 26394|\n|1045479|1000113| 26135|\n|2062243|6901343| 26107|\n|1039100|1275996| 25858|\n|1053554|    478| 25303|\n|2017397|1004296| 24876|\n|2216281|   5705| 24067|\n+-------+-------+------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\ncountToYear: (count: Int)Boolean\nbuildCounts: (rawUserArtistData: org.apache.spark.sql.Dataset[String], bArtistAlias: org.apache.spark.broadcast.Broadcast[Map[Int,Int]])org.apache.spark.sql.DataFrame\nbArtistAlias: org.apache.spark.broadcast.Broadcast[scala.collection.immutable.Map[Int,Int]] \u003d Broadcast(9)\ntrainData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 1 more field]\nres3: trainData.type \u003d [user: int, artist: int ... 1 more field]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d4",
-            "http://172.17.0.2:4040/jobs/job?id\u003d5"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590404829942_-1453554254",
@@ -637,18 +598,6 @@
             "data": "+-------+------+----------+-----+\n|   user|artist|      name|count|\n+-------+------+----------+-----+\n|1000019|   463|The Smiths|    1|\n|1000020|   463|The Smiths|  199|\n|1000022|   463|The Smiths|   20|\n|1000033|   463|The Smiths|  466|\n|1000056|   463|The Smiths|   10|\n|1000067|   463|The Smiths|   18|\n|1000070|   463|The Smiths|  399|\n|1000073|   463|The Smiths|    3|\n|1000077|   463|The Smiths|   15|\n|1000082|   463|The Smiths|   16|\n|1000090|   463|The Smiths|    1|\n|1000096|   463|The Smiths|    2|\n|1000099|   463|The Smiths|   10|\n|1000106|   463|The Smiths|    1|\n|1000114|   463|The Smiths|    3|\n|1000117|   463|The Smiths|    1|\n|1000119|   463|The Smiths|   14|\n|1000124|   463|The Smiths|    2|\n|1000125|   463|The Smiths|    8|\n|1000127|   463|The Smiths|    2|\n+-------+------+----------+-----+\nonly showing top 20 rows\n\nuserArtistNamesCountDF: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int ... 2 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d6"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590590062800_2109207725",
@@ -1625,7 +1574,7 @@
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-13 11:01:09.116",
+      "dateUpdated": "2020-06-13 16:05:10.657",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2226,9 +2175,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n",
+      "text": "%md\n## More statistics with MusicBrainz data\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-13 13:06:15.197",
+      "dateUpdated": "2020-06-13 14:33:37.567",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2237,18 +2186,117 @@
         "editorSetting": {
           "language": "markdown",
           "editOnDblClick": true,
+          "completionKey": "TAB",
           "completionSupport": false
         },
-        "editorMode": "ace/mode/markdown"
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eMore statistics with MusicBrainz data\u003c/h2\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
       "apps": [],
-      "jobName": "paragraph_1591360612973_-988257281",
-      "id": "20200605-123652_1363583381",
-      "dateCreated": "2020-06-05 12:36:52.973",
+      "jobName": "paragraph_1592058725402_1744366970",
+      "id": "20200613-143205_2106088720",
+      "dateCreated": "2020-06-13 14:32:05.405",
+      "dateStarted": "2020-06-13 14:33:37.568",
+      "dateFinished": "2020-06-13 14:33:37.576",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%jdbc\nselect * from artist limit 10;",
+      "user": "anonymous",
+      "dateUpdated": "2020-06-13 16:05:33.342",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "gid": "string",
+                      "name": "string",
+                      "sort_name": "string",
+                      "begin_date_year": "string",
+                      "begin_date_month": "string",
+                      "begin_date_day": "string",
+                      "end_date_year": "string",
+                      "end_date_month": "string",
+                      "end_date_day": "string",
+                      "type": "string",
+                      "area": "string",
+                      "gender": "string",
+                      "comment": "string",
+                      "edits_pending": "string",
+                      "last_updated": "string",
+                      "ended": "string",
+                      "begin_area": "string",
+                      "end_area": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tgid\tname\tsort_name\tbegin_date_year\tbegin_date_month\tbegin_date_day\tend_date_year\tend_date_month\tend_date_day\ttype\tarea\tgender\tcomment\tedits_pending\tlast_updated\tended\tbegin_area\tend_area\n805192\t8972b1c1-6482-4750-b51f-596d2edea8b1\tWIK▲N\tWIK▲N\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\t2011-05-17 01:22:02.558151+00\tf\tnull\tnull\n371203\t49add228-eac5-4de8-836c-d75cde7369c3\tPete Moutso\tMoutso, Pete\tnull\tnull\tnull\tnull\tnull\tnull\t1\tnull\tnull\t\t0\tnull\tf\tnull\tnull\n273232\tc112a400-af49-4665-8bba-741531d962a1\tZachary\tZachary\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\tnull\tf\tnull\tnull\n101060\tca3f3ee1-c4a7-4bac-a16a-0b888a396c6b\tThe Silhouettes\tSilhouettes, The\t1956\tnull\tnull\t1993\tnull\tnull\t2\t222\tnull\tUS doo wop/R\u0026B group \"Get a Job\"\t0\t2014-12-18 05:07:38.77749+00\tt\t7707\tnull\n145773\t7b4a548e-a01a-49b7-82e7-b49efeb9732c\tAric Leavitt\tLeavitt, Aric\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\tnull\tf\tnull\tnull\n1076328\t60aca66f-e91a-4cb5-9308-b6e293cd833e\tFonograff\tFonograff\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\t2014-01-10 16:25:20.992213+00\tf\tnull\tnull\n1172876\t3e1bd546-d2a7-49cb-b38d-d70904a1d719\tAl Street\tStreet, Al\tnull\tnull\tnull\tnull\tnull\tnull\t1\t222\t1\t\t0\t2014-11-23 14:07:19.782509+00\tf\tnull\tnull\n220155\tdf120895-f6c6-4a66-b9cf-73350f0beb61\tLove .45\tLove .45\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\tnull\tf\tnull\tnull\n618464\tc14f8d3f-ee81-416f-800f-8eff7e77a2e1\tSintellect\tSintellect\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\t2009-05-23 09:41:53.269195+00\tf\tnull\tnull\n285714\tb68a3969-319a-462f-942b-cd35581414fc\tEvie Tamala\tEvie Tamala\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\tnull\t\t0\tnull\tf\tnull\tnull\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1592058819341_1340784555",
+      "id": "20200613-143339_836548513",
+      "dateCreated": "2020-06-13 14:33:39.341",
+      "dateStarted": "2020-06-13 16:05:31.350",
+      "dateFinished": "2020-06-13 16:05:31.399",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -2329,18 +2377,6 @@
             "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd._\nsubDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 2 more fields]\nusers: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[225] at map at \u003cconsole\u003e:75\nlastUserId: Long \u003d 122976\nartists: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[236] at map at \u003cconsole\u003e:86\nnodes: org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Int)] \u003d UnionRDD[237] at union at \u003cconsole\u003e:91\nedges: org.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]] \u003d MapPartitionsRDD[245] at rdd at \u003cconsole\u003e:103\ngraph: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@499bd280\nres8: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@499b..."
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://172.17.0.2:4040/jobs/job?id\u003d18"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1591963450776_-167988045",
@@ -2722,9 +2758,7 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
-    "md:shared_process": [],
-    "sh:shared_process": [],
-    "spark:shared_process": []
+    "jdbc:shared_process": []
   },
   "config": {
     "isZeppelinNotebookCronEnable": false

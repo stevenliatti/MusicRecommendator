@@ -35,5 +35,6 @@ docker run \
        -v "$PWD"/notebooks:/notebooks \
        -e ZEPPELIN_NOTEBOOK_DIR='/notebooks' \
        -v "$PWD"/data:/data \
+       --network="host" \
        $DOCKER_IMAGE_NAME
 

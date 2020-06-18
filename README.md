@@ -265,7 +265,100 @@ median: Double = 3.0
 
 La moyenne est à 238 tandis que la médianne est 3, ce qui confirme le graphique précédent, ce qui veut dire que la moitié des artistes ont été écoutés moins de trois fois, ce qu'on pourrait assimiler à des découvertes ou même à des erreurs d'écoutes.
 
+### À propos des noms d'artistes mal orthographiés
+Voyons quels artistes sont le moins bien orthographiés. On commence par réaliser une `Map[Int,Array[Int]]` faisant correspondre un id d'artiste "correct" à la liste des ids pointant vers des noms écorchés :
+
+```scala
+val aliasToListWrongNames = rawArtistAlias.flatMap { line =>
+    val Array(artist, alias) = line.split('\t')
+    if (artist.isEmpty) None
+    else Some((alias.toInt, artist.toInt))
+}
+.collect
+.groupBy { case (k, v) => k }
+.map { case (k, v) => (k, v.map { case (_, v2) => v2 } ) }
+
+val artistsWithMostWrongAlias = aliasToListWrongNames.map { case (k,v) => (k, v.length) }.toList.toDF("artist", "count")
+```
+
+|summary|             count|
+|-------|------------------|
+|  count|             22478|
+|   mean| 8.492392561615802|
+| stddev|28.895991802786074|
+|    min|                 1|
+|    max|              1204|
+
+
+| artist|count|
+|-------|-----|
+|1000024| 1204|
+|1034635|  955|
+|     82|  671|
+|1003694|  656|
+|   1854|  656|
+|1000113|  629|
+|    930|  628|
+|    979|  620|
+|1000107|  537|
+|    976|  536|
+|   1182|  527|
+|   1205|  451|
+|   1274|  450|
+|   4061|  424|
+|1001646|  424|
+|1000323|  413|
+|2003588|  390|
+|1256375|  385|
+|1247272|  373|
+|1008093|  365|
+
+On constate qu'il y 22'478 noms d'artistes (~ 1.5% des artistes) mal orthographiés et que le "pire" nom d'artiste est mal orthographié 1024 fois. Voyons de qui il s'agit :
+
+```scala
+artistByID.select("name").filter("id == 1000024").show
+```
+
+|     name|
+|---------|
+|Metallica|
+
+Oh non ! C'est Metallica ! Comment est-ce possible ? Voyons quelques échantillons des 1024 noms alternatifs :
+
+```scala
+val aliasIdsToMetallica = aliasToListWrongNames.getOrElse(1000024, Array()).toList.toDF("id")
+val aliasNamesToMetallica = aliasIdsToMetallica.join(artistByID, artistByID("id") === aliasIdsToMetallica("id"))
+aliasNamesToMetallica.show(false)
+```
+
+|id      |id      |name                                           |
+|--------|--------|-----------------------------------------------|
+|1240322 |1240322 |Metallica & The SF Symphony Orchestra          |
+|10113173|10113173|Metallica - B&P - 14                           |
+|10024375|10024375|Metallica - B&P - 21                           |
+|10024376|10024376|Metallica - ...And Justice For All -           |
+|10024488|10024488|Metallica - B&P - 24                           |
+|1136616 |1136616 |30B10001806F00287800.Metallica and The SF      |
+|7004497 |7004497 |Metallica & San-Francisco-Orchester            |
+|10025794|10025794|Metallica - Live in Belgrade 26.6              |
+|10186355|10186355|Metallica Some Kind of Monster                 |
+|6945944 |6945944 |03. Metallica                                  |
+|1246630 |1246630 |Metallica & Michael Kamen                      |
+|1138243 |1138243 |Metallica -[Disc 2(10)                         |
+|6946149 |6946149 |Metallica -1987- Garage Days                   |
+|1247944 |1247944 |Metallica 06                                   |
+|6672703 |6672703 |Metallica -1998- Garage Inc,disc I             |
+|9934619 |9934619 |Metallica & San Fran                           |
+|7031937 |7031937 || METALLICA                                    |
+|6991351 |6991351 |Metallica (w                                   |
+|2038418 |2038418 |METALLICA@Apoptygma Berzerk                   |
+|9918437 |9918437 |Metallica - Live 2004-05-28 - Helsinki, Finland|
+
+On réalise que ce sont plus des chaines de caractères contenant le nom "Metallica" dedans avec souvent plus de détails que réellement des erreurs d'orthographe.
+
 ## Statistiques sur les données de MusicBrainz
+
+
 
 Montrer K-Means
 Montrer une recommendation

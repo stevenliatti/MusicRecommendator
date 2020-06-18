@@ -670,9 +670,76 @@ res27: Long = 317114
 Nous obtenons "seulement" 317'114 artistes communs aux deux *data sets*, moins que ce nous espérions.
 Pour cette raison, nous n'allons pas tenter de fusionner ces deux *data sets*.
 
-<!-- TODO: -->
-Montrer K-Means
-Montrer une recommendation
+## Tentative avec les graphes
+
+Nous avons essayé d'utiliser la librairie [GraphX](https://spark.apache.org/docs/latest/graphx-programming-guide.html) de Spark, avec comme noeuds utilisateurs et artistes et arête le nombre d'écoutes entre les premiers et les second, le tout pour appliquer des algorithmes de graphes sur ces données. Voici le code permettant de créer les noeuds (vu comme des ids) et les arêtes. Comme certains artistes et users possèdent le même id numérique (cas courant lors de bases de données avec id auto incrémenté et généré), nous avons du créer nos propres ids numériques uniques pour chaque noeud :
+
+
+```scala
+import org.apache.spark.graphx._
+import org.apache.spark.rdd._
+
+val subDF = userArtistNamesCountDF
+
+val users = subDF
+    .select("user") // select only users
+    .distinct // remove duplicates
+    .rdd // convert to rdd (for graph creation needs)
+    .map(_.getInt(0)) // convert it to a list of INTs
+    .zipWithIndex // add the "auto increment" unique id, or VertexId
+    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]
+    
+val lastUserId = users.count
+
+val artists = subDF
+    .select("artist") // select only artists
+    .distinct // remove duplicates
+    .rdd // convert to rdd (for graph creation needs)
+    .map(_.getInt(0)) // convert it to a list of INTs
+    .zipWithIndex // add the "auto increment" unique id, or VertexId
+    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]
+    .map { case (vertexId, id) => (vertexId + lastUserId, id) } // to maintain unique VertexId, add users.count to each artist VertexId
+
+users.cache
+artists.cache
+
+val nodes: RDD[(VertexId, Int)] = users.union(artists)
+
+val edges: RDD[Edge[Int]] = subDF.map { line =>
+    val userId = line.getInt(0)
+    val artistId = line.getInt(1)
+    val userVertexId = users.filter{ case (vertexId, id) => id == userId }.first._1
+    val artistVertexId = artists.filter{ case (vertexId, id) => id == artistId }.first._1
+    val count = line.getInt(2)
+    Edge(userVertexId, artistVertexId, count)
+}.rdd
+
+val graph = Graph(nodes, edges)
+graph.cache
+```
+
+Nous avons dit essayé car bien que le code de création des noeuds et des arêtes ci-dessus fonctionne, impossible d'exécuter une quelconque fonctions du graphe. Par exemple, le code suivant ne compile pas :
+
+```scala
+graph.vertices.count
+```
+
+Et retourne cette même erreur : 
+
+```
+org.apache.spark.SparkException: This RDD lacks a SparkContext. It could happen in the following cases:
+(1) RDD transformations and actions are NOT invoked by the driver, but inside of other transformations; for example, rdd1.map(x => rdd2.values.count() * x) is invalid because the values transformation and count action cannot be performed inside of the rdd1.map transformation. For more information, see SPARK-5063.
+(2) When a Spark Streaming job recovers from checkpoint, this exception will be hit if a reference to an RDD not defined by the streaming job is used in DStream operations. For more information, See SPARK-13758.
+```
+
+Après quelques recherches infructueuses sur le web, il semblerait que ce soit le premier cas (SPARK-5063), il manque un contexte Spark au graphe pour s'exécuter. Après de nombreuses et vaines tentatives, nous n'avons pas approfondi la chose.
+
+## K-Means
+
+
+## Recommendations
+
+
 
 # Améliorations futures possibles
 - Optimiser les hyperparamètres pour le recommendeur : essayer de nombreuses combinaisons de paramètres d'entrée de l'algorithme d'apprentissage, pour trouver le meilleur modèle.

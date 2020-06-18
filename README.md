@@ -1,6 +1,6 @@
 # Music Recommendator
 
-Ce projet Spark démarre avec le chapitre 3 de [Advanced Analytics with Spark, 2nd Edition](https://www.oreilly.com/library/view/advanced-analytics-with/9781491972946/) au sujet d'un "recommendeur" d'artistes musicaux. Nous avons en partie suivi les idées de ce chapitre, mais avons également exploré d'autres pistes, en cherchant également à augmenter notre jeu de données. Le notebook Zeppelin contenant toutes les données et le code se trouve [ici](notebooks/2FA8UEGZS/note.json).
+Ce projet Spark démarre avec le chapitre 3 de [Advanced Analytics with Spark, 2nd Edition](https://www.oreilly.com/library/view/advanced-analytics-with/9781491972946/) au sujet d'un "recommandeur" d'artistes musicaux. Nous avons en partie suivi les idées de ce chapitre, mais avons également exploré d'autres pistes, en cherchant également à augmenter notre jeu de données. Le notebook Zeppelin contenant toutes les données et le code se trouve [ici](notebooks/2FA8UEGZS/note.json).
 
 # Description de l'ensemble des données
 
@@ -52,7 +52,6 @@ $ head artist_alias.txt
 1116694	1327092
 6793225	1042317
 1079959	1000557
-
 ```
 
 ## Données provenant de MusicBrainz
@@ -60,21 +59,19 @@ $ head artist_alias.txt
 Nous voulions réaliser de nombreuses statistiques sur ces données en tirant profit de la puissance de Spark et SparkSQL, et même si la quantité des données est plutôt conséquente, le nombre d'informations différentes n'est pas énorme. Pour rester dans le thème, nous avons décidé de travailler sur les données provenant de [MusicBrainz](https://musicbrainz.org/), une source de données libre sur la musique et artistes. À partir de [cette description](https://musicbrainz.org/doc/MusicBrainz_Database/) des données, nous avons sélectionné les tables `artist`, `artist_type`, `gender`, `artist_tag`, `tag`, `area` et `area_type` que nous avons exporté en CSV pour les manipuler plus facilement dans Zeppelin. Ces différentes tables donnent des infos sur les artistes, comme leur nom, type (groupe, artiste seul, etc.), sexe (si applicable), indication (booléen) et dates de début et fin d'activité, zone géographique de provenance et des tags (genres) associés.
 
 # Description des *features* utilisées
-user id, artist id, count pour ALS
-begin_date_year pour algos de clustering
+Pour l'algorithme *Alternating Least Squares* (ALS) nous nous sommes servis des trois colonnes `user`, `artist` et `count`.
 
-# Questions pour lesquelles vous espérez obtenir une réponse à partir de l'analyse
+En ce qui concerne K-means, nous nous sommes basés uniquement sur `begin_date_year`, la date de début d'un artiste des données de MusicBrainz
+
 
 # Algorithmes appliqués
-K-means ?
-- Clustering sur les gens qui écoutent les mêmes morceaux
-- Tentative de graphe : les artistes et les users sont des noeuds et les écoutes sont des arcs
+- Clustering sur les dates de début des artistes.
+- Tentative de graphe : les artistes et les users sont des noeuds et les écoutes sont des arcs.
 
 
 # Optimisations effectuées
 Nous avons nettoyé les données "originales" en supprimant les noms d'artistes inconnus et les entrées d'écoute qui ne sont pas temporellement possibles : si on prend l'utilisateur avec l'id 2064012, nous aperçevons qu'il a écouté System Of A Down 439'771 fois. Un morceau de musique dure environ 4 minutes en moyenne, ce qui correspond dans notre cas à une écoute ininterrompue de 33 ans. Non seulement c'est une durée incroyable de manière absolue pour un temps d'écoute mais en plus le groupe System Of A Down a été créé dans les années 1990, ce qui confirme l'infaisabilité de ce cas.
 
-<!-- # Your approach to testing and evaluation -->
 
 # Résultats obtenus
 
@@ -167,7 +164,7 @@ Voyons les moyennes d'écoutes sur les 148'077 utilisateurs différents :
 
 Nous voyons qu'en moyenne, un utilisateur a écouté 162 artistes différents.
 
-### À propos des utilisateurs
+### À propos des artistes
 Nous avons dressé le top 20 des artistes les plus écoutés sur les 1'554'191 artistes au total.
 
 |                name|  total|
@@ -469,7 +466,7 @@ Voyons maintenant le sexe des artistes :
 On voit que la majorité des artistes de cette base de données sont des hommes.
 
 
-Maintenant, tirons profit des jointures pour répondre à la question suivante : Combien d'artistes féminines anglaies sont ou ont été actives depuis 1986 ?
+Maintenant, tirons profit des jointures pour répondre à la question suivante : Combien d'artistes féminines anglaises sont ou ont été actives depuis 1986 ?
 
 ```scala
 val femaleArtistEnglish = mbArtistTypeGenderAreaDF
@@ -737,11 +734,11 @@ Après quelques recherches infructueuses sur le web, il semblerait que ce soit l
 ## K-Means
 
 
-## Recommendations
+## Recommandations
 
 
 
 # Améliorations futures possibles
-- Optimiser les hyperparamètres pour le recommendeur : essayer de nombreuses combinaisons de paramètres d'entrée de l'algorithme d'apprentissage, pour trouver le meilleur modèle.
-- Autre algorithme pour le recommendeur : essayer un autre algorithme que ALS -> mais lequel ? Existant ? Implémenté dans Spark ?
-- Recommendations en temps réel : essayer un outil tel que [Oryx 2](http://oryx.io/) pour créer un système évolutif de recommendations de musiques, adaptant le modèle selon les nouvelles écoutes reçues en temps réel et personnalisé pour chaque utilisateur.
+- Optimiser les hyperparamètres pour le recommandeur : essayer de nombreuses combinaisons de paramètres d'entrée de l'algorithme d'apprentissage, pour trouver le meilleur modèle.
+- Autre algorithme pour le recommandeur : essayer un autre algorithme que ALS -> mais lequel ? Existant ? Implémenté dans Spark ?
+- Recommandations en temps réel : essayer un outil tel que [Oryx 2](http://oryx.io/) pour créer un système évolutif de recommandations de musiques, adaptant le modèle selon les nouvelles écoutes reçues en temps réel et personnalisé pour chaque utilisateur.

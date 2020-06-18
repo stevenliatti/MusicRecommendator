@@ -358,8 +358,319 @@ On réalise que ce sont plus des chaines de caractères contenant le nom "Metall
 
 ## Statistiques sur les données de MusicBrainz
 
+Nous avons commencé par lire les données en CSV dans des Dataframes et grâce à des joins successifs, nous obtenons ce Dataframe : 
+
+```scala
+val mbArtistTypeGenderAreaDF = 
+    mbArtistCleanDF
+    .join(mbArtistTypeDF.select($"id", $"name".alias("type")), mbArtistCleanDF("type_id") === mbArtistTypeDF("id"))
+    .join(mbGenderDF.select($"id", $"name".alias("gender")), mbArtistCleanDF("gender_id") === mbGenderDF("id"))
+    .join(mbAreaFullDF, mbArtistCleanDF("area_id") === mbAreaFullDF("id"))
+    .select(mbArtistCleanDF("id"), $"name", $"type", $"gender", $"area", $"area_type", $"ended", $"begin_date_year", $"begin_date_month", $"begin_date_day", $"end_date_year", $"end_date_month", $"end_date_day").cache
+```
+
+|                name|  type|gender|         area|  area_type|ended|begin_date_year|begin_date_month|begin_date_day|end_date_year|end_date_month|end_date_day|
+|--------------------|------|------|-------------|-----------|-----|---------------|----------------|--------------|-------------|--------------|------------|
+|    Margaret Hendrie|Person|Female|        Nauru|    Country|    t|           1924|            null|          null|         1990|          null|        null|
+|       Robin Freeman|Person|  Male|Noord-Brabant|Subdivision|    f|           1952|            null|          null|         null|          null|        null|
+|       Lord of Sp33d|Person|  Male|Noord-Brabant|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|  Michèle van der Aa|Person|Female|Noord-Brabant|Subdivision|    f|           1982|               9|             9|         null|          null|        null|
+|      Thomas Pieters|Person|  Male|Noord-Brabant|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|         Lya de Haas|Person|Female|Noord-Brabant|Subdivision|    f|           1958|              11|             6|         null|          null|        null|
+|      The Lapin King|Person|  Male|   Norrbotten|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|Maria Casandra Hauși|Person|Female|    Maramureș|Subdivision|    f|           null|               3|            11|         null|          null|        null|
+|       Prince Pronto|Person|  Male| San Fernando|       City|    f|           1997|              12|             7|         null|          null|        null|
+|    Friederike Brion|Person|Female|       Alsace|Subdivision|    t|           1752|               4|            19|         1813|             4|           3|
+|       Ernst Stadler|Person|  Male|       Alsace|Subdivision|    t|           1883|               8|            11|         1914|            10|          30|
+|Christine le Ross...|Person|Female|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|  Guillaume Schleret|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|      Lionel Bascole|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|    Guillaume Fleith|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|          Fred Drill|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|       Eugène Maegey|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|       Léopoldine HH|Person|Female|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|                  Go|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|
+|        James Taplin|Person|  Male|    Doncaster|Subdivision|    f|           1988|               9|            12|         null|          null|        null|
+
+Voyons les types d'artistes : 
 
 
+|     type| count|
+|---------|------|
+|    Group|392098|
+|   Person|889647|
+|Character|  7077|
+|    Other|  2291|
+|    Choir|  5932|
+|Orchestra|  6612|
+
+Sur les 1.6 millions présents, 1.3 ont un attribut de type, qui indique si l'artiste est seul ou en groupe. On peut voir que les types principaux sont "Person" et "Group", ce qui est raisonnable.
+
+Voyons combien d'artistes sont encore présents sur la scène musicale (actifs) ou non (inactifs) :
+
+|                name|ended|begin_date_year|
+|--------------------|-----|---------------|
+| Thirteen Over Eight|    f|           null|
+|         Dr. I-Bolit|    f|           null|
+|             Astolat|    f|           null|
+|         Pete Moutso|    f|           null|
+|   The Insignificant|    f|           null|
+|        Aric Leavitt|    f|           null|
+|       The Wanderers|    f|           null|
+|           Al Street|    f|           null|
+|     Andrew Greville|    f|           null|
+|          Sintellect|    f|           null|
+|      Project/Object|    f|           null|
+|  Jean-Pierre Martin|    f|           null|
+|          Imagimusic|    f|           null|
+|wecamewithbrokent...|    f|           null|
+|Disappointment In...|    f|           null|
+|          Giant Tomo|    f|           null|
+|Elvin Jones & Jim...|    f|           null|
+|          Stereobate|    f|           null|
+|          Diskobitch|    f|           null|
+|  Sailing Conductors|    f|           null|
+
+|                name|ended|begin_date_year|end_date_year|
+|--------------------|-----|---------------|-------------|
+|        The Vaqueros|    t|           null|         null|
+|Biljarten na half...|    t|           1988|         null|
+|    The Acid Gallery|    t|           null|         null|
+|             Warhate|    t|           1996|         null|
+|    Sonny Clark Trio|    t|           null|         null|
+|       Out of Hatred|    t|           null|         null|
+|     The Third Bardo|    t|           1967|         null|
+|               Karna|    t|           1997|         null|
+|               Reign|    t|           1996|         null|
+|   Vijay Deverakonda|    t|           1989|         null|
+|De Zingende Zwervers|    t|           1951|         null|
+|       The Pinafores|    t|           1945|         null|
+|     Swarm of Angels|    t|           null|         null|
+|      Extreme Hatred|    t|           1992|         null|
+|Queen Sarah Saturday|    t|           1990|         null|
+|    Day of the Sword|    t|           null|         null|
+|       Six Feet Deep|    t|           1991|         null|
+|               PanAm|    t|           2000|         null|
+|            On Wings|    t|           1994|         null|
+|        Taiconderoga|    t|           null|         null|
+
+
+La majorité des artistes est active, avec 1'559'972 qui sont actifs et 99'488 qui ne le sont pas.
+
+Voyons maintenant le sexe des artistes :
+
+|        gender| count|
+|--------------|------|
+|        Female|147705|
+|         Other|   813|
+|Not applicable|   435|
+|          Male|529926|
+
+On voit que la majorité des artistes de cette base de données sont des hommes.
+
+
+Maintenant, tirons profit des jointures pour répondre à la question suivante : Combien d'artistes féminines anglaies sont ou ont été actives depuis 1986 ?
+
+```scala
+val femaleArtistEnglish = mbArtistTypeGenderAreaDF
+    .filter($"type" === "Person")
+    .filter($"gender" === "Female")
+    .filter($"area" === "England")
+    .filter("begin_date_year >= 1986")
+    .select("name", "ended", "begin_date_year", "end_date_year")
+    .sort("begin_date_year")
+
+println(femaleArtistEnglish.count)
+femaleArtistEnglish.show(30)
+```
+
+|                name|ended|begin_date_year|end_date_year|
+|--------------------|-----|---------------|-------------|
+|      Ellie Goulding|    f|           1986|         null|
+|       Jenna Coleman|    f|           1986|         null|
+|         Lowri Dixon|    f|           1987|         null|
+|      Betty Kendrick|    f|           1987|         null|
+|     Jess McAllister|    f|           1987|         null|
+|   Anna Clare Wilson|    f|           1988|         null|
+|          Lily James|    f|           1989|         null|
+|         Emma McGann|    f|           1990|         null|
+|       Jasmine Chloe|    f|           1991|         null|
+|      Ruth Patterson|    f|           1992|         null|
+|          Tek Notice|    f|           1993|         null|
+|                Zyra|    f|           1994|         null|
+|Catherine Ward-Th...|    f|           1994|         null|
+|        Sophie Heard|    f|           1994|         null|
+|          HM Silvers|    f|           1994|         null|
+|Alexandra Catheri...|    f|           1994|         null|
+|   Lizzy Ward Thomas|    f|           1994|         null|
+|        Orla O'Neill|    f|           1996|         null|
+|             Låpsley|    f|           1996|         null|
+|      Megan Lara Mae|    f|           1996|         null|
+|                Maya|    f|           1996|         null|
+|             emellia|    f|           1997|         null|
+|              Ivy HB|    f|           1997|         null|
+|          Florescent|    f|           1998|         null|
+|      Noella Usborne|    f|           1999|         null|
+|          Sarah Kate|    f|           1999|         null|
+|        Erin Bloomer|    f|           2002|         null|
+|     Stephanie Gaunt|    f|           2002|         null|
+
+Nous en avons "seulement" exactement 28, toutes actives encore aujourd'hui.
+
+Voyons maintenant la provenance des artistes :
+
+|          area| count|
+|--------------|------|
+| United States|141078|
+|United Kingdom| 58886|
+|         Japan| 52228|
+|       Germany| 51264|
+|        France| 29410|
+|       Belgium| 20292|
+|         Italy| 19744|
+|       Finland| 16634|
+|        Sweden| 16521|
+|        Canada| 15582|
+|         Spain| 14111|
+|     Australia| 12850|
+|   Netherlands| 12542|
+|        Russia|  9410|
+|       Estonia|  7769|
+|        Greece|  7591|
+|       Denmark|  7560|
+|        Poland|  7131|
+|        Brazil|  7009|
+|       Austria|  6993|
+
+On peut voir que les USA sont largement en tête.
+
+Regardons quels artistes aujourd'hui inactifs ont duré le plus de temps, en années :
+
+```scala
+val longers = 
+    mbArtistCleanDF
+    .filter($"ended" === "t")
+    .filter($"begin_date_year" !== "null")
+    .filter($"end_date_year" !== "null")
+    .select("name", "begin_date_year", "end_date_year")
+    .withColumn("duration", col("end_date_year") - col("begin_date_year"))
+    .filter($"end_date_year" <= 2020)
+    .filter($"duration" < 100)
+    .orderBy(desc("duration"))
+```
+
+|                name|begin_date_year|end_date_year|duration|
+|--------------------|---------------|-------------|--------|
+|         Gaby Basset|           1902|         2001|    99.0|
+|          Franz Thon|           1910|         2009|    99.0|
+|     Jester Hairston|           1901|         2000|    99.0|
+|     Bernice Petkere|           1901|         2000|    99.0|
+|        Sir Lancelot|           1902|         2001|    99.0|
+|Eduardo Hernández...|           1911|         2010|    99.0|
+|    Manuel Rosenthal|           1904|         2003|    99.0|
+|  Marie-Louise Girod|           1915|         2014|    99.0|
+|      Nimrod Workman|           1895|         1994|    99.0|
+| Mary Elizabeth Frye|           1905|         2004|    99.0|
+|"Carlos Alberto F...|           1907|         2006|    99.0|
+|  Jonathan Sternberg|           1919|         2018|    99.0|
+|Leopoldo Benedett...|           1815|         1914|    99.0|
+|           Aadu Regi|           1912|         2011|    99.0|
+|   Irena Kwiatkowska|           1912|         2011|    99.0|
+|George Coles Steb...|           1846|         1945|    99.0|
+|      Ola M. Vanberg|           1869|         1968|    99.0|
+|        Eddie Albert|           1906|         2005|    99.0|
+|       Chet Williams|           1918|         2017|    99.0|
+|     Yvonne Verbeeck|           1913|         2012|    99.0|
+
+Nous avons filtré les durées plus grandes que 100 (pas très réalistess). Malheureusement nous voyons que les données de MusicBrainz ne sont pas réellement correctes, les dates de début et de fin sont parfois confondues avec les dates de naissance et mort des artistes. Nous ne pouvons pas en tirer de conclusions.
+
+Voyons plutôt combien de tags (= genres) nous avons et groupons-les par artistes :
+
+```scala
+val tags = mbTagFullDF.groupBy("tag").count
+println(tags.count)
+```
+
+On peut voir que nous avons 40'436 tags, ce qui en fait beaucoup, ça signifie sûrement que certains tags n'ont pas vraiment de sens. Voyons si la médiane peut à nouveau nous aider : 
+
+```scala
+val median = tags.stat.approxQuantile("count", Array(0.5), 0.01)(0)
+```
+
+La médiane est à 1. On peut alors filtrer beaucoup de tags : 
+
+```scala
+val tagsFilter = tags.filter("count > 1").orderBy(desc("count"))
+```
+
+|             tag|count|
+|----------------|-----|
+|            jazz|14901|
+|            rock|10413|
+|            punk| 8532|
+|production music| 5901|
+|         hip hop| 5711|
+|       classical| 4605|
+|    likedis auto| 4250|
+|              uk| 4171|
+|        musician| 4128|
+|             usa| 3981|
+|        composer| 3890|
+|             pop| 3873|
+|        american| 3562|
+|      electronic| 3433|
+|            folk| 3181|
+|           metal| 2936|
+|         british| 2753|
+|         latvian| 2366|
+|            soul| 1968|
+|alternative rock| 1809|
+
+Comme attendu, nous avons un mix de genres musicaux communs, "jazz" en tête.
+
+Voyons quel artiste a le plus de tags :
+
+|                name|count|
+|--------------------|-----|
+|         SSHäuptling|  360|
+|              Yabamm|  360|
+|       Sadgda Jamama|  360|
+|                Ekho|  269|
+|     Various Artists|  266|
+|         Suellen Luz|  249|
+|       Gabriele Tosi|  215|
+|            Virginia|  171|
+|      Michael Samson|  136|
+|        SoUnD WaVeS-|  123|
+|          Simon Daum|  117|
+|          Jay Random|  114|
+|               Roiel|  102|
+|Michael Ash Sharb...|   95|
+|               milan|   94|
+|         Picaporters|   93|
+|Jamie and the Fir...|   93|
+|      digitalTRAFFIC|   91|
+|     The Indelicates|   88|
+|                SB19|   83|
+
+Nous pensons que les tags n'ont en fin de compte pas beaucoup de sens, même après un premier filtrer, les artistes les plus "taggés" ont 360 tags.
+
+Essayons pour finir de faire une jointure entre les données "originelles" et les données de MusicBrainz : 
+
+```scala
+val originArtistsDF = userArtistNamesCountDF.select("name").distinct
+val joinOriginMbDF = originArtistsDF.join(mbArtistCleanDF, originArtistsDF("name") === mbArtistCleanDF("name"))
+joinOriginMbDF.count
+```
+
+```
+res27: Long = 317114
+```
+
+Nous obtenons "seulement" 317'114 artistes communs aux deux *data sets*, moins que ce nous espérions.
+Pour cette raison, nous n'allons pas tenter de fusionner ces deux *data sets*.
+
+<!-- TODO: -->
 Montrer K-Means
 Montrer une recommendation
 

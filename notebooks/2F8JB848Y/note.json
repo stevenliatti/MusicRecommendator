@@ -1582,7 +1582,7 @@
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-18 22:18:45.024",
+      "dateUpdated": "2020-06-18 22:38:45.593",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -4026,11 +4026,7 @@
   "id": "2F8JB848Y",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {
-    "md:shared_process": [],
-    "sh:shared_process": [],
-    "spark:shared_process": []
-  },
+  "angularObjects": {},
   "config": {
     "isZeppelinNotebookCronEnable": false
   },

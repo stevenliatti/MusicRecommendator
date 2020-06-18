@@ -732,6 +732,57 @@ org.apache.spark.SparkException: This RDD lacks a SparkContext. It could happen 
 Après quelques recherches infructueuses sur le web, il semblerait que ce soit le premier cas (SPARK-5063), il manque un contexte Spark au graphe pour s'exécuter. Après de nombreuses et vaines tentatives, nous n'avons pas approfondi la chose.
 
 ## K-Means
+Nous avons également eu l'occasion d'explorer les algorithmes de clustering proposés par Spark, en effet un des algorithmes les plus connu est celui de K-means. Il permet de placer K centres et d'attribuer les échantillons à chacun de ces centres en fonction de leur distance à la moyenne des points de son cluster. La fonction à minimiser est la somme des carrés de ces distances.
+Dans notre cas nous avons utilisé `K=8` mais sachant que c'est un paramètre variable, il est possible le faire varier afin de trouver la valeur de k qui propose les meilleurs résultats pour notre cas de figure.
+L'algorithme de K-means a été appliqué sur les données en prenant en compte la feature "begin_date_year" qui est la date de lancement des artistes.
+Il est également possible d'appliquer l'algorithme sur d'autres features, pour cela, il suffit de modifier la ligne de code qui sélectionne les features
+`val cols = Array("begin_date_year")` et d'y ajouter ou supprimer les features désirées.
+
+
+### Resultats pour k=8
+Sur cette capture, nous pouvons voir les 10 premiers échantillons de tests qui ont chacun été attribués à l'un des 8 clusters en fonction de la valeur dans la colonne "features" qui est en l'occurrence la date de départ de cet artiste.
+![kmeansResults1](doc/images/kmeans1.png)
+Sur cette image, nous pouvons voir le nombre d'échantillons de tests qui ont été attribués chacun des 8 clusters. Pour des raisons de rapidité de calcul, nous avons pris pour exemple 10% de 1000 échantillons pour le test set.
+![kmeansResults2](doc/images/kmeans2.png)
+
+
+## Gaussian Mixture Model (GMM)
+Cet algorithme de clustering représente une distribution composite par laquelle les points sont tirés d'une des K sous-distributions gaussiennes (appelées noyaux). Il permet donc de déterminer la variance, la moyenne et l'amplitude de chaque gaussienne, chacune avec sa propre probabilité respective.
+L'implémentation spark.ml utilise l'algorithme de maximisation des attentes pour induire le modèle de maximum de vraisemblance à partir d'un ensemble d'échantillons
+
+Nous l'avons appliqué sur nos données en prenant en compte la même feature que pour l'exemple avec K-means ci-dessus (voir rubrique K-means). Avec cet algorithme nous avons utilis la valeur de `K=5`. Nous pouvons observer les valeurs des gausiennes qui ont été calculée dans la section ci-dessous.
+
+
+### Resultats pour k=5
+Gaussian 0:
+weight=0.08490436354184183
+mu=[1931.4052172343722]
+sigma=
+1217.0017127140345  
+
+Gaussian 1:
+weight=0.23538281739976918
+mu=[1958.7950085752407]
+sigma=
+317.049169124017  
+
+Gaussian 2:
+weight=0.3904323323907563
+mu=[2000.5928750437922]
+sigma=
+68.19889529830998  
+
+Gaussian 3:
+weight=0.14024624937889513
+mu=[1977.408315950021]
+sigma=
+212.6362452843026  
+
+Gaussian 4:
+weight=0.14903423728873746
+mu=[1983.0591439681355]
+sigma=
+155.40721335676855  
 
 
 ## Recommandations

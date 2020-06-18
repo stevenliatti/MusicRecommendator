@@ -192,19 +192,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d0",
-            "http://192.168.1.129:4040/jobs/job?id\u003d1"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
@@ -373,19 +360,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d2",
-            "http://192.168.1.129:4040/jobs/job?id\u003d3"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590403815626_-1753499650",
       "id": "20200525-105015_1244952508",
@@ -424,19 +398,6 @@
             "data": "warning: there were two deprecation warnings; re-run with -deprecation for details\n+-------+-------+------+\n|   user| artist| count|\n+-------+-------+------+\n|1059637|1026440|155895|\n|2069889|1002095|101076|\n|2020513|1007801| 88908|\n|1073421|1004440| 67548|\n|2023977|1007903| 62815|\n|2023977|   2823| 51039|\n|2014936|     82| 36083|\n|2069337|1006134| 34800|\n|2013784|1004059| 32768|\n|2069337|1007027| 31321|\n|1073435|1105069| 30043|\n|2023977|1000156| 29983|\n|1052225|1256375| 29933|\n|2017397|1000427| 26394|\n|1045479|1000113| 26135|\n|2062243|6901343| 26107|\n|1039100|1275996| 25858|\n|1053554|    478| 25303|\n|2017397|1004296| 24876|\n|2216281|   5705| 24067|\n+-------+-------+------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\ncountToYear: (count: Int)Boolean\nbuildCounts: (rawUserArtistData: org.apache.spark.sql.Dataset[String], bArtistAlias: org.apache.spark.broadcast.Broadcast[Map[Int,Int]])org.apache.spark.sql.DataFrame\nbArtistAlias: org.apache.spark.broadcast.Broadcast[scala.collection.immutable.Map[Int,Int]] \u003d Broadcast(9)\ntrainData: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 1 more field]\nres3: trainData.type \u003d [user: int, artist: int ... 1 more field]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d4",
-            "http://192.168.1.129:4040/jobs/job?id\u003d5"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590404829942_-1453554254",
@@ -558,20 +519,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d6",
-            "http://192.168.1.129:4040/jobs/job?id\u003d7",
-            "http://192.168.1.129:4040/jobs/job?id\u003d8"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590590249472_873829545",
       "id": "20200527-143729_1355604663",
@@ -651,18 +598,6 @@
             "data": "+-------+------+----------+-----+\n|   user|artist|      name|count|\n+-------+------+----------+-----+\n|1000019|   463|The Smiths|    1|\n|1000020|   463|The Smiths|  199|\n|1000022|   463|The Smiths|   20|\n|1000033|   463|The Smiths|  466|\n|1000056|   463|The Smiths|   10|\n|1000067|   463|The Smiths|   18|\n|1000070|   463|The Smiths|  399|\n|1000073|   463|The Smiths|    3|\n|1000077|   463|The Smiths|   15|\n|1000082|   463|The Smiths|   16|\n|1000090|   463|The Smiths|    1|\n|1000096|   463|The Smiths|    2|\n|1000099|   463|The Smiths|   10|\n|1000106|   463|The Smiths|    1|\n|1000114|   463|The Smiths|    3|\n|1000117|   463|The Smiths|    1|\n|1000119|   463|The Smiths|   14|\n|1000124|   463|The Smiths|    2|\n|1000125|   463|The Smiths|    8|\n|1000127|   463|The Smiths|    2|\n+-------+------+----------+-----+\nonly showing top 20 rows\n\nuserArtistNamesCountDF: org.apache.spark.sql.DataFrame \u003d [user: int, artist: int ... 2 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d9"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590590062800_2109207725",
@@ -784,18 +719,6 @@
             "data": "148077\ndistinctUsersNumber: Long \u003d 148077\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d10"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590747828635_-1911174006",
@@ -929,18 +852,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d11"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591187663060_-889404448",
       "id": "20200603-123423_567139667",
@@ -1021,18 +932,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d12"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591189886953_-1586584012",
       "id": "20200603-131126_294603452",
@@ -1112,20 +1011,6 @@
             "data": "148077\n+-------+------------------+\n|summary|             count|\n+-------+------------------+\n|  count|            148077|\n|   mean|162.66439757693632|\n| stddev| 215.3813187758636|\n|    min|                 1|\n|    max|              6734|\n+-------+------------------+\n\nartistsPerUser: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, count: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d13",
-            "http://192.168.1.129:4040/jobs/job?id\u003d14",
-            "http://192.168.1.129:4040/jobs/job?id\u003d15"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1591192747866_1333042132",
@@ -1289,18 +1174,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d16"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590747287371_1343407231",
       "id": "20200529-101447_1422946071",
@@ -1380,18 +1253,6 @@
             "data": "+--------------------+-------+\n|                name|  total|\n+--------------------+-------+\n|           Radiohead|2502596|\n|         The Beatles|2259825|\n|           Green Day|1931143|\n|           Metallica|1543430|\n|          Pink Floyd|1399665|\n|     Nine Inch Nails|1361977|\n|        Modest Mouse|1328969|\n|         Bright Eyes|1234773|\n|             Nirvana|1203348|\n|                Muse|1148684|\n| Death Cab for Cutie|1117277|\n|Red Hot Chili Pep...|1088701|\n|       Elliott Smith|1080542|\n|           Rammstein|1047119|\n|         Linkin Park|1028921|\n|                  U2|1015494|\n|           Nightwish|1010869|\n|            Coldplay|1001417|\n|    System of a Down| 986483|\n|            Interpol| 979770|\n+--------------------+-------+\nonly showing top 20 rows\n\nlistenedArtistsDF: org.apache.spark.sql.DataFrame \u003d [name: string, total: bigint]\nmostListenedArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, total: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d17"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590595127492_295793374",
@@ -1504,18 +1365,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d18"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591184778153_1332693355",
       "id": "20200603-114618_1503339983",
@@ -1597,18 +1446,6 @@
             "data": "+--------------------+-----+\n|                name|total|\n+--------------------+-----+\n|Joe Budden, A Tea...|    1|\n|Rae \u0026 Chritian - ...|    1|\n|Alex Melcher, Peh...|    1|\n|Dolly Parton - Mi...|    1|\n|        Oneiropagida|    1|\n|          Bravissimo|    1|\n|The Middle Spunk ...|    1|\n|The Last Emperor ...|    1|\n|      12 Urban Tribe|    1|\n|3EO35A5QUKMQXL3WV...|    1|\n|         Jon Eberson|    1|\n|gwar - Preskool P...|    1|\n|Ayla-Liebe-Atb Remix|    1|\n|macy gray (bugz i...|    1|\n|Boys to Men \u0026 Cha...|    1|\n|Apani B. Fly Emce...|    1|\n|  Makaveli ft. Storm|    1|\n|       Opération raï|    1|\n|Parle ft jadakiss...|    1|\n|Lil Kim, Mya, Pin...|    1|\n+--------------------+-----+\nonly showing top 20 rows\n\nleastListenedArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, total: bigint]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d19"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590591187326_-770675715",
@@ -1692,18 +1529,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d20"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590591575297_993223126",
       "id": "20200527-145935_127174988",
@@ -1757,7 +1582,7 @@
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:56.639",
+      "dateUpdated": "2020-06-18 22:18:45.024",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1843,19 +1668,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d21",
-            "http://192.168.1.129:4040/jobs/job?id\u003d22"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591185436485_-2090136469",
       "id": "20200603-115716_703615281",
@@ -1935,19 +1747,6 @@
             "data": "mean: Double \u003d 238.32715067690853\nmedian: Double \u003d 3.0\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d23",
-            "http://192.168.1.129:4040/jobs/job?id\u003d24"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590749376871_1302947423",
@@ -2070,18 +1869,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d25"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591349478013_-1221883526",
       "id": "20200605-093118_1002665108",
@@ -2185,20 +1972,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d26",
-            "http://192.168.1.129:4040/jobs/job?id\u003d27",
-            "http://192.168.1.129:4040/jobs/job?id\u003d28"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591358782492_650459347",
       "id": "20200605-120622_212507654",
@@ -2279,18 +2052,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d29"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591360073285_1319920019",
       "id": "20200605-122753_1932124994",
@@ -2370,18 +2131,6 @@
             "data": "+--------+--------+-----------------------------------------------+\n|id      |id      |name                                           |\n+--------+--------+-----------------------------------------------+\n|1240322 |1240322 |Metallica \u0026 The SF Symphony Orchestra          |\n|10113173|10113173|Metallica - B\u0026P - 14                           |\n|10024375|10024375|Metallica - B\u0026P - 21                           |\n|10024376|10024376|Metallica - ...And Justice For All -           |\n|10024488|10024488|Metallica - B\u0026P - 24                           |\n|1136616 |1136616 |30B10001806F00287800.Metallica and The SF      |\n|7004497 |7004497 |Metallica \u0026 San-Francisco-Orchester            |\n|10025794|10025794|Metallica - Live in Belgrade 26.6              |\n|10186355|10186355|Metallica Some Kind of Monster                 |\n|6945944 |6945944 |03. Metallica                                  |\n|1246630 |1246630 |Metallica \u0026 Michael Kamen                      |\n|1138243 |1138243 |Metallica -[Disc 2(10)                         |\n|6946149 |6946149 |Metallica -1987- Garage Days                   |\n|1247944 |1247944 |Metallica 06                                   |\n|6672703 |6672703 |Metallica -1998- Garage Inc,disc I             |\n|9934619 |9934619 |Metallica \u0026 San Fran                           |\n|7031937 |7031937 || METALLICA                                    |\n|6991351 |6991351 |Metallica (w                                   |\n|2038418 |2038418 |METALLICA@Apoptygma Berzerk                   |\n|9918437 |9918437 |Metallica - Live 2004-05-28 - Helsinki, Finland|\n+--------+--------+-----------------------------------------------+\nonly showing top 20 rows\n\naliasIdsToMetallica: org.apache.spark.sql.DataFrame \u003d [id: int]\naliasNamesToMetallica: org.apache.spark.sql.DataFrame \u003d [id: int, id: int ... 1 more field]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d30"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1591360540945_-407387076",
@@ -2543,31 +2292,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d31",
-            "http://192.168.1.129:4040/jobs/job?id\u003d32",
-            "http://192.168.1.129:4040/jobs/job?id\u003d33",
-            "http://192.168.1.129:4040/jobs/job?id\u003d34",
-            "http://192.168.1.129:4040/jobs/job?id\u003d35",
-            "http://192.168.1.129:4040/jobs/job?id\u003d36",
-            "http://192.168.1.129:4040/jobs/job?id\u003d37",
-            "http://192.168.1.129:4040/jobs/job?id\u003d38",
-            "http://192.168.1.129:4040/jobs/job?id\u003d39",
-            "http://192.168.1.129:4040/jobs/job?id\u003d40",
-            "http://192.168.1.129:4040/jobs/job?id\u003d41",
-            "http://192.168.1.129:4040/jobs/job?id\u003d42",
-            "http://192.168.1.129:4040/jobs/job?id\u003d43",
-            "http://192.168.1.129:4040/jobs/job?id\u003d44"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592231084258_-1761658128",
       "id": "20200615-142444_80810858",
@@ -2647,18 +2371,6 @@
             "data": "+-------+--------------------+------+------+-------------+-----------+-----+---------------+----------------+--------------+-------------+--------------+------------+\n|     id|                name|  type|gender|         area|  area_type|ended|begin_date_year|begin_date_month|begin_date_day|end_date_year|end_date_month|end_date_day|\n+-------+--------------------+------+------+-------------+-----------+-----+---------------+----------------+--------------+-------------+--------------+------------+\n| 811740|    Margaret Hendrie|Person|Female|        Nauru|    Country|    t|           1924|            null|          null|         1990|          null|        null|\n| 529371|       Robin Freeman|Person|  Male|Noord-Brabant|Subdivision|    f|           1952|            null|          null|         null|          null|        null|\n|1187413|       Lord of Sp33d|Person|  Male|Noord-Brabant|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1631302|      Thomas Pieters|Person|  Male|Noord-Brabant|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1152430|  Michèle van der Aa|Person|Female|Noord-Brabant|Subdivision|    f|           1982|               9|             9|         null|          null|        null|\n|1911349|         Lya de Haas|Person|Female|Noord-Brabant|Subdivision|    f|           1958|              11|             6|         null|          null|        null|\n|1801197|      The Lapin King|Person|  Male|   Norrbotten|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1461430|Maria Casandra Hauși|Person|Female|    Maramureș|Subdivision|    f|           null|               3|            11|         null|          null|        null|\n|1602734|       Prince Pronto|Person|  Male| San Fernando|       City|    f|           1997|              12|             7|         null|          null|        null|\n|1074481|       Ernst Stadler|Person|  Male|       Alsace|Subdivision|    t|           1883|               8|            11|         1914|            10|          30|\n|1544877|  Guillaume Schleret|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1544879|      Lionel Bascole|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1544881|    Guillaume Fleith|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1544882|          Fred Drill|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1849072|       Eugène Maegey|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1906578|                  Go|Person|  Male|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1118018|    Friederike Brion|Person|Female|       Alsace|Subdivision|    t|           1752|               4|            19|         1813|             4|           3|\n|1427413|Christine le Ross...|Person|Female|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1887899|       Léopoldine HH|Person|Female|       Alsace|Subdivision|    f|           null|            null|          null|         null|          null|        null|\n|1219318|        James Taplin|Person|  Male|    Doncaster|Subdivision|    f|           1988|               9|            12|         null|          null|        null|\n+-------+--------------------+------+------+-------------+-----------+-----+---------------+----------------+--------------+-------------+--------------+------------+\nonly showing top 20 rows\n\nmbArtistTagCleanDF: org.apache.spark.sql.DataFrame \u003d [artist_id: int, tag_id: int]\nmbTagFullDF: org.apache.spark.sql.DataFrame \u003d [tag: string, artist_id: int]\nmbAreaCleanDF: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 1 more field]\nmbAreaFullDF: org.apache.spark.sql.DataFrame \u003d [id: int, area: string ... 1 more field]\nmbArtistCleanDF: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 10 more fields]\nmbArtistTypeGenderAreaDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [id: int, name: string ... 11 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d45"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592233639425_135789715",
@@ -2740,26 +2452,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d46",
-            "http://192.168.1.129:4040/jobs/job?id\u003d47",
-            "http://192.168.1.129:4040/jobs/job?id\u003d48",
-            "http://192.168.1.129:4040/jobs/job?id\u003d49",
-            "http://192.168.1.129:4040/jobs/job?id\u003d50",
-            "http://192.168.1.129:4040/jobs/job?id\u003d51",
-            "http://192.168.1.129:4040/jobs/job?id\u003d52",
-            "http://192.168.1.129:4040/jobs/job?id\u003d53",
-            "http://192.168.1.129:4040/jobs/job?id\u003d54"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592311699316_-1590723805",
       "id": "20200616-124819_817718112",
@@ -2839,23 +2531,6 @@
             "data": "1559972 are active and 99488 are not\n+--------------------+-----+---------------+\n|                name|ended|begin_date_year|\n+--------------------+-----+---------------+\n| Thirteen Over Eight|    f|           null|\n|         Dr. I-Bolit|    f|           null|\n|             Astolat|    f|           null|\n|         Pete Moutso|    f|           null|\n|   The Insignificant|    f|           null|\n|        Aric Leavitt|    f|           null|\n|       The Wanderers|    f|           null|\n|           Al Street|    f|           null|\n|     Andrew Greville|    f|           null|\n|          Sintellect|    f|           null|\n|      Project/Object|    f|           null|\n|  Jean-Pierre Martin|    f|           null|\n|          Imagimusic|    f|           null|\n|wecamewithbrokent...|    f|           null|\n|Disappointment In...|    f|           null|\n|          Giant Tomo|    f|           null|\n|Elvin Jones \u0026 Jim...|    f|           null|\n|          Stereobate|    f|           null|\n|          Diskobitch|    f|           null|\n|  Sailing Conductors|    f|           null|\n+--------------------+-----+---------------+\nonly showing top 20 rows\n\n+--------------------+-----+---------------+-------------+\n|                name|ended|begin_date_year|end_date_year|\n+--------------------+-----+---------------+-------------+\n|        The Vaqueros|    t|           null|         null|\n|Biljarten na half...|    t|           1988|         null|\n|    The Acid Gallery|    t|           null|         null|\n|             Warhate|    t|           1996|         null|\n|    Sonny Clark Trio|    t|           null|         null|\n|       Out of Hatred|    t|           null|         null|\n|     The Third Bardo|    t|           1967|         null|\n|               Karna|    t|           1997|         null|\n|               Reign|    t|           1996|         null|\n|   Vijay Deverakonda|    t|           1989|         null|\n|De Zingende Zwervers|    t|           1951|         null|\n|       The Pinafores|    t|           1945|         null|\n|     Swarm of Angels|    t|           null|         null|\n|      Extreme Hatred|    t|           1992|         null|\n|Queen Sarah Saturday|    t|           1990|         null|\n|    Day of the Sword|    t|           null|         null|\n|       Six Feet Deep|    t|           1991|         null|\n|               PanAm|    t|           2000|         null|\n|            On Wings|    t|           1994|         null|\n|        Taiconderoga|    t|           null|         null|\n+--------------------+-----+---------------+-------------+\nonly showing top 20 rows\n\nactives: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, ended: string ... 1 more field]\ndesactives: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, ended: string ... 2 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d55",
-            "http://192.168.1.129:4040/jobs/job?id\u003d56",
-            "http://192.168.1.129:4040/jobs/job?id\u003d57",
-            "http://192.168.1.129:4040/jobs/job?id\u003d58",
-            "http://192.168.1.129:4040/jobs/job?id\u003d59",
-            "http://192.168.1.129:4040/jobs/job?id\u003d60"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592319041834_1832564271",
@@ -2937,23 +2612,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d61",
-            "http://192.168.1.129:4040/jobs/job?id\u003d62",
-            "http://192.168.1.129:4040/jobs/job?id\u003d63",
-            "http://192.168.1.129:4040/jobs/job?id\u003d64",
-            "http://192.168.1.129:4040/jobs/job?id\u003d65",
-            "http://192.168.1.129:4040/jobs/job?id\u003d66"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592316466274_969640580",
       "id": "20200616-140746_862694107",
@@ -3033,20 +2691,6 @@
             "data": "28\n+--------------------+-----+---------------+-------------+\n|                name|ended|begin_date_year|end_date_year|\n+--------------------+-----+---------------+-------------+\n|      Ellie Goulding|    f|           1986|         null|\n|       Jenna Coleman|    f|           1986|         null|\n|         Lowri Dixon|    f|           1987|         null|\n|      Betty Kendrick|    f|           1987|         null|\n|     Jess McAllister|    f|           1987|         null|\n|   Anna Clare Wilson|    f|           1988|         null|\n|          Lily James|    f|           1989|         null|\n|         Emma McGann|    f|           1990|         null|\n|       Jasmine Chloe|    f|           1991|         null|\n|      Ruth Patterson|    f|           1992|         null|\n|          Tek Notice|    f|           1993|         null|\n|                Zyra|    f|           1994|         null|\n|Catherine Ward-Th...|    f|           1994|         null|\n|        Sophie Heard|    f|           1994|         null|\n|          HM Silvers|    f|           1994|         null|\n|Alexandra Catheri...|    f|           1994|         null|\n|   Lizzy Ward Thomas|    f|           1994|         null|\n|        Orla O\u0027Neill|    f|           1996|         null|\n|             Låpsley|    f|           1996|         null|\n|      Megan Lara Mae|    f|           1996|         null|\n|                Maya|    f|           1996|         null|\n|             emellia|    f|           1997|         null|\n|              Ivy HB|    f|           1997|         null|\n|          Florescent|    f|           1998|         null|\n|      Noella Usborne|    f|           1999|         null|\n|          Sarah Kate|    f|           1999|         null|\n|        Erin Bloomer|    f|           2002|         null|\n|     Stephanie Gaunt|    f|           2002|         null|\n+--------------------+-----+---------------+-------------+\n\nfemaleArtistEnglish: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, ended: string ... 2 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d67",
-            "http://192.168.1.129:4040/jobs/job?id\u003d68",
-            "http://192.168.1.129:4040/jobs/job?id\u003d69"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592317772472_-496031173",
@@ -3128,19 +2772,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d70",
-            "http://192.168.1.129:4040/jobs/job?id\u003d71"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592318817939_689969101",
       "id": "20200616-144657_809091708",
@@ -3220,18 +2851,6 @@
             "data": "warning: there were two deprecation warnings; re-run with -deprecation for details\n+--------------------+---------------+-------------+--------+\n|                name|begin_date_year|end_date_year|duration|\n+--------------------+---------------+-------------+--------+\n|         Gaby Basset|           1902|         2001|    99.0|\n|          Franz Thon|           1910|         2009|    99.0|\n|     Jester Hairston|           1901|         2000|    99.0|\n|     Bernice Petkere|           1901|         2000|    99.0|\n|        Sir Lancelot|           1902|         2001|    99.0|\n|Eduardo Hernández...|           1911|         2010|    99.0|\n|    Manuel Rosenthal|           1904|         2003|    99.0|\n|  Marie-Louise Girod|           1915|         2014|    99.0|\n|      Nimrod Workman|           1895|         1994|    99.0|\n| Mary Elizabeth Frye|           1905|         2004|    99.0|\n|\"Carlos Alberto F...|           1907|         2006|    99.0|\n|  Jonathan Sternberg|           1919|         2018|    99.0|\n|Leopoldo Benedett...|           1815|         1914|    99.0|\n|           Aadu Regi|           1912|         2011|    99.0|\n|   Irena Kwiatkowska|           1912|         2011|    99.0|\n|George Coles Steb...|           1846|         1945|    99.0|\n|      Ola M. Vanberg|           1869|         1968|    99.0|\n|        Eddie Albert|           1906|         2005|    99.0|\n|       Chet Williams|           1918|         2017|    99.0|\n|     Yvonne Verbeeck|           1913|         2012|    99.0|\n+--------------------+---------------+-------------+--------+\nonly showing top 20 rows\n\nimport org.apache.spark.sql.functions._\nlongers: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, begin_date_year: string ... 2 more fields]\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d72"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592319748053_716200862",
@@ -3399,18 +3018,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d73"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592296529500_696877350",
       "id": "20200616-083529_410622344",
@@ -3490,19 +3097,6 @@
             "data": "median: Double \u003d 1.0\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d74",
-            "http://192.168.1.129:4040/jobs/job?id\u003d75"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592307991007_-1237965898",
@@ -3643,24 +3237,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d76",
-            "http://192.168.1.129:4040/jobs/job?id\u003d77",
-            "http://192.168.1.129:4040/jobs/job?id\u003d78",
-            "http://192.168.1.129:4040/jobs/job?id\u003d79",
-            "http://192.168.1.129:4040/jobs/job?id\u003d80",
-            "http://192.168.1.129:4040/jobs/job?id\u003d81",
-            "http://192.168.1.129:4040/jobs/job?id\u003d82"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592306719239_-1205835328",
       "id": "20200616-112519_612958317",
@@ -3741,19 +3317,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d116",
-            "http://192.168.1.129:4040/jobs/job?id\u003d117"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1592311673658_-761641317",
       "id": "20200616-124753_1386603612",
@@ -3833,18 +3396,6 @@
             "data": "originArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string]\njoinOriginMbDF: org.apache.spark.sql.DataFrame \u003d [name: string, id: int ... 11 more fields]\nres37: Long \u003d 317114\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d118"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1592424040400_-259133826",
@@ -4001,18 +3552,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d83"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1591963450776_-167988045",
       "id": "20200612-120410_1277165834",
@@ -4064,9 +3603,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.ml.feature.VectorAssembler\n\n// trainData.printSchema()\n\nval setsArray \u003d trainData.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0)\nval testDataSet \u003d setsArray(1)\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"artist\") // TODO : DETERMINER LES FEATURES A METTRE EN OEUVRE\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDf \u003d assembler.transform(trainDataSet)\n\n// featureDf.printSchema()\n\n// featureDf.show(10)\n\n// kmeans model with 8 clusters\nval kmeans \u003d new KMeans()\n  .setK(8)\n  .setFeaturesCol(\"features\")\n  .setPredictionCol(\"prediction\")\nval kmeansModel \u003d kmeans.fit(featureDf)\nkmeansModel.clusterCenters.foreach(println)\n\n// test the model with test data set\nval predictDf \u003d kmeansModel.transform(testDataSet)\npredictDf.show(10)\n\n// no of categories\npredictDf.groupBy(\"prediction\").count().show()\n",
+      "text": "%spark\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.sql.types.DoubleType\nimport org.apache.spark.sql.types.IntegerType\n\n\nval dataSet \u003d mbArtistCleanDF.filter($\"begin_date_year\" rlike \"^[0-9]*$\") // Regex to filter digits only\n\n\nval setsArray \u003d dataSet.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\nval testDataSet \u003d setsArray(1).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\n\n// trainDataSet.printSchema\n// trainDataSet.show(100)\n\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"begin_date_year\")\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDfTrain \u003d assembler.transform(trainDataSet)\nval featureDfTest \u003d assembler.transform(testDataSet)\n\n// featureDf.show(10)\n\n// kmeans model with 8 clusters\nval kmeans \u003d new KMeans()\n  .setK(8)\n  .setFeaturesCol(\"features\")\n  .setPredictionCol(\"prediction\")\nval kmeansModel \u003d kmeans.fit(featureDfTrain)\nkmeansModel.clusterCenters.foreach(println)\n\n// test the model with test data set\nval predictDf \u003d kmeansModel.transform(featureDfTest)\npredictDf.show(10)\n\n// no of categories\npredictDf.groupBy(\"prediction\").count().show()\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:19:14.347",
+      "dateUpdated": "2020-06-18 22:20:18.628",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -4145,9 +3684,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nimport org.apache.spark.ml.clustering.GaussianMixture\nimport org.apache.spark.ml.feature.VectorAssembler\n\n// Loads data\nval dataset \u003d trainData\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"user\", \"artist\") // TODO : DETERMINER LES FEATURES A METTRE EN OEUVRE\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDf \u003d assembler.transform(dataset)\n\n// Trains Gaussian Mixture Model\nval gmm \u003d new GaussianMixture()\n  .setK(2)\nval model \u003d gmm.fit(featureDf)\n\nval testData \u003d List() // TODO FAIRE DES DATAS DE TEST\nval predictDf \u003d model.transform(testData)\n\n// output parameters of mixture model model\nfor (i \u003c- 0 until model.getK) {\n  println(s\"Gaussian $i:\\nweight\u003d${model.weights(i)}\\n\" +\n      s\"mu\u003d${model.gaussians(i).mean}\\nsigma\u003d\\n${model.gaussians(i).cov}\\n\")\n}",
+      "text": "%spark\nimport org.apache.spark.ml.clustering.GaussianMixture\nimport org.apache.spark.ml.feature.VectorAssembler\n\nval dataSet \u003d mbArtistCleanDF.filter($\"begin_date_year\" rlike \"^[0-9]*$\") // Regex to filter digits only\n\n\nval setsArray \u003d dataSet.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\nval testDataSet \u003d setsArray(1).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\n\n// trainDataSet.printSchema\n// trainDataSet.show(100)\n\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"begin_date_year\")\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDfTrain \u003d assembler.transform(trainDataSet)\nval featureDfTest \u003d assembler.transform(testDataSet)\n\n\n// Trains Gaussian Mixture Model\nval gmm \u003d new GaussianMixture()\n  .setK(5)\nval model \u003d gmm.fit(featureDfTrain)\n\nval predictDf \u003d model.transform(featureDfTest)\n\n// output parameters of mixture model model\nfor (i \u003c- 0 until model.getK) {\n  println(s\"Gaussian $i:\\nweight\u003d${model.weights(i)}\\n\" +\n      s\"mu\u003d${model.gaussians(i).mean}\\nsigma\u003d\\n${model.gaussians(i).cov}\\n\")\n}",
       "user": "anonymous",
-      "dateUpdated": "2020-06-16 10:01:29.116",
+      "dateUpdated": "2020-06-18 22:21:07.805",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -4253,32 +3792,6 @@
             "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_4b32218a30b9\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d84",
-            "http://192.168.1.129:4040/jobs/job?id\u003d85",
-            "http://192.168.1.129:4040/jobs/job?id\u003d86",
-            "http://192.168.1.129:4040/jobs/job?id\u003d87",
-            "http://192.168.1.129:4040/jobs/job?id\u003d88",
-            "http://192.168.1.129:4040/jobs/job?id\u003d89",
-            "http://192.168.1.129:4040/jobs/job?id\u003d90",
-            "http://192.168.1.129:4040/jobs/job?id\u003d91",
-            "http://192.168.1.129:4040/jobs/job?id\u003d92",
-            "http://192.168.1.129:4040/jobs/job?id\u003d93",
-            "http://192.168.1.129:4040/jobs/job?id\u003d94",
-            "http://192.168.1.129:4040/jobs/job?id\u003d95",
-            "http://192.168.1.129:4040/jobs/job?id\u003d96",
-            "http://192.168.1.129:4040/jobs/job?id\u003d97",
-            "http://192.168.1.129:4040/jobs/job?id\u003d98"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590405875128_638740172",
@@ -4399,19 +3912,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d99",
-            "http://192.168.1.129:4040/jobs/job?id\u003d100"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590414312973_773327109",
       "id": "20200525-134512_2071793608",
@@ -4451,18 +3951,6 @@
           }
         ]
       },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d101"
-          ],
-          "interpreterSettingId": "spark"
-        }
-      },
       "apps": [],
       "jobName": "paragraph_1590414339594_-358168064",
       "id": "20200525-134539_310376515",
@@ -4501,19 +3989,6 @@
             "data": "+-------+-----------------+\n|     id|             name|\n+-------+-----------------+\n|1233244|The Rocket Summer|\n|1045916|    Mitch Hedberg|\n|1000388|        Ben Folds|\n|1022288|        Dane Cook|\n|1240051|       The Format|\n+-------+-----------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1022288, 1045916, 1000388, 1240051, 1233244)\n"
           }
         ]
-      },
-      "runtimeInfos": {
-        "jobUrl": {
-          "propertyName": "jobUrl",
-          "label": "SPARK JOB",
-          "tooltip": "View in Spark web UI",
-          "group": "spark",
-          "values": [
-            "http://192.168.1.129:4040/jobs/job?id\u003d102",
-            "http://192.168.1.129:4040/jobs/job?id\u003d103"
-          ],
-          "interpreterSettingId": "spark"
-        }
       },
       "apps": [],
       "jobName": "paragraph_1590414893842_841620200",

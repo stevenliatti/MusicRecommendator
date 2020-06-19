@@ -732,6 +732,7 @@ org.apache.spark.SparkException: This RDD lacks a SparkContext. It could happen 
 Après quelques recherches infructueuses sur le web, il semblerait que ce soit le premier cas (SPARK-5063), il manque un contexte Spark au graphe pour s'exécuter. Après de nombreuses et vaines tentatives, nous n'avons pas approfondi la chose.
 
 ## K-Means
+
 Nous avons également eu l'occasion d'explorer les algorithmes de clustering proposés par Spark, en effet un des algorithmes les plus connu est celui de K-means. Il permet de placer K centres et d'attribuer les échantillons à chacun de ces centres en fonction de leur distance à la moyenne des points de son cluster. La fonction à minimiser est la somme des carrés de ces distances.
 Dans notre cas nous avons utilisé `K=8` mais sachant que c'est un paramètre variable, il est possible le faire varier afin de trouver la valeur de k qui propose les meilleurs résultats pour notre cas de figure.
 L'algorithme de K-means a été appliqué sur les données en prenant en compte la feature "begin_date_year" qui est la date de lancement des artistes.
@@ -740,53 +741,166 @@ Il est également possible d'appliquer l'algorithme sur d'autres features, pour 
 
 
 ### Resultats pour k=8
-Sur cette capture, nous pouvons voir les 10 premiers échantillons de tests qui ont chacun été attribués à l'un des 8 clusters en fonction de la valeur dans la colonne "features" qui est en l'occurrence la date de départ de cet artiste.
-![kmeansResults1](doc/images/kmeans1.png)
-Sur cette image, nous pouvons voir le nombre d'échantillons de tests qui ont été attribués chacun des 8 clusters. Pour des raisons de rapidité de calcul, nous avons pris pour exemple 10% de 1000 échantillons pour le test set.
-![kmeansResults2](doc/images/kmeans2.png)
+
+
+Les 8 valeurs suivantes correspondent aux valeurs des centres des clusters : 
+
+```
+[671.2446808510638]
+[1501.7430389817025]
+[1718.6365001877582]
+[1850.3083798882683]
+[1916.1238153918375]
+[1954.2754119439282]
+[1981.9553901077106]
+[2006.1674172340695]
+```
+
+La première valeur est sûrement erronée, potentiellement à cause de dates mal renseignées. En revanche, à partir de la 3ème valeur (année 1718), nous discernons des centres de clusters plausibles.
+
+Sur ce tableau, nous pouvons voir les 10 premiers échantillons de tests qui ont chacun été attribués à l'un des 8 clusters en fonction de la valeur dans la colonne "features" qui est en l'occurrence la date de départ de cet artiste.
+
+
+| id|                name|begin_date_year|features|prediction|
+|---|--------------------|---------------|--------|----------|
+| 10|       Vincent Gallo|           1961|[1961.0]|         0|
+| 11|Squirrel Nut Zippers|           1993|[1993.0]|         3|
+| 40|   Alanis Morissette|           1974|[1974.0]|         3|
+| 45|           Cadallaca|           1997|[1997.0]|         5|
+| 46|   Dusty Springfield|           1939|[1939.0]|         0|
+| 53|         Mary Timony|           1970|[1970.0]|         3|
+|199|         Sheryl Crow|           1962|[1962.0]|         0|
+|235|        Edgar Winter|           1946|[1946.0]|         0|
+|249|              Pixies|           1986|[1986.0]|         3|
+|296|       Chris Cornell|           1964|[1964.0]|         0|
+
+
+Sur ce tableau, nous pouvons voir le nombre d'échantillons de tests qui ont été attribués chacun des 8 clusters.
+
+
+|prediction|count|
+|----------|-----|
+|         1|   11|
+|         6|  978|
+|         3|10996|
+|         5|11494|
+|         4|  308|
+|         7| 3758|
+|         2|  138|
+|         0| 7874|
 
 
 ## Gaussian Mixture Model (GMM)
 Cet algorithme de clustering représente une distribution composite par laquelle les points sont tirés d'une des K sous-distributions gaussiennes (appelées noyaux). Il permet donc de déterminer la variance, la moyenne et l'amplitude de chaque gaussienne, chacune avec sa propre probabilité respective.
-L'implémentation spark.ml utilise l'algorithme de maximisation des attentes pour induire le modèle de maximum de vraisemblance à partir d'un ensemble d'échantillons
+L'implémentation spark ml utilise l'algorithme de maximisation des attentes pour induire le modèle de maximum de vraisemblance à partir d'un ensemble d'échantillons
 
-Nous l'avons appliqué sur nos données en prenant en compte la même feature que pour l'exemple avec K-means ci-dessus (voir rubrique K-means). Avec cet algorithme nous avons utilis la valeur de `K=5`. Nous pouvons observer les valeurs des gausiennes qui ont été calculée dans la section ci-dessous.
+Nous l'avons appliqué sur nos données en prenant en compte la même feature que pour l'exemple avec K-means ci-dessus (voir rubrique K-means). Avec cet algorithme nous avons utilisé la valeur de `K=5`. Nous pouvons observer les valeurs des gaussiennes qui ont été calculées dans la section ci-dessous.
 
 
 ### Resultats pour k=5
-Gaussian 0:
-weight=0.08490436354184183
-mu=[1931.4052172343722]
-sigma=
-1217.0017127140345  
 
-Gaussian 1:
-weight=0.23538281739976918
-mu=[1958.7950085752407]
-sigma=
-317.049169124017  
+- Gaussian 0:
+    - weight = 0.5791479084589599
+    - mu = [1991.7791199841777]
+    - sigma = 314.4290885008718  
 
-Gaussian 2:
-weight=0.3904323323907563
-mu=[2000.5928750437922]
-sigma=
-68.19889529830998  
+- Gaussian 1:
+    - weight = 0.1716278699352491
+    - mu = [1947.3520062402445]
+    - sigma = 1243.857828326532  
 
-Gaussian 3:
-weight=0.14024624937889513
-mu=[1977.408315950021]
-sigma=
-212.6362452843026  
+- Gaussian 2:
+    - weight = 0.008924245277060441
+    - mu = [1615.8152281415798]
+    - sigma = 57259.11462460605  
 
-Gaussian 4:
-weight=0.14903423728873746
-mu=[1983.0591439681355]
-sigma=
-155.40721335676855  
+- Gaussian 3:
+    - weight = 0.035190547311153904
+    - mu = [1856.7930488460454]
+    - sigma = 5570.017418367924  
+
+- Gaussian 4:
+    - weight = 0.20510942901757664
+    - mu = [1954.4190284035842]
+    - sigma = 951.6804902789996  
 
 
 ## Recommandations
 
+Nous nous sommes servis de l'implémentation de Spark ML pour ALS de la manière suivante :
+
+```scala
+import org.apache.spark.ml.recommendation._
+import scala.util.Random
+
+val model = new ALS().
+    setSeed(Random.nextLong()).
+    setImplicitPrefs(true).
+    setRank(10).
+    setRegParam(0.01).
+    setAlpha(1.0).
+    setMaxIter(5).
+    setUserCol("user").
+    setItemCol("artist").
+    setRatingCol("count").
+    setPredictionCol("prediction").
+    fit(trainData)
+```
+
+Sur une machine de bureau, l'exécution a pris quelques minutes. ALS se prête parfaitement avec ces données, nous avons une colonne "naturelle" d'utilisateurs et les items recommandés sont les artistes, sur la base du nombre d'écoutes. Cet algorithme génère un nouveau Dataframe `model` contenant une nouvelle colonne `prediction`, telle qu'illustrée ci-dessous :
+
+```scala
+model.userFactors.show(1, truncate = false)
+```
+
+|id |features|
+|---|-------------------------------------------------------------------------------------------------------------------------|
+|90 |[-0.6795491, -0.61022717, 0.21111332, -0.0059552714, -0.8236459, 0.29737046, 0.5449772, -0.19145739, -0.6512419, 0.31366622]|
+
+Nous pouvons ensuite réaliser des recommendations pour chaque utilisateurs de la manière suivante : 
+
+```scala
+def makeRecommendations(model: ALSModel, userID: Int, howMany: Int): DataFrame = {
+    val toRecommend = model.itemFactors.select($"id".as("artist")).withColumn("user", lit(userID))
+    model.transform(toRecommend).select("artist", "prediction").orderBy($"prediction".desc).limit(howMany)
+}
+
+val topRecommendations = makeRecommendations(model, userID, 5)
+topRecommendations.show()
+
+val recommendedArtistIDs = topRecommendations.select("artist").as[Int].collect()
+artistByID.filter($"id" isin (recommendedArtistIDs:_*)).show()
+```
+
+A partir des "items factors" de l'objet `model`, nous pouvons créer des recommendations en fonction de l'id d'un utilisateur en tenant compte des artistes écoutés au préalable (ses préférences).
+
+En prenant par exemple l'utilisateur 2093760 et ses "meilleures écoutes" :
+
+|     id|           name|
+|-------|---------------|
+|   1180|     David Gray|
+|    378|  Blackalicious|
+|    813|     Jurassic 5|
+|1255340|The Saw Doctors|
+|    942|         Xzibit|
+
+Le système lui recommande les artistes suivants :
+
+| artist| prediction|
+|-------|-----------|
+|1300642|0.030489009|
+|   2814|0.030214254|
+|1001819|0.029848594|
+|   4605|0.029544951|
+|1037970| 0.02945667|
+
+|     id|      name|
+|-------|----------|
+|   2814|   50 Cent|
+|   4605|Snoop Dogg|
+|1037970|Kanye West|
+|1001819|      2Pac|
+|1300642|  The Game|
 
 
 # Améliorations futures possibles

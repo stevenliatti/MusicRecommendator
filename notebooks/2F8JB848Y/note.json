@@ -3,7 +3,7 @@
     {
       "text": "%md\n\n# Music Recommendator\n\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:22:39.594",
+      "dateUpdated": "2020-06-19 07:34:14.600",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -36,15 +36,15 @@
       "jobName": "paragraph_1590404160920_724976566",
       "id": "20200525-105600_876779769",
       "dateCreated": "2020-05-25 10:56:00.920",
-      "dateStarted": "2020-06-17 17:22:39.845",
-      "dateFinished": "2020-06-17 17:22:41.900",
+      "dateStarted": "2020-06-19 07:34:14.810",
+      "dateFinished": "2020-06-19 07:34:16.762",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Preparing the Data\n\nLet\u0027s start by downloading the data :\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:22:41.944",
+      "dateUpdated": "2020-06-19 07:34:16.809",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -77,15 +77,15 @@
       "jobName": "paragraph_1590404204036_-155805845",
       "id": "20200525-105644_555166138",
       "dateCreated": "2020-05-25 10:56:44.037",
-      "dateStarted": "2020-06-17 17:22:42.336",
-      "dateFinished": "2020-06-17 17:22:42.357",
+      "dateStarted": "2020-06-19 07:34:17.146",
+      "dateFinished": "2020-06-19 07:34:17.176",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\ncd /data\nif [[ ! -d profiledata_06-May-2005 ]]\nthen\n    if [[ ! -f profiledata_06-May-2005.tar.xz ]]\n    then \n        echo \"Downloading profiledata_06-May-2005.tar.xz\"\n        curl --silent https://drive.switch.ch/index.php/s/gK6l44wTWixlaeC/download -o profiledata_06-May-2005.tar.xz\n    fi\n    echo \"Extracting to profiledata_06-May-2005\"\n    tar xfv profiledata_06-May-2005.tar.xz\nfi\nls -lhF profiledata_06-May-2005",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:22:42.431",
+      "dateUpdated": "2020-06-19 07:34:17.245",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -116,15 +116,15 @@
       "jobName": "paragraph_1590395388698_1190528192",
       "id": "20200525-082948_1820188021",
       "dateCreated": "2020-05-25 08:29:48.698",
-      "dateStarted": "2020-06-17 17:22:42.676",
-      "dateFinished": "2020-06-17 17:22:44.790",
+      "dateStarted": "2020-06-19 07:34:17.554",
+      "dateFinished": "2020-06-19 07:34:19.677",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the user artist data and transform it in a Dataframe with two columns \"user\" and \"artist\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:22:44.877",
+      "dateUpdated": "2020-06-19 07:34:19.755",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -157,15 +157,15 @@
       "jobName": "paragraph_1590404376466_270920040",
       "id": "20200525-105936_1453333316",
       "dateCreated": "2020-05-25 10:59:36.466",
-      "dateStarted": "2020-06-17 17:22:45.072",
-      "dateFinished": "2020-06-17 17:22:45.096",
+      "dateStarted": "2020-06-19 07:34:19.927",
+      "dateFinished": "2020-06-19 07:34:19.942",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawUserArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/user_artist_data.txt\")\nrawUserArtistData.take(5).foreach(println)\n\nval userArtistDF \u003d rawUserArtistData.map { line \u003d\u003e \n    val Array(user, artist, _*) \u003d line.split(\u0027 \u0027)\n    (user.toInt, artist.toInt)\n}.toDF(\"user\", \"artist\")\nuserArtistDF.printSchema\nuserArtistDF.agg(min(\"user\"), max(\"user\"), min(\"artist\"), max(\"artist\")).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:22:45.172",
+      "dateUpdated": "2020-06-19 07:34:20.034",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -192,19 +192,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d0",
+            "http://192.168.1.129:4040/jobs/job?id\u003d1"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590403079984_-213506736",
       "id": "20200525-103759_1452771728",
       "dateCreated": "2020-05-25 10:37:59.984",
-      "dateStarted": "2020-06-17 17:22:45.341",
-      "dateFinished": "2020-06-17 17:23:13.479",
+      "dateStarted": "2020-06-19 07:34:20.286",
+      "dateFinished": "2020-06-19 07:34:49.538",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the raw artist data and transform it in a Dataframe with two columns \"id\" and \"name\" :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:13.566",
+      "dateUpdated": "2020-06-19 07:34:49.619",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -237,15 +250,15 @@
       "jobName": "paragraph_1590404636907_1121945544",
       "id": "20200525-110356_1897971030",
       "dateCreated": "2020-05-25 11:03:56.907",
-      "dateStarted": "2020-06-17 17:23:13.692",
-      "dateFinished": "2020-06-17 17:23:13.700",
+      "dateStarted": "2020-06-19 07:34:49.811",
+      "dateFinished": "2020-06-19 07:34:49.839",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawArtistData \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_data.txt\")\nval artistByID \u003d rawArtistData.flatMap { line \u003d\u003e\n    val (id, name) \u003d line.span(_ !\u003d \u0027\\t\u0027)\n    if (name.isEmpty) None\n    else {\n        try Some((id.toInt, name.trim))\n        catch {\n            case _: NumberFormatException \u003d\u003e None\n        }\n    }\n}.toDF(\"id\", \"name\")",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:13.792",
+      "dateUpdated": "2020-06-19 07:34:49.909",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -276,15 +289,15 @@
       "jobName": "paragraph_1590404632088_1692483147",
       "id": "20200525-110352_2143376873",
       "dateCreated": "2020-05-25 11:03:52.088",
-      "dateStarted": "2020-06-17 17:23:13.917",
-      "dateFinished": "2020-06-17 17:23:14.613",
+      "dateStarted": "2020-06-19 07:34:50.137",
+      "dateFinished": "2020-06-19 07:34:51.166",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNext, read the alias artist data and transform it in a Map with artist id for the key and alias for value :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:14.617",
+      "dateUpdated": "2020-06-19 07:34:51.238",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -317,15 +330,15 @@
       "jobName": "paragraph_1590404719724_1188961969",
       "id": "20200525-110519_1836651915",
       "dateCreated": "2020-05-25 11:05:19.724",
-      "dateStarted": "2020-06-17 17:23:14.878",
-      "dateFinished": "2020-06-17 17:23:14.897",
+      "dateStarted": "2020-06-19 07:34:51.550",
+      "dateFinished": "2020-06-19 07:34:51.570",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval rawArtistAlias \u003d spark.read.textFile(\"/data/profiledata_06-May-2005/artist_alias.txt\")\nval artistAlias \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((artist.toInt, alias.toInt))\n}.collect().toMap\n\nartistByID.filter($\"id\" isin (1208690, 1003926)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:14.977",
+      "dateUpdated": "2020-06-19 07:34:51.650",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -360,19 +373,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d2",
+            "http://192.168.1.129:4040/jobs/job?id\u003d3"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590403815626_-1753499650",
       "id": "20200525-105015_1244952508",
       "dateCreated": "2020-05-25 10:50:15.626",
-      "dateStarted": "2020-06-17 17:23:15.095",
-      "dateFinished": "2020-06-17 17:23:17.835",
+      "dateStarted": "2020-06-19 07:34:51.804",
+      "dateFinished": "2020-06-19 07:34:54.747",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nimport org.apache.spark.sql._\nimport org.apache.spark.broadcast._\n\n// Cleaning data in bonus\n\n/**\n * Convert count musics to approximatively years of listening\n */\ndef countToYear(count: Int): Boolean \u003d {\n    val avgSongMinutesLength \u003d 4.0\n    avgSongMinutesLength * count.toDouble / 60.0 / 24.0 / 365.0 \u003c 2\n}\n \ndef buildCounts(rawUserArtistData: Dataset[String], bArtistAlias: Broadcast[Map[Int,Int]]): DataFrame \u003d {\n    val unknownId \u003d artistByID.filter($\"name\" \u003d\u003d\u003d \"[unknown]\").select($\"id\").head.getInt(0)\n    val userArtistCleanedDF \u003d userArtistDF.filter($\"artist\" !\u003d\u003d unknownId)\n    \n    rawUserArtistData.map { line \u003d\u003e\n        val Array(userID, artistID, count) \u003d line.split(\u0027 \u0027).map(_.toInt)\n        val finalArtistID \u003d bArtistAlias.value.getOrElse(artistID, artistID)\n        (userID, finalArtistID, count)\n    }.toDF(\"user\", \"artist\", \"count\").filter($\"artist\" !\u003d\u003d unknownId)\n}\nval bArtistAlias \u003d spark.sparkContext.broadcast(artistAlias)\nval trainData \u003d buildCounts(rawUserArtistData, bArtistAlias).filter($\"count\" \u003c 400000)\ntrainData.orderBy(desc(\"count\")).show\ntrainData.cache()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:17.897",
+      "dateUpdated": "2020-06-19 07:34:54.806",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -399,19 +425,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d4",
+            "http://192.168.1.129:4040/jobs/job?id\u003d5"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590404829942_-1453554254",
       "id": "20200525-110709_1785781047",
       "dateCreated": "2020-05-25 11:07:09.942",
-      "dateStarted": "2020-06-17 17:23:17.999",
-      "dateFinished": "2020-06-17 17:23:43.140",
+      "dateStarted": "2020-06-19 07:34:54.961",
+      "dateFinished": "2020-06-19 07:35:20.766",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# Statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:43.219",
+      "dateUpdated": "2020-06-19 07:35:20.779",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -443,15 +482,15 @@
       "jobName": "paragraph_1590414919792_1966495056",
       "id": "20200525-135519_1912337093",
       "dateCreated": "2020-05-25 13:55:19.792",
-      "dateStarted": "2020-06-17 17:23:43.318",
-      "dateFinished": "2020-06-17 17:23:43.322",
+      "dateStarted": "2020-06-19 07:35:20.936",
+      "dateFinished": "2020-06-19 07:35:20.945",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Describe statistics",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:43.418",
+      "dateUpdated": "2020-06-19 07:35:21.035",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -484,15 +523,15 @@
       "jobName": "paragraph_1590590237186_-623096228",
       "id": "20200527-143717_23609195",
       "dateCreated": "2020-05-27 14:37:17.186",
-      "dateStarted": "2020-06-17 17:23:43.512",
-      "dateFinished": "2020-06-17 17:23:43.521",
+      "dateStarted": "2020-06-19 07:35:21.160",
+      "dateFinished": "2020-06-19 07:35:21.166",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userSummary \u003d trainData.describe(\"user\")\nuserSummary.show\n\nval artistSummary \u003d trainData.describe(\"artist\")\nartistSummary.show\n\nval countSummary \u003d trainData.describe(\"count\")\ncountSummary.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:23:43.612",
+      "dateUpdated": "2020-06-19 07:35:21.259",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -519,19 +558,33 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d6",
+            "http://192.168.1.129:4040/jobs/job?id\u003d7",
+            "http://192.168.1.129:4040/jobs/job?id\u003d8"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590590249472_873829545",
       "id": "20200527-143729_1355604663",
       "dateCreated": "2020-05-27 14:37:29.472",
-      "dateStarted": "2020-06-17 17:23:43.731",
-      "dateFinished": "2020-06-17 17:24:21.740",
+      "dateStarted": "2020-06-19 07:35:21.343",
+      "dateFinished": "2020-06-19 07:36:00.063",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Data fusion\nCompute a Dataframe with user id, artist id, artist name and count for later uses.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:24:21.758",
+      "dateUpdated": "2020-06-19 07:36:00.072",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -564,15 +617,15 @@
       "jobName": "paragraph_1590594064315_1755221963",
       "id": "20200527-154104_1970292027",
       "dateCreated": "2020-05-27 15:41:04.315",
-      "dateStarted": "2020-06-17 17:24:21.897",
-      "dateFinished": "2020-06-17 17:24:21.905",
+      "dateStarted": "2020-06-19 07:36:00.210",
+      "dateFinished": "2020-06-19 07:36:00.220",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userArtistNamesCountDF \u003d \n    trainData\n    .join(artistByID, artistByID(\"id\") \u003d\u003d\u003d trainData(\"artist\"))\n    .select(\"user\", \"artist\", \"name\", \"count\")\nuserArtistNamesCountDF.cache\nuserArtistNamesCountDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:24:21.996",
+      "dateUpdated": "2020-06-19 07:36:00.309",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -599,19 +652,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d9"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590590062800_2109207725",
       "id": "20200527-143422_594483041",
       "dateCreated": "2020-05-27 14:34:22.800",
-      "dateStarted": "2020-06-17 17:24:22.119",
-      "dateFinished": "2020-06-17 17:24:31.847",
+      "dateStarted": "2020-06-19 07:36:00.380",
+      "dateFinished": "2020-06-19 07:36:10.000",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around users",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:24:31.926",
+      "dateUpdated": "2020-06-19 07:36:10.087",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -644,15 +709,15 @@
       "jobName": "paragraph_1591187646397_321240090",
       "id": "20200603-123406_1776470630",
       "dateCreated": "2020-06-03 12:34:06.397",
-      "dateStarted": "2020-06-17 17:24:32.005",
-      "dateFinished": "2020-06-17 17:24:32.013",
+      "dateStarted": "2020-06-19 07:36:10.152",
+      "dateFinished": "2020-06-19 07:36:10.157",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet users number",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:24:32.105",
+      "dateUpdated": "2020-06-19 07:36:10.251",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -685,15 +750,15 @@
       "jobName": "paragraph_1590747813508_-1257535935",
       "id": "20200529-102333_1988446988",
       "dateCreated": "2020-05-29 10:23:33.508",
-      "dateStarted": "2020-06-17 17:24:32.180",
-      "dateFinished": "2020-06-17 17:24:32.185",
+      "dateStarted": "2020-06-19 07:36:10.324",
+      "dateFinished": "2020-06-19 07:36:10.328",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval distinctUsersNumber \u003d userArtistNamesCountDF.select(\"user\").distinct.count\nprintln(distinctUsersNumber)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:24:32.280",
+      "dateUpdated": "2020-06-19 07:36:10.424",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -720,19 +785,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d10"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590747828635_-1911174006",
       "id": "20200529-102348_186273132",
       "dateCreated": "2020-05-29 10:23:48.636",
-      "dateStarted": "2020-06-17 17:24:32.369",
-      "dateFinished": "2020-06-17 17:25:18.628",
+      "dateStarted": "2020-06-19 07:36:10.485",
+      "dateFinished": "2020-06-19 07:36:53.866",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s see the listen\u0027s total per user and sort it by the higher.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:25:18.709",
+      "dateUpdated": "2020-06-19 07:36:53.919",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -765,15 +842,15 @@
       "jobName": "paragraph_1591188912275_1259738258",
       "id": "20200603-125512_896180722",
       "dateCreated": "2020-06-03 12:55:12.275",
-      "dateStarted": "2020-06-17 17:25:18.817",
-      "dateFinished": "2020-06-17 17:25:18.827",
+      "dateStarted": "2020-06-19 07:36:54.004",
+      "dateFinished": "2020-06-19 07:36:54.008",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userListenArtists \u003d userArtistNamesCountDF.groupBy(\"user\").sum(\"count\").select($\"user\", $\"sum(count)\" as \"total\")\nuserListenArtists.cache\n\nval mostUserListenArtists \u003d userListenArtists.sort(desc(\"total\"))\nmostUserListenArtists.show\n\nz.show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:25:18.914",
+      "dateUpdated": "2020-06-19 07:36:54.103",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -852,19 +929,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d11"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591187663060_-889404448",
       "id": "20200603-123423_567139667",
       "dateCreated": "2020-06-03 12:34:23.060",
-      "dateStarted": "2020-06-17 17:25:19.028",
-      "dateFinished": "2020-06-17 17:25:35.620",
+      "dateStarted": "2020-06-19 07:36:54.160",
+      "dateFinished": "2020-06-19 07:37:10.578",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe first user made almost 400\u0027000 plays !\nWe can see that a user has listend \"My Chemical Romance\" almost 156\u0027000 times.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:25:35.643",
+      "dateUpdated": "2020-06-19 07:37:10.673",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -897,15 +986,15 @@
       "jobName": "paragraph_1591188952139_313158455",
       "id": "20200603-125552_1479982108",
       "dateCreated": "2020-06-03 12:55:52.139",
-      "dateStarted": "2020-06-17 17:25:35.762",
-      "dateFinished": "2020-06-17 17:25:35.768",
+      "dateStarted": "2020-06-19 07:37:10.740",
+      "dateFinished": "2020-06-19 07:37:10.745",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval userDifferentArtists \u003d userArtistNamesCountDF.groupBy(\"user\", \"name\").sum(\"count\").select($\"user\", $\"name\", $\"sum(count)\" as \"total\")\nuserDifferentArtists.cache\nuserDifferentArtists.sort(desc(\"total\")).show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:25:35.861",
+      "dateUpdated": "2020-06-19 07:37:10.839",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -932,19 +1021,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d12"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591189886953_-1586584012",
       "id": "20200603-131126_294603452",
       "dateCreated": "2020-06-03 13:11:26.953",
-      "dateStarted": "2020-06-17 17:25:35.928",
-      "dateFinished": "2020-06-17 17:26:36.156",
+      "dateStarted": "2020-06-19 07:37:10.910",
+      "dateFinished": "2020-06-19 07:38:16.830",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nNow let\u0027s see how many different artists the users listen in average.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:26:36.175",
+      "dateUpdated": "2020-06-19 07:38:16.862",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -977,15 +1078,15 @@
       "jobName": "paragraph_1591195070440_23860404",
       "id": "20200603-143750_192146411",
       "dateCreated": "2020-06-03 14:37:50.440",
-      "dateStarted": "2020-06-17 17:26:36.298",
-      "dateFinished": "2020-06-17 17:26:36.302",
+      "dateStarted": "2020-06-19 07:38:16.973",
+      "dateFinished": "2020-06-19 07:38:16.979",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval artistsPerUser \u003d userDifferentArtists.groupBy(\"user\").count.sort(desc(\"count\"))\nartistsPerUser.cache\n\nprintln(artistsPerUser.count)\nartistsPerUser.describe(\"count\").show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:26:36.397",
+      "dateUpdated": "2020-06-19 07:38:17.073",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1012,19 +1113,33 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d13",
+            "http://192.168.1.129:4040/jobs/job?id\u003d14",
+            "http://192.168.1.129:4040/jobs/job?id\u003d15"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591192747866_1333042132",
       "id": "20200603-135907_210380760",
       "dateCreated": "2020-06-03 13:59:07.866",
-      "dateStarted": "2020-06-17 17:26:36.459",
-      "dateFinished": "2020-06-17 17:27:04.290",
+      "dateStarted": "2020-06-19 07:38:17.145",
+      "dateFinished": "2020-06-19 07:38:44.458",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nUsers listen to 162 artists in average.\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:04.384",
+      "dateUpdated": "2020-06-19 07:38:44.472",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1057,15 +1172,15 @@
       "jobName": "paragraph_1591195139834_1725271268",
       "id": "20200603-143859_2131322575",
       "dateCreated": "2020-06-03 14:38:59.834",
-      "dateStarted": "2020-06-17 17:27:04.476",
-      "dateFinished": "2020-06-17 17:27:04.480",
+      "dateStarted": "2020-06-19 07:38:44.630",
+      "dateFinished": "2020-06-19 07:38:44.636",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around artists",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:04.576",
+      "dateUpdated": "2020-06-19 07:38:44.729",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1098,15 +1213,15 @@
       "jobName": "paragraph_1590589883731_1756040608",
       "id": "20200527-143123_948169887",
       "dateCreated": "2020-05-27 14:31:23.731",
-      "dateStarted": "2020-06-17 17:27:04.666",
-      "dateFinished": "2020-06-17 17:27:04.673",
+      "dateStarted": "2020-06-19 07:38:44.798",
+      "dateFinished": "2020-06-19 07:38:44.801",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet artists number",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:04.766",
+      "dateUpdated": "2020-06-19 07:38:44.898",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1139,15 +1254,15 @@
       "jobName": "paragraph_1590747661487_613552488",
       "id": "20200529-102101_551270995",
       "dateCreated": "2020-05-29 10:21:01.487",
-      "dateStarted": "2020-06-17 17:27:04.844",
-      "dateFinished": "2020-06-17 17:27:04.848",
+      "dateStarted": "2020-06-19 07:38:44.960",
+      "dateFinished": "2020-06-19 07:38:44.964",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval distinctArtistsNumber \u003d userArtistNamesCountDF.select(\"artist\").distinct.count\nprintln(distinctArtistsNumber)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:04.943",
+      "dateUpdated": "2020-06-19 07:38:45.060",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1174,19 +1289,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d16"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590747287371_1343407231",
       "id": "20200529-101447_1422946071",
       "dateCreated": "2020-05-29 10:14:47.371",
-      "dateStarted": "2020-06-17 17:27:05.019",
-      "dateFinished": "2020-06-17 17:27:08.954",
+      "dateStarted": "2020-06-19 07:38:45.134",
+      "dateFinished": "2020-06-19 07:38:49.328",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet the total amount music listened for each artist and most listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:09.022",
+      "dateUpdated": "2020-06-19 07:38:49.336",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1219,15 +1346,15 @@
       "jobName": "paragraph_1591187513078_516772673",
       "id": "20200603-123153_1820679292",
       "dateCreated": "2020-06-03 12:31:53.078",
-      "dateStarted": "2020-06-17 17:27:09.078",
-      "dateFinished": "2020-06-17 17:27:09.081",
+      "dateStarted": "2020-06-19 07:38:49.466",
+      "dateFinished": "2020-06-19 07:38:49.470",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval listenedArtistsDF \u003d userArtistNamesCountDF.groupBy(\"name\").sum(\"count\").select($\"name\", $\"sum(count)\" as \"total\")\nlistenedArtistsDF.cache\n\nval mostListenedArtistsDF \u003d listenedArtistsDF.sort(desc(\"total\"))\nmostListenedArtistsDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:09.178",
+      "dateUpdated": "2020-06-19 07:38:49.566",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1254,19 +1381,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d17"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590595127492_295793374",
       "id": "20200527-155847_268656697",
       "dateCreated": "2020-05-27 15:58:47.492",
-      "dateStarted": "2020-06-17 17:27:09.243",
-      "dateFinished": "2020-06-17 17:27:23.989",
+      "dateStarted": "2020-06-19 07:38:49.645",
+      "dateFinished": "2020-06-19 07:39:04.858",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nz.show(mostListenedArtistsDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:24.055",
+      "dateUpdated": "2020-06-19 07:39:04.955",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1365,19 +1504,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d18"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591184778153_1332693355",
       "id": "20200603-114618_1503339983",
       "dateCreated": "2020-06-03 11:46:18.153",
-      "dateStarted": "2020-06-17 17:27:24.116",
-      "dateFinished": "2020-06-17 17:27:25.428",
+      "dateStarted": "2020-06-19 07:39:05.049",
+      "dateFinished": "2020-06-19 07:39:06.348",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nGet least listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:25.516",
+      "dateUpdated": "2020-06-19 07:39:06.349",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1410,15 +1561,15 @@
       "jobName": "paragraph_1590590069212_-1581829751",
       "id": "20200527-143429_153738922",
       "dateCreated": "2020-05-27 14:34:29.212",
-      "dateStarted": "2020-06-17 17:27:25.581",
-      "dateFinished": "2020-06-17 17:27:25.584",
+      "dateStarted": "2020-06-19 07:39:06.518",
+      "dateFinished": "2020-06-19 07:39:06.523",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval leastListenedArtistsDF \u003d listenedArtistsDF.sort(\"total\")\nleastListenedArtistsDF.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:25.680",
+      "dateUpdated": "2020-06-19 07:39:06.611",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1447,19 +1598,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d19"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590591187326_-770675715",
       "id": "20200527-145307_1643419744",
       "dateCreated": "2020-05-27 14:53:07.326",
-      "dateStarted": "2020-06-17 17:27:25.766",
-      "dateFinished": "2020-06-17 17:27:26.708",
+      "dateStarted": "2020-06-19 07:39:06.674",
+      "dateFinished": "2020-06-19 07:39:07.668",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThere is not much infos, a lot of artists are at one listen.\nShow how many artist are listened less or equal than 10 times, and the frequence for 1 to ten.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:26.766",
+      "dateUpdated": "2020-06-19 07:39:07.673",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1492,15 +1655,15 @@
       "jobName": "paragraph_1590591212556_783515315",
       "id": "20200527-145332_475861656",
       "dateCreated": "2020-05-27 14:53:32.556",
-      "dateStarted": "2020-06-17 17:27:26.826",
-      "dateFinished": "2020-06-17 17:27:26.830",
+      "dateStarted": "2020-06-19 07:39:07.801",
+      "dateFinished": "2020-06-19 07:39:07.806",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval lessThanTenTimesListenedArtistsDF \u003d listenedArtistsDF.filter(\"total \u003c\u003d 10\")\nval count \u003d lessThanTenTimesListenedArtistsDF.count\nval ratio \u003d count.toDouble / distinctArtistsNumber.toDouble",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:26.926",
+      "dateUpdated": "2020-06-19 07:39:07.900",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1529,19 +1692,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d20"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590591575297_993223126",
       "id": "20200527-145935_127174988",
       "dateCreated": "2020-05-27 14:59:35.297",
-      "dateStarted": "2020-06-17 17:27:26.980",
-      "dateFinished": "2020-06-17 17:27:27.993",
+      "dateStarted": "2020-06-19 07:39:07.967",
+      "dateFinished": "2020-06-19 07:39:09.156",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nMore than one million are listened less or equal than ten times, it\u0027s about 75% of all artists.\nNow let\u0027s see the distribution :",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:28.081",
+      "dateUpdated": "2020-06-19 07:39:09.168",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1574,15 +1749,15 @@
       "jobName": "paragraph_1591187115117_-1426829179",
       "id": "20200603-122515_1618842214",
       "dateCreated": "2020-06-03 12:25:15.117",
-      "dateStarted": "2020-06-17 17:27:28.153",
-      "dateFinished": "2020-06-17 17:27:28.156",
+      "dateStarted": "2020-06-19 07:39:09.283",
+      "dateFinished": "2020-06-19 07:39:09.287",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval freqOneToTenDF \u003d lessThanTenTimesListenedArtistsDF.groupBy(\"total\").count.sort(\"total\")\nfreqOneToTenDF.show\nz.show(freqOneToTenDF)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-18 22:38:45.593",
+      "dateUpdated": "2020-06-19 07:46:40.919",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1668,19 +1843,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d21",
+            "http://192.168.1.129:4040/jobs/job?id\u003d22"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591185436485_-2090136469",
       "id": "20200603-115716_703615281",
       "dateCreated": "2020-06-03 11:57:16.485",
-      "dateStarted": "2020-06-17 17:27:28.315",
-      "dateFinished": "2020-06-17 17:27:32.961",
+      "dateStarted": "2020-06-19 07:39:09.444",
+      "dateFinished": "2020-06-19 07:39:14.647",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe most artists are listened only one time.\n\nNow compute mean and median of total count listened artists.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:33.018",
+      "dateUpdated": "2020-06-19 07:39:14.651",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1713,15 +1901,15 @@
       "jobName": "paragraph_1590750174894_1903396402",
       "id": "20200529-110254_1497574704",
       "dateCreated": "2020-05-29 11:02:54.895",
-      "dateStarted": "2020-06-17 17:27:33.102",
-      "dateFinished": "2020-06-17 17:27:33.109",
+      "dateStarted": "2020-06-19 07:39:14.781",
+      "dateFinished": "2020-06-19 07:39:14.788",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mean \u003d listenedArtistsDF.agg(avg(\"total\")).head.getDouble(0)\n\nval median \u003d listenedArtistsDF.stat.approxQuantile(\"total\", Array(0.5), 0.01)(0)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:33.201",
+      "dateUpdated": "2020-06-19 07:39:14.880",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1748,19 +1936,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d23",
+            "http://192.168.1.129:4040/jobs/job?id\u003d24"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1590749376871_1302947423",
       "id": "20200529-104936_1595594524",
       "dateCreated": "2020-05-29 10:49:36.871",
-      "dateStarted": "2020-06-17 17:27:33.266",
-      "dateFinished": "2020-06-17 17:27:35.705",
+      "dateStarted": "2020-06-19 07:39:14.942",
+      "dateFinished": "2020-06-19 07:39:17.326",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see that half of the artists were listened to less than three times, which can be considered a discovery or even a mistake. ",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:35.767",
+      "dateUpdated": "2020-06-19 07:39:17.346",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1793,15 +1994,15 @@
       "jobName": "paragraph_1590762899249_-1376030230",
       "id": "20200529-143459_1353245403",
       "dateCreated": "2020-05-29 14:34:59.250",
-      "dateStarted": "2020-06-17 17:27:35.847",
-      "dateFinished": "2020-06-17 17:27:35.858",
+      "dateStarted": "2020-06-19 07:39:17.445",
+      "dateFinished": "2020-06-19 07:39:17.457",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Around mispelled artists names\n\nLet\u0027s see which artists are the most misspelled. First compute a Map with the correct artist id as key and the list of \"bad\" ids associated as value.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:35.946",
+      "dateUpdated": "2020-06-19 07:39:17.545",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1834,15 +2035,15 @@
       "jobName": "paragraph_1591349459271_383008968",
       "id": "20200605-093059_1465513130",
       "dateCreated": "2020-06-05 09:30:59.271",
-      "dateStarted": "2020-06-17 17:27:36.010",
-      "dateFinished": "2020-06-17 17:27:36.014",
+      "dateStarted": "2020-06-19 07:39:17.601",
+      "dateFinished": "2020-06-19 07:39:17.604",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval aliasToListWrongNames \u003d rawArtistAlias.flatMap { line \u003d\u003e\n    val Array(artist, alias) \u003d line.split(\u0027\\t\u0027)\n    if (artist.isEmpty) None\n    else Some((alias.toInt, artist.toInt))\n}\n.collect\n.groupBy { case (k, v) \u003d\u003e k }\n.map { case (k, v) \u003d\u003e (k, v.map { case (_, v2) \u003d\u003e v2 } ) }",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:36.109",
+      "dateUpdated": "2020-06-19 07:39:17.701",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1869,19 +2070,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d25"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591349478013_-1221883526",
       "id": "20200605-093118_1002665108",
       "dateCreated": "2020-06-05 09:31:18.013",
-      "dateStarted": "2020-06-17 17:27:36.180",
-      "dateFinished": "2020-06-17 17:27:37.143",
+      "dateStarted": "2020-06-19 07:39:17.756",
+      "dateFinished": "2020-06-19 07:39:18.734",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval artistsWithMostWrongAlias \u003d aliasToListWrongNames.map { case (k,v) \u003d\u003e (k, v.length) }.toList.toDF(\"artist\", \"count\")\nartistsWithMostWrongAlias.describe(\"count\").show\nartistsWithMostWrongAlias.sort(desc(\"count\")).show\nval ratio \u003d artistsWithMostWrongAlias.count.toDouble / distinctArtistsNumber.toDouble",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:37.185",
+      "dateUpdated": "2020-06-19 07:39:18.756",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1972,19 +2185,33 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d26",
+            "http://192.168.1.129:4040/jobs/job?id\u003d27",
+            "http://192.168.1.129:4040/jobs/job?id\u003d28"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591358782492_650459347",
       "id": "20200605-120622_212507654",
       "dateCreated": "2020-06-05 12:06:22.492",
-      "dateStarted": "2020-06-17 17:27:37.269",
-      "dateFinished": "2020-06-17 17:27:38.675",
+      "dateStarted": "2020-06-19 07:39:18.860",
+      "dateFinished": "2020-06-19 07:39:20.253",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see there is 22\u0027478 artists names (~ 1.5% of total artists number) misspelled and the worst has it 1204 times ! Let\u0027s see who this artist is.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:38.770",
+      "dateUpdated": "2020-06-19 07:39:20.261",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2017,15 +2244,15 @@
       "jobName": "paragraph_1591359950223_1486741864",
       "id": "20200605-122550_1931951013",
       "dateCreated": "2020-06-05 12:25:50.223",
-      "dateStarted": "2020-06-17 17:27:38.835",
-      "dateFinished": "2020-06-17 17:27:38.847",
+      "dateStarted": "2020-06-19 07:39:20.382",
+      "dateFinished": "2020-06-19 07:39:20.387",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nartistByID.select(\"name\").filter(\"id \u003d\u003d 1000024\").show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:38.935",
+      "dateUpdated": "2020-06-19 07:39:20.482",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2052,19 +2279,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d29"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591360073285_1319920019",
       "id": "20200605-122753_1932124994",
       "dateCreated": "2020-06-05 12:27:53.285",
-      "dateStarted": "2020-06-17 17:27:38.997",
-      "dateFinished": "2020-06-17 17:27:40.357",
+      "dateStarted": "2020-06-19 07:39:20.536",
+      "dateFinished": "2020-06-19 07:39:21.832",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nOh no ! It\u0027s Metallica ! How is that even possible ? Let\u0027s see the 1204 errors.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:40.397",
+      "dateUpdated": "2020-06-19 07:39:21.838",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2097,15 +2336,15 @@
       "jobName": "paragraph_1591360484448_-1576468597",
       "id": "20200605-123444_670068784",
       "dateCreated": "2020-06-05 12:34:44.448",
-      "dateStarted": "2020-06-17 17:27:40.484",
-      "dateFinished": "2020-06-17 17:27:40.487",
+      "dateStarted": "2020-06-19 07:39:21.958",
+      "dateFinished": "2020-06-19 07:39:21.965",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval aliasIdsToMetallica \u003d aliasToListWrongNames.getOrElse(1000024, Array()).toList.toDF(\"id\")\nval aliasNamesToMetallica \u003d aliasIdsToMetallica.join(artistByID, artistByID(\"id\") \u003d\u003d\u003d aliasIdsToMetallica(\"id\"))\naliasNamesToMetallica.show(false)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:40.584",
+      "dateUpdated": "2020-06-19 07:39:22.057",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2132,19 +2371,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d30"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1591360540945_-407387076",
       "id": "20200605-123540_921478601",
       "dateCreated": "2020-06-05 12:35:40.945",
-      "dateStarted": "2020-06-17 17:27:40.640",
-      "dateFinished": "2020-06-17 17:27:41.114",
+      "dateStarted": "2020-06-19 07:39:22.121",
+      "dateFinished": "2020-06-19 07:39:22.654",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nBefore run the portion of code above, we think that the name \"Metallica\" was misspelled. However, as we can see, it\u0027s more a name with some details or additions than just bad spelling.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:41.140",
+      "dateUpdated": "2020-06-19 07:39:22.719",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2177,15 +2428,15 @@
       "jobName": "paragraph_1591361344864_135508832",
       "id": "20200605-124904_747511390",
       "dateCreated": "2020-06-05 12:49:04.864",
-      "dateStarted": "2020-06-17 17:27:41.243",
-      "dateFinished": "2020-06-17 17:27:41.247",
+      "dateStarted": "2020-06-19 07:39:22.787",
+      "dateFinished": "2020-06-19 07:39:22.791",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## More statistics with MusicBrainz data\n\nTo do more stats and get more informations about artists, we get [MusicBrainz](https://musicbrainz.org/) artists data.\nWe have exported `artist`, `artist_type`, `gender`, `artist_tag`, `tag`, `area` and `area_type` tables (visible in [this schema](https://musicbrainz.org/doc/MusicBrainz_Database/Schema#Schema)) in CSV to simplify importation in Zeppelin.\nWe consider tags as genres, from the explications in [this page](https://musicbrainz.org/doc/Genre).",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 20:23:17.728",
+      "dateUpdated": "2020-06-19 07:39:22.886",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2218,15 +2469,15 @@
       "jobName": "paragraph_1592058725402_1744366970",
       "id": "20200613-143205_2106088720",
       "dateCreated": "2020-06-13 14:32:05.405",
-      "dateStarted": "2020-06-17 20:23:17.729",
-      "dateFinished": "2020-06-17 20:23:17.734",
+      "dateStarted": "2020-06-19 07:39:22.954",
+      "dateFinished": "2020-06-19 07:39:22.961",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sh\ncd /data\nif [[ ! -d musicbrainz-export ]]\nthen\n    if [[ ! -f musicbrainz-export.tar.xz ]]\n    then \n        echo \"Downloading musicbrainz-export.tar.xz\"\n        curl --silent https://drive.switch.ch/index.php/s/Czx675Yfj0JISTD/download -o musicbrainz-export.tar.xz\n    fi\n    echo \"Extracting to musicbrainz-export\"\n    tar xfv musicbrainz-export.tar.xz\nfi\nls -lhF musicbrainz-export",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:41.506",
+      "dateUpdated": "2020-06-19 07:39:23.051",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2257,15 +2508,15 @@
       "jobName": "paragraph_1592230920343_943315308",
       "id": "20200615-142200_1869894976",
       "dateCreated": "2020-06-15 14:22:00.343",
-      "dateStarted": "2020-06-17 17:27:41.572",
-      "dateFinished": "2020-06-17 17:27:41.590",
+      "dateStarted": "2020-06-19 07:39:23.105",
+      "dateFinished": "2020-06-19 07:39:23.128",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mbArtistDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/artist.csv\").cache\n\nval mbArtistTypeDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/artist_type.csv\").cache\n\nval mbArtistTagDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/artist_tag.csv\").cache\n\nval mbGenderDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/gender.csv\").cache\n\nval mbAreaDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/area.csv\").cache\n\nval mbAreaTypeDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/area_type.csv\").cache\n\nval mbTagDF \u003d spark.read.format(\"csv\")\n  .option(\"sep\", \",\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"header\", \"true\")\n  .load(\"/data/musicbrainz-export/tag.csv\").cache",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:41.672",
+      "dateUpdated": "2020-06-19 07:39:23.204",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2292,19 +2543,44 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d31",
+            "http://192.168.1.129:4040/jobs/job?id\u003d32",
+            "http://192.168.1.129:4040/jobs/job?id\u003d33",
+            "http://192.168.1.129:4040/jobs/job?id\u003d34",
+            "http://192.168.1.129:4040/jobs/job?id\u003d35",
+            "http://192.168.1.129:4040/jobs/job?id\u003d36",
+            "http://192.168.1.129:4040/jobs/job?id\u003d37",
+            "http://192.168.1.129:4040/jobs/job?id\u003d38",
+            "http://192.168.1.129:4040/jobs/job?id\u003d39",
+            "http://192.168.1.129:4040/jobs/job?id\u003d40",
+            "http://192.168.1.129:4040/jobs/job?id\u003d41",
+            "http://192.168.1.129:4040/jobs/job?id\u003d42",
+            "http://192.168.1.129:4040/jobs/job?id\u003d43",
+            "http://192.168.1.129:4040/jobs/job?id\u003d44"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592231084258_-1761658128",
       "id": "20200615-142444_80810858",
       "dateCreated": "2020-06-15 14:24:44.258",
-      "dateStarted": "2020-06-17 17:27:41.729",
-      "dateFinished": "2020-06-17 17:27:48.293",
+      "dateStarted": "2020-06-19 07:39:23.262",
+      "dateFinished": "2020-06-19 07:39:29.721",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s join them all.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:48.335",
+      "dateUpdated": "2020-06-19 07:39:29.767",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2337,15 +2613,15 @@
       "jobName": "paragraph_1592296384926_1868277000",
       "id": "20200616-083304_1449026664",
       "dateCreated": "2020-06-16 08:33:04.926",
-      "dateStarted": "2020-06-17 17:27:48.407",
-      "dateFinished": "2020-06-17 17:27:48.410",
+      "dateStarted": "2020-06-19 07:39:29.852",
+      "dateFinished": "2020-06-19 07:39:29.855",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nval mbArtistTagCleanDF \u003d mbArtistTagDF.select($\"artist\".alias(\"artist_id\"), $\"tag\".alias(\"tag_id\"))\nval mbTagFullDF \u003d \n    mbTagDF.select($\"id\", $\"name\".alias(\"tag\"))\n    .join(mbArtistTagCleanDF, mbTagDF(\"id\") \u003d\u003d\u003d mbArtistTagCleanDF(\"tag_id\"))\n    .select(\"tag\", \"artist_id\")\n\nval mbAreaCleanDF \u003d mbAreaDF.select($\"id\", $\"name\", $\"type\".alias(\"type_id\"))\nval mbAreaFullDF \u003d \n    mbAreaCleanDF\n    .join(mbAreaTypeDF.select($\"id\", $\"name\".alias(\"type\")), mbAreaCleanDF(\"type_id\") \u003d\u003d\u003d mbAreaTypeDF(\"id\"))\n    .select(mbAreaCleanDF(\"id\"), $\"name\".alias(\"area\"), $\"type\".alias(\"area_type\"))\n\nval mbArtistCleanDF \u003d mbArtistDF.select(\n    $\"id\",\n    $\"name\",\n    $\"begin_date_year\",\n    $\"begin_date_month\",\n    $\"begin_date_day\",\n    $\"end_date_year\",\n    $\"end_date_month\",\n    $\"end_date_day\",\n    $\"type\".alias(\"type_id\"),\n    $\"area\".alias(\"area_id\"),\n    $\"gender\".alias(\"gender_id\"),\n    $\"ended\"\n)\n\nval mbArtistTypeGenderAreaDF \u003d \n    mbArtistCleanDF\n    .join(mbArtistTypeDF.select($\"id\", $\"name\".alias(\"type\")), mbArtistCleanDF(\"type_id\") \u003d\u003d\u003d mbArtistTypeDF(\"id\"))\n    .join(mbGenderDF.select($\"id\", $\"name\".alias(\"gender\")), mbArtistCleanDF(\"gender_id\") \u003d\u003d\u003d mbGenderDF(\"id\"))\n    //.join(mbTagFullDF, mbTagFullDF(\"artist_id\") \u003d\u003d\u003d mbArtistCleanDF(\"id\"))\n    .join(mbAreaFullDF, mbArtistCleanDF(\"area_id\") \u003d\u003d\u003d mbAreaFullDF(\"id\"))\n    .select(mbArtistCleanDF(\"id\"), $\"name\", $\"type\", $\"gender\", $\"area\", $\"area_type\", $\"ended\", $\"begin_date_year\", $\"begin_date_month\", $\"begin_date_day\", $\"end_date_year\", $\"end_date_month\", $\"end_date_day\").cache\n\nmbArtistTypeGenderAreaDF.show\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:27:48.507",
+      "dateUpdated": "2020-06-19 07:39:29.952",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2372,19 +2648,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d45"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592233639425_135789715",
       "id": "20200615-150719_1934113040",
       "dateCreated": "2020-06-15 15:07:19.425",
-      "dateStarted": "2020-06-17 17:27:48.563",
-      "dateFinished": "2020-06-17 17:28:12.856",
+      "dateStarted": "2020-06-19 07:39:30.005",
+      "dateFinished": "2020-06-19 07:39:55.499",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s see how much artists we have and their type.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:12.891",
+      "dateUpdated": "2020-06-19 07:39:55.524",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2417,15 +2705,15 @@
       "jobName": "paragraph_1592311709373_-1352559509",
       "id": "20200616-124829_1533799060",
       "dateCreated": "2020-06-16 12:48:29.373",
-      "dateStarted": "2020-06-17 17:28:13.001",
-      "dateFinished": "2020-06-17 17:28:13.004",
+      "dateStarted": "2020-06-19 07:39:55.671",
+      "dateFinished": "2020-06-19 07:39:55.674",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nval mbArtistWithTypeDF \u003d \n    mbArtistCleanDF\n    .join(mbArtistTypeDF.select($\"id\", $\"name\".alias(\"type\")), mbArtistCleanDF(\"type_id\") \u003d\u003d\u003d mbArtistTypeDF(\"id\"))\n    .select(\"name\", \"type\")\n    \nprintln(mbArtistCleanDF.count)\nprintln(mbArtistWithTypeDF.count)\n\nval types \u003d mbArtistWithTypeDF.groupBy(\"type\").count\ntypes.show\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:13.101",
+      "dateUpdated": "2020-06-19 07:39:55.770",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2452,19 +2740,39 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d46",
+            "http://192.168.1.129:4040/jobs/job?id\u003d47",
+            "http://192.168.1.129:4040/jobs/job?id\u003d48",
+            "http://192.168.1.129:4040/jobs/job?id\u003d49",
+            "http://192.168.1.129:4040/jobs/job?id\u003d50",
+            "http://192.168.1.129:4040/jobs/job?id\u003d51",
+            "http://192.168.1.129:4040/jobs/job?id\u003d52",
+            "http://192.168.1.129:4040/jobs/job?id\u003d53",
+            "http://192.168.1.129:4040/jobs/job?id\u003d54"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592311699316_-1590723805",
       "id": "20200616-124819_817718112",
       "dateCreated": "2020-06-16 12:48:19.316",
-      "dateStarted": "2020-06-17 17:28:13.179",
-      "dateFinished": "2020-06-17 17:28:14.717",
+      "dateStarted": "2020-06-19 07:39:55.882",
+      "dateFinished": "2020-06-19 07:39:57.475",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see that we have nearly 1.6 million artists and 1.3 million artists with their types.\nThe main types are \"Group\" and \"Person\", that seems normal.\nLet\u0027s see how much artists are active/inactive.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:14.780",
+      "dateUpdated": "2020-06-19 07:39:57.482",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2497,15 +2805,15 @@
       "jobName": "paragraph_1592296488321_381288839",
       "id": "20200616-083448_175043875",
       "dateCreated": "2020-06-16 08:34:48.321",
-      "dateStarted": "2020-06-17 17:28:14.834",
-      "dateFinished": "2020-06-17 17:28:14.837",
+      "dateStarted": "2020-06-19 07:39:57.602",
+      "dateFinished": "2020-06-19 07:39:57.605",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval actives \u003d \n    mbArtistCleanDF\n    .filter($\"ended\" \u003d\u003d\u003d \"f\")\n    .select(\"name\", \"ended\", \"begin_date_year\")\n    .orderBy(\"begin_date_year\")\nval desactives \u003d \n    mbArtistCleanDF\n    .filter($\"ended\" \u003d\u003d\u003d \"t\")\n    .select(\"name\", \"ended\", \"begin_date_year\", \"end_date_year\")\n    .orderBy(\"end_date_year\")\n\nprintln(s\"${actives.count} are active and ${desactives.count} are not\")\nactives.show\ndesactives.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:14.932",
+      "dateUpdated": "2020-06-19 07:39:57.702",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2532,19 +2840,36 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d55",
+            "http://192.168.1.129:4040/jobs/job?id\u003d56",
+            "http://192.168.1.129:4040/jobs/job?id\u003d57",
+            "http://192.168.1.129:4040/jobs/job?id\u003d58",
+            "http://192.168.1.129:4040/jobs/job?id\u003d59",
+            "http://192.168.1.129:4040/jobs/job?id\u003d60"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592319041834_1832564271",
       "id": "20200616-145041_2007838676",
       "dateCreated": "2020-06-16 14:50:41.834",
-      "dateStarted": "2020-06-17 17:28:14.986",
-      "dateFinished": "2020-06-17 17:28:19.121",
+      "dateStarted": "2020-06-19 07:39:57.758",
+      "dateFinished": "2020-06-19 07:40:02.116",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe major part are active.\nLet\u0027s see artists genders.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:19.189",
+      "dateUpdated": "2020-06-19 07:40:02.161",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2577,15 +2902,15 @@
       "jobName": "paragraph_1592318998480_-1881258764",
       "id": "20200616-144958_170018630",
       "dateCreated": "2020-06-16 14:49:58.480",
-      "dateStarted": "2020-06-17 17:28:19.240",
-      "dateFinished": "2020-06-17 17:28:19.245",
+      "dateStarted": "2020-06-19 07:40:02.226",
+      "dateFinished": "2020-06-19 07:40:02.231",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mbArtistWithGenderDF \u003d \n    mbArtistCleanDF\n    .join(mbGenderDF.select($\"id\", $\"name\".alias(\"gender\")), mbArtistCleanDF(\"gender_id\") \u003d\u003d\u003d mbGenderDF(\"id\"))\n    .select(\"name\", \"gender\")\n\nval genders \u003d mbArtistWithGenderDF.groupBy(\"gender\").count\ngenders.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:19.339",
+      "dateUpdated": "2020-06-19 07:40:02.324",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2612,19 +2937,36 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d61",
+            "http://192.168.1.129:4040/jobs/job?id\u003d62",
+            "http://192.168.1.129:4040/jobs/job?id\u003d63",
+            "http://192.168.1.129:4040/jobs/job?id\u003d64",
+            "http://192.168.1.129:4040/jobs/job?id\u003d65",
+            "http://192.168.1.129:4040/jobs/job?id\u003d66"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592316466274_969640580",
       "id": "20200616-140746_862694107",
       "dateCreated": "2020-06-16 14:07:46.274",
-      "dateStarted": "2020-06-17 17:28:19.392",
-      "dateFinished": "2020-06-17 17:28:20.315",
+      "dateStarted": "2020-06-19 07:40:02.380",
+      "dateFinished": "2020-06-19 07:40:03.378",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nMale artists are far more represented than their female counterparts.\nLet\u0027s take advantage of the joins between all the artist tables to answer the following question: How many English women artists are or have been active since 1986?",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:20.392",
+      "dateUpdated": "2020-06-19 07:40:03.380",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2657,15 +2999,15 @@
       "jobName": "paragraph_1592316953352_-1181104334",
       "id": "20200616-141553_764459238",
       "dateCreated": "2020-06-16 14:15:53.352",
-      "dateStarted": "2020-06-17 17:28:20.447",
-      "dateFinished": "2020-06-17 17:28:20.451",
+      "dateStarted": "2020-06-19 07:40:03.503",
+      "dateFinished": "2020-06-19 07:40:03.507",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval femaleArtistEnglish \u003d mbArtistTypeGenderAreaDF\n    .filter($\"type\" \u003d\u003d\u003d \"Person\")\n    .filter($\"gender\" \u003d\u003d\u003d \"Female\")\n    .filter($\"area\" \u003d\u003d\u003d \"England\")\n    .filter(\"begin_date_year \u003e\u003d 1986\")\n    .select(\"name\", \"ended\", \"begin_date_year\", \"end_date_year\")\n    .sort(\"begin_date_year\")\n\nprintln(femaleArtistEnglish.count)\nfemaleArtistEnglish.show(30)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:20.546",
+      "dateUpdated": "2020-06-19 07:40:03.603",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2692,19 +3034,33 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d67",
+            "http://192.168.1.129:4040/jobs/job?id\u003d68",
+            "http://192.168.1.129:4040/jobs/job?id\u003d69"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592317772472_-496031173",
       "id": "20200616-142932_211560802",
       "dateCreated": "2020-06-16 14:29:32.472",
-      "dateStarted": "2020-06-17 17:28:20.607",
-      "dateFinished": "2020-06-17 17:28:25.929",
+      "dateStarted": "2020-06-19 07:40:03.659",
+      "dateFinished": "2020-06-19 07:40:08.978",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThere is \"only\" 28 English women artists active from 1986. All of them are still active today.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:26.014",
+      "dateUpdated": "2020-06-19 07:40:09.067",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2737,15 +3093,15 @@
       "jobName": "paragraph_1592318264551_-1587993259",
       "id": "20200616-143744_1414277825",
       "dateCreated": "2020-06-16 14:37:44.552",
-      "dateStarted": "2020-06-17 17:28:26.080",
-      "dateFinished": "2020-06-17 17:28:26.083",
+      "dateStarted": "2020-06-19 07:40:09.143",
+      "dateFinished": "2020-06-19 07:40:09.146",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mbArtistWithAreaDF \u003d \n    mbArtistCleanDF\n    .join(mbAreaFullDF, mbArtistCleanDF(\"area_id\") \u003d\u003d\u003d mbAreaFullDF(\"id\"))\n    .select(\"name\", \"area\", \"area_type\")\n\nval areas \u003d mbArtistWithAreaDF.groupBy(\"area\").count.orderBy(desc(\"count\"))\nareas.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:26.179",
+      "dateUpdated": "2020-06-19 07:40:09.242",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2772,19 +3128,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d70",
+            "http://192.168.1.129:4040/jobs/job?id\u003d71"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592318817939_689969101",
       "id": "20200616-144657_809091708",
       "dateCreated": "2020-06-16 14:46:57.939",
-      "dateStarted": "2020-06-17 17:28:26.233",
-      "dateFinished": "2020-06-17 17:28:31.060",
+      "dateStarted": "2020-06-19 07:40:09.306",
+      "dateFinished": "2020-06-19 07:40:13.698",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nThe large majority of artists comes from USA.\nLet\u0027s see which inactive artists last longers.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:31.136",
+      "dateUpdated": "2020-06-19 07:40:13.709",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2817,15 +3186,15 @@
       "jobName": "paragraph_1592315680171_458567572",
       "id": "20200616-135440_1806835042",
       "dateCreated": "2020-06-16 13:54:40.171",
-      "dateStarted": "2020-06-17 17:28:31.190",
-      "dateFinished": "2020-06-17 17:28:31.193",
+      "dateStarted": "2020-06-19 07:40:13.820",
+      "dateFinished": "2020-06-19 07:40:13.823",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nimport org.apache.spark.sql.functions._\n\nval longers \u003d \n    mbArtistCleanDF\n    .filter($\"ended\" \u003d\u003d\u003d \"t\")\n    .filter($\"begin_date_year\" !\u003d\u003d \"null\")\n    .filter($\"end_date_year\" !\u003d\u003d \"null\")\n    .select(\"name\", \"begin_date_year\", \"end_date_year\")\n    .withColumn(\"duration\", col(\"end_date_year\") - col(\"begin_date_year\"))\n    .filter($\"end_date_year\" \u003c\u003d 2020)\n    .filter($\"duration\" \u003c 100)\n    .orderBy(desc(\"duration\"))\n\nlongers.show",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:31.290",
+      "dateUpdated": "2020-06-19 07:40:13.919",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2852,19 +3221,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d72"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592319748053_716200862",
       "id": "20200616-150228_425139973",
       "dateCreated": "2020-06-16 15:02:28.053",
-      "dateStarted": "2020-06-17 17:28:31.354",
-      "dateFinished": "2020-06-17 17:28:32.161",
+      "dateStarted": "2020-06-19 07:40:13.981",
+      "dateFinished": "2020-06-19 07:40:14.791",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nUnfortunately, we can see that the data in MusicBrainz are not always correct, we can see that the start and end dates of an artist are sometimes confused with their dates of birth and death. So we can\u0027t conclude much about that.\nLet\u0027s see how many tags (genres) we have and group artists by genre.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:32.254",
+      "dateUpdated": "2020-06-19 07:40:14.882",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -2897,15 +3278,15 @@
       "jobName": "paragraph_1592319710415_-2034528852",
       "id": "20200616-150150_1895253079",
       "dateCreated": "2020-06-16 15:01:50.416",
-      "dateStarted": "2020-06-17 17:28:32.311",
-      "dateFinished": "2020-06-17 17:28:32.315",
+      "dateStarted": "2020-06-19 07:40:14.968",
+      "dateFinished": "2020-06-19 07:40:14.982",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval tags \u003d mbTagFullDF.groupBy(\"tag\").count\nprintln(tags.count)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:32.411",
+      "dateUpdated": "2020-06-19 07:40:15.067",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3018,19 +3399,31 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d73"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592296529500_696877350",
       "id": "20200616-083529_410622344",
       "dateCreated": "2020-06-16 08:35:29.500",
-      "dateStarted": "2020-06-17 17:28:32.465",
-      "dateFinished": "2020-06-17 17:28:41.187",
+      "dateStarted": "2020-06-19 07:40:15.130",
+      "dateFinished": "2020-06-19 07:40:23.568",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see that we have 40346 different tags. That\u0027s quite a large number, it surely means that a lot of tags don\u0027t really make sense. Let\u0027s see where the median is in order to filter more efficiently.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:41.277",
+      "dateUpdated": "2020-06-19 07:40:23.651",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3063,15 +3456,15 @@
       "jobName": "paragraph_1592308041280_1501376771",
       "id": "20200616-114721_76151233",
       "dateCreated": "2020-06-16 11:47:21.280",
-      "dateStarted": "2020-06-17 17:28:41.330",
-      "dateFinished": "2020-06-17 17:28:41.334",
+      "dateStarted": "2020-06-19 07:40:23.722",
+      "dateFinished": "2020-06-19 07:40:23.727",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval median \u003d tags.stat.approxQuantile(\"count\", Array(0.5), 0.01)(0)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:41.429",
+      "dateUpdated": "2020-06-19 07:40:23.819",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3098,19 +3491,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d74",
+            "http://192.168.1.129:4040/jobs/job?id\u003d75"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592307991007_-1237965898",
       "id": "20200616-114631_1131104150",
       "dateCreated": "2020-06-16 11:46:31.007",
-      "dateStarted": "2020-06-17 17:28:41.489",
-      "dateFinished": "2020-06-17 17:28:42.744",
+      "dateStarted": "2020-06-19 07:40:23.893",
+      "dateFinished": "2020-06-19 07:40:25.185",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nAs we can see, the median is at 1. We can now filter.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:42.787",
+      "dateUpdated": "2020-06-19 07:40:25.193",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3143,15 +3549,15 @@
       "jobName": "paragraph_1592308136334_-1708265393",
       "id": "20200616-114856_1002433451",
       "dateCreated": "2020-06-16 11:48:56.334",
-      "dateStarted": "2020-06-17 17:28:42.862",
-      "dateFinished": "2020-06-17 17:28:42.866",
+      "dateStarted": "2020-06-19 07:40:25.300",
+      "dateFinished": "2020-06-19 07:40:25.302",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval tagsFilter \u003d tags.filter(\"count \u003e 1\").orderBy(desc(\"count\"))\nprintln(tagsFilter.count)\ntagsFilter.show\nz.show(tagsFilter.limit(20))\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:42.962",
+      "dateUpdated": "2020-06-19 07:40:25.399",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3237,19 +3643,37 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d76",
+            "http://192.168.1.129:4040/jobs/job?id\u003d77",
+            "http://192.168.1.129:4040/jobs/job?id\u003d78",
+            "http://192.168.1.129:4040/jobs/job?id\u003d79",
+            "http://192.168.1.129:4040/jobs/job?id\u003d80",
+            "http://192.168.1.129:4040/jobs/job?id\u003d81",
+            "http://192.168.1.129:4040/jobs/job?id\u003d82"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592306719239_-1205835328",
       "id": "20200616-112519_612958317",
       "dateCreated": "2020-06-16 11:25:19.239",
-      "dateStarted": "2020-06-17 17:28:43.013",
-      "dateFinished": "2020-06-17 17:28:48.621",
+      "dateStarted": "2020-06-19 07:40:25.455",
+      "dateFinished": "2020-06-19 07:40:30.581",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nAs expected it\u0027s a mix of common genres for music, with \"jazz\" at first place.\nLet\u0027s see which artist has the most tags.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 19:59:21.324",
+      "dateUpdated": "2020-06-19 07:40:30.659",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3282,15 +3706,15 @@
       "jobName": "paragraph_1592311596413_288654536",
       "id": "20200616-124636_1065426378",
       "dateCreated": "2020-06-16 12:46:36.413",
-      "dateStarted": "2020-06-17 19:59:21.325",
-      "dateFinished": "2020-06-17 19:59:21.333",
+      "dateStarted": "2020-06-19 07:40:30.740",
+      "dateFinished": "2020-06-19 07:40:30.745",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval mbArtistWithTags \u003d \n    mbArtistCleanDF\n    .join(mbTagFullDF, mbTagFullDF(\"artist_id\") \u003d\u003d\u003d mbArtistCleanDF(\"id\"))\n    .select(\"name\", \"tag\")\n//mbArtistWithTags.show\n\nmbArtistWithTags.groupBy(\"name\").count.sort(desc(\"count\")).show\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 19:59:01.388",
+      "dateUpdated": "2020-06-19 07:40:30.846",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3317,19 +3741,32 @@
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d83",
+            "http://192.168.1.129:4040/jobs/job?id\u003d84"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
       "jobName": "paragraph_1592311673658_-761641317",
       "id": "20200616-124753_1386603612",
       "dateCreated": "2020-06-16 12:47:53.658",
-      "dateStarted": "2020-06-17 19:59:01.449",
-      "dateFinished": "2020-06-17 19:59:17.214",
+      "dateStarted": "2020-06-19 07:40:30.938",
+      "dateFinished": "2020-06-19 07:40:43.658",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nLet\u0027s see what happend if we join \"original\" artists data with artists data from MusicBrainz.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 20:10:05.379",
+      "dateUpdated": "2020-06-19 07:40:43.750",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3362,15 +3799,15 @@
       "jobName": "paragraph_1592424463558_1770451654",
       "id": "20200617-200743_351487093",
       "dateCreated": "2020-06-17 20:07:43.558",
-      "dateStarted": "2020-06-17 20:10:05.379",
-      "dateFinished": "2020-06-17 20:10:05.387",
+      "dateStarted": "2020-06-19 07:40:43.802",
+      "dateFinished": "2020-06-19 07:40:43.805",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval originArtistsDF \u003d userArtistNamesCountDF.select(\"name\").distinct\nval joinOriginMbDF \u003d originArtistsDF.join(mbArtistCleanDF, originArtistsDF(\"name\") \u003d\u003d\u003d mbArtistCleanDF(\"name\"))\njoinOriginMbDF.count",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 20:04:45.926",
+      "dateUpdated": "2020-06-19 07:40:43.901",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3393,23 +3830,35 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "originArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string]\njoinOriginMbDF: org.apache.spark.sql.DataFrame \u003d [name: string, id: int ... 11 more fields]\nres37: Long \u003d 317114\n"
+            "data": "originArtistsDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string]\njoinOriginMbDF: org.apache.spark.sql.DataFrame \u003d [name: string, id: int ... 11 more fields]\nres27: Long \u003d 317114\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d85"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1592424040400_-259133826",
       "id": "20200617-200040_1234751176",
       "dateCreated": "2020-06-17 20:00:40.400",
-      "dateStarted": "2020-06-17 20:04:45.986",
-      "dateFinished": "2020-06-17 20:05:13.340",
+      "dateStarted": "2020-06-19 07:40:43.959",
+      "dateFinished": "2020-06-19 07:40:59.816",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\nWe can see that there is only 317\u0027114 artists from both datasets, it\u0027s less than expected.\nFor this reason, we do not try to merge users from \"original\" data with artists from MusicBrainz.",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 20:10:14.373",
+      "dateUpdated": "2020-06-19 07:40:59.872",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3442,15 +3891,15 @@
       "jobName": "paragraph_1592424514522_191751611",
       "id": "20200617-200834_1297984340",
       "dateCreated": "2020-06-17 20:08:34.522",
-      "dateStarted": "2020-06-17 20:10:14.373",
-      "dateFinished": "2020-06-17 20:10:14.378",
+      "dateStarted": "2020-06-19 07:40:59.933",
+      "dateFinished": "2020-06-19 07:40:59.937",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n# A look with GraphX\n\nNow, we put original data in a graph with [GraphX](https://spark.apache.org/docs/latest/graphx-programming-guide.html).\nOur nodes will be the users and the artists and edges the relation listens count between user and artist.\nBecause users id and artists id can be equal, we need to generate a unique id for each nodes, call it VertexId.\nFrom `userArtistNamesCountDF`, we can extract two RDDs, `users` and `artists`, and zip it with the unique id (an \"auto increment\" id).",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 20:10:52.631",
+      "dateUpdated": "2020-06-19 07:41:00.033",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3482,15 +3931,15 @@
       "jobName": "paragraph_1591360613704_931012254",
       "id": "20200605-123653_1092685122",
       "dateCreated": "2020-06-05 12:36:53.704",
-      "dateStarted": "2020-06-17 20:10:52.632",
-      "dateFinished": "2020-06-17 20:10:52.637",
+      "dateStarted": "2020-06-19 07:41:00.089",
+      "dateFinished": "2020-06-19 07:41:00.095",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:49.062",
+      "dateUpdated": "2020-06-19 07:41:00.188",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3517,7 +3966,7 @@
     {
       "text": "%spark\n\nimport org.apache.spark.graphx._\nimport org.apache.spark.rdd._\n\nval subDF \u003d userArtistNamesCountDF.limit(1000000)\n\nval users \u003d subDF\n    .select(\"user\") // select only users\n    .distinct // remove duplicates\n    .rdd // convert to rdd (for graph creation needs)\n    .map(_.getInt(0)) // convert it to a list of INTs\n    .zipWithIndex // add the \"auto increment\" unique id, or VertexId\n    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]\n    \nval lastUserId \u003d users.count\n\nval artists \u003d subDF\n    .select(\"artist\") // select only artists\n    .distinct // remove duplicates\n    .rdd // convert to rdd (for graph creation needs)\n    .map(_.getInt(0)) // convert it to a list of INTs\n    .zipWithIndex // add the \"auto increment\" unique id, or VertexId\n    .map(_.swap) // swap the tuple, because the graph need a RDD[(VertexId, T)]\n    .map { case (vertexId, id) \u003d\u003e (vertexId + lastUserId, id) } // to maintain unique VertexId, add users.count to each artist VertexId\n\nusers.cache\nartists.cache\n\nval nodes: RDD[(VertexId, Int)] \u003d users.union(artists)\n//nodes.collect.foreach(println)\n//val nodesDF \u003d nodes.toDF(\"vertexId\", \"id\")\n//nodesDF.show\n\nval edges: RDD[Edge[Int]] \u003d subDF.map { line \u003d\u003e\n    val userId \u003d line.getInt(0)\n    val artistId \u003d line.getInt(1)\n    val userVertexId \u003d users.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d userId }.first._1\n    val artistVertexId \u003d artists.filter{ case (vertexId, id) \u003d\u003e id \u003d\u003d artistId }.first._1\n    val count \u003d line.getInt(2)\n    Edge(userVertexId, artistVertexId, count)\n}.rdd\n\nval graph \u003d Graph(nodes, edges)\ngraph.cache\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:49.118",
+      "dateUpdated": "2020-06-19 07:41:00.240",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3548,23 +3997,35 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd._\nsubDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 2 more fields]\nusers: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[510] at map at \u003cconsole\u003e:63\nlastUserId: Long \u003d 122976\nartists: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[521] at map at \u003cconsole\u003e:74\nnodes: org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Int)] \u003d UnionRDD[522] at union at \u003cconsole\u003e:79\nedges: org.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]] \u003d MapPartitionsRDD[530] at rdd at \u003cconsole\u003e:91\ngraph: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@3c527754\nres26: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@3c52..."
+            "data": "import org.apache.spark.graphx._\nimport org.apache.spark.rdd._\nsubDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [user: int, artist: int ... 2 more fields]\nusers: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[546] at map at \u003cconsole\u003e:63\nlastUserId: Long \u003d 122976\nartists: org.apache.spark.rdd.RDD[(Long, Int)] \u003d MapPartitionsRDD[557] at map at \u003cconsole\u003e:74\nnodes: org.apache.spark.rdd.RDD[(org.apache.spark.graphx.VertexId, Int)] \u003d UnionRDD[558] at union at \u003cconsole\u003e:79\nedges: org.apache.spark.rdd.RDD[org.apache.spark.graphx.Edge[Int]] \u003d MapPartitionsRDD[566] at rdd at \u003cconsole\u003e:91\ngraph: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@23e27fc9\nres28: org.apache.spark.graphx.Graph[Int,Int] \u003d org.apache.spark.graphx.impl.GraphImpl@23e2..."
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d86"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1591963450776_-167988045",
       "id": "20200612-120410_1277165834",
       "dateCreated": "2020-06-12 12:04:10.776",
-      "dateStarted": "2020-06-17 17:28:49.173",
-      "dateFinished": "2020-06-17 17:28:55.730",
+      "dateStarted": "2020-06-19 07:41:00.297",
+      "dateFinished": "2020-06-19 07:41:06.157",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Clustering with K-means",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:19:14.175",
+      "dateUpdated": "2020-06-19 07:41:06.201",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3597,15 +4058,15 @@
       "jobName": "paragraph_1591360616479_-1593573708",
       "id": "20200605-123656_22045573",
       "dateCreated": "2020-06-05 12:36:56.479",
-      "dateStarted": "2020-06-17 17:19:14.247",
-      "dateFinished": "2020-06-17 17:19:14.250",
+      "dateStarted": "2020-06-19 07:41:06.286",
+      "dateFinished": "2020-06-19 07:41:06.290",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.sql.types.DoubleType\nimport org.apache.spark.sql.types.IntegerType\n\n\nval dataSet \u003d mbArtistCleanDF.filter($\"begin_date_year\" rlike \"^[0-9]*$\") // Regex to filter digits only\n\n\nval setsArray \u003d dataSet.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\nval testDataSet \u003d setsArray(1).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\n\n// trainDataSet.printSchema\n// trainDataSet.show(100)\n\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"begin_date_year\")\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDfTrain \u003d assembler.transform(trainDataSet)\nval featureDfTest \u003d assembler.transform(testDataSet)\n\n// featureDf.show(10)\n\n// kmeans model with 8 clusters\nval kmeans \u003d new KMeans()\n  .setK(8)\n  .setFeaturesCol(\"features\")\n  .setPredictionCol(\"prediction\")\nval kmeansModel \u003d kmeans.fit(featureDfTrain)\nkmeansModel.clusterCenters.foreach(println)\n\n// test the model with test data set\nval predictDf \u003d kmeansModel.transform(featureDfTest)\npredictDf.show(10)\n\n// no of categories\npredictDf.groupBy(\"prediction\").count().show()\n",
+      "text": "%spark\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.sql.types.DoubleType\nimport org.apache.spark.sql.types.IntegerType\n\n\nval dataSet \u003d mbArtistCleanDF.filter($\"begin_date_year\" rlike \"^[0-9]*$\") // Regex to filter digits only\n\nval setsArray \u003d dataSet.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\nval testDataSet \u003d setsArray(1).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\n\n// trainDataSet.printSchema\n// trainDataSet.show(100)\n\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"begin_date_year\")\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDfTrain \u003d assembler.transform(trainDataSet)\nval featureDfTest \u003d assembler.transform(testDataSet)\n\n// featureDf.show(10)\n\n// kmeans model with 8 clusters\nval kmeans \u003d new KMeans()\n  .setK(8)\n  .setFeaturesCol(\"features\")\n  .setPredictionCol(\"prediction\")\nval kmeansModel \u003d kmeans.fit(featureDfTrain)\nkmeansModel.clusterCenters.foreach(println)\n\n// test the model with test data set\nval predictDf \u003d kmeansModel.transform(featureDfTest)\npredictDf.select(\"id\", \"name\", \"begin_date_year\", \"features\", \"prediction\").show(10)\n\n// no of categories\npredictDf.groupBy(\"prediction\").count().show()\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-18 22:20:18.628",
+      "dateUpdated": "2020-06-19 07:52:28.104",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3624,28 +4085,71 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "java.lang.InterruptedException: sleep interrupted"
+            "data": "[1954.2754119439282]\n[671.2446808510638]\n[1501.7430389817025]\n[1981.9553901077106]\n[1718.6365001877582]\n[2006.1674172340695]\n[1850.3083798882683]\n[1916.1238153918375]\n+---+--------------------+---------------+--------+----------+\n| id|                name|begin_date_year|features|prediction|\n+---+--------------------+---------------+--------+----------+\n| 10|       Vincent Gallo|           1961|[1961.0]|         0|\n| 11|Squirrel Nut Zippers|           1993|[1993.0]|         3|\n| 40|   Alanis Morissette|           1974|[1974.0]|         3|\n| 45|           Cadallaca|           1997|[1997.0]|         5|\n| 46|   Dusty Springfield|           1939|[1939.0]|         0|\n| 53|         Mary Timony|           1970|[1970.0]|         3|\n|199|         Sheryl Crow|           1962|[1962.0]|         0|\n|235|        Edgar Winter|           1946|[1946.0]|         0|\n|249|              Pixies|           1986|[1986.0]|         3|\n|296|       Chris Cornell|           1964|[1964.0]|         0|\n+---+--------------------+---------------+--------+----------+\nonly showing top 10 rows\n\n+----------+-----+\n|prediction|count|\n+----------+-----+\n|         1|   11|\n|         6|  978|\n|         3|10996|\n|         5|11494|\n|         4|  308|\n|         7| 3758|\n|         2|  138|\n|         0| 7874|\n+----------+-----+\n\nimport org.apache.spark.ml.clustering.KMeans\nimport org.apache.spark.ml.feature.VectorAssembler\nimport org.apache.spark.sql.types.DoubleType\nimport org.apache.spark.sql.types.IntegerType\ndataSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [id: int, name: string ... 10 more fields]\nsetsArray: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] \u003d Array([id: int, name: string ... 10 more fields], [id: int, name: string ... 10 more fields])\ntrainDataSet: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 10 more fields]\ntestDataSet: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 10 more fields]\ncols: Array[String] \u003d Array(begin_date_year)\nassembler: org.apache.spark.ml.feature.VectorAssembler \u003d vecAssembler_e9ac8835036f\nfeatureDfTrain: org.apach..."
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d325",
+            "http://192.168.1.129:4040/jobs/job?id\u003d326",
+            "http://192.168.1.129:4040/jobs/job?id\u003d327",
+            "http://192.168.1.129:4040/jobs/job?id\u003d328",
+            "http://192.168.1.129:4040/jobs/job?id\u003d329",
+            "http://192.168.1.129:4040/jobs/job?id\u003d330",
+            "http://192.168.1.129:4040/jobs/job?id\u003d331",
+            "http://192.168.1.129:4040/jobs/job?id\u003d332",
+            "http://192.168.1.129:4040/jobs/job?id\u003d333",
+            "http://192.168.1.129:4040/jobs/job?id\u003d334",
+            "http://192.168.1.129:4040/jobs/job?id\u003d335",
+            "http://192.168.1.129:4040/jobs/job?id\u003d336",
+            "http://192.168.1.129:4040/jobs/job?id\u003d337",
+            "http://192.168.1.129:4040/jobs/job?id\u003d338",
+            "http://192.168.1.129:4040/jobs/job?id\u003d339",
+            "http://192.168.1.129:4040/jobs/job?id\u003d340",
+            "http://192.168.1.129:4040/jobs/job?id\u003d341",
+            "http://192.168.1.129:4040/jobs/job?id\u003d342",
+            "http://192.168.1.129:4040/jobs/job?id\u003d343",
+            "http://192.168.1.129:4040/jobs/job?id\u003d344",
+            "http://192.168.1.129:4040/jobs/job?id\u003d345",
+            "http://192.168.1.129:4040/jobs/job?id\u003d346",
+            "http://192.168.1.129:4040/jobs/job?id\u003d347",
+            "http://192.168.1.129:4040/jobs/job?id\u003d348",
+            "http://192.168.1.129:4040/jobs/job?id\u003d349",
+            "http://192.168.1.129:4040/jobs/job?id\u003d350",
+            "http://192.168.1.129:4040/jobs/job?id\u003d351",
+            "http://192.168.1.129:4040/jobs/job?id\u003d352",
+            "http://192.168.1.129:4040/jobs/job?id\u003d353",
+            "http://192.168.1.129:4040/jobs/job?id\u003d354",
+            "http://192.168.1.129:4040/jobs/job?id\u003d355",
+            "http://192.168.1.129:4040/jobs/job?id\u003d356",
+            "http://192.168.1.129:4040/jobs/job?id\u003d357"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1591360616708_-1595920036",
       "id": "20200605-123656_1067093774",
       "dateCreated": "2020-06-05 12:36:56.708",
-      "dateStarted": "2020-06-17 17:19:14.408",
-      "dateFinished": "2020-06-16 10:37:57.464",
-      "status": "ERROR",
-      "errorMessage": "java.lang.InterruptedException: sleep interrupted\n\tat java.lang.Thread.sleep(Native Method)\n\tat org.apache.zeppelin.notebook.Paragraph.execute(Paragraph.java:360)\n\tat org.apache.zeppelin.notebook.Note.run(Note.java:683)\n\tat org.apache.zeppelin.socket.NotebookServer.persistAndExecuteSingleParagraph(NotebookServer.java:1881)\n\tat org.apache.zeppelin.socket.NotebookServer.runAllParagraphs(NotebookServer.java:1745)\n\tat org.apache.zeppelin.socket.NotebookServer.onMessage(NotebookServer.java:268)\n\tat org.apache.zeppelin.socket.NotebookSocket.onWebSocketText(NotebookSocket.java:59)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextMessage(JettyListenerEventDriver.java:189)\n\tat org.eclipse.jetty.websocket.common.message.SimpleTextMessage.messageComplete(SimpleTextMessage.java:69)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.appendMessage(AbstractEventDriver.java:66)\n\tat org.eclipse.jetty.websocket.common.events.JettyListenerEventDriver.onTextFrame(JettyListenerEventDriver.java:158)\n\tat org.eclipse.jetty.websocket.common.events.AbstractEventDriver.incomingFrame(AbstractEventDriver.java:162)\n\tat org.eclipse.jetty.websocket.common.WebSocketSession.incomingFrame(WebSocketSession.java:459)\n\tat org.eclipse.jetty.websocket.common.extensions.AbstractExtension.nextIncomingFrame(AbstractExtension.java:182)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.nextIncomingFrame(PerMessageDeflateExtension.java:105)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.CompressExtension.forwardIncoming(CompressExtension.java:142)\n\tat org.eclipse.jetty.websocket.common.extensions.compress.PerMessageDeflateExtension.incomingFrame(PerMessageDeflateExtension.java:85)\n\tat org.eclipse.jetty.websocket.common.extensions.ExtensionStack.incomingFrame(ExtensionStack.java:220)\n\tat org.eclipse.jetty.websocket.common.Parser.notifyFrame(Parser.java:219)\n\tat org.eclipse.jetty.websocket.common.Parser.parse(Parser.java:244)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.readParse(AbstractWebSocketConnection.java:559)\n\tat org.eclipse.jetty.websocket.common.io.AbstractWebSocketConnection.onFillable(AbstractWebSocketConnection.java:390)\n\tat org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:305)\n\tat org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:103)\n\tat org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)\n\tat org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)\n\tat org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:765)\n\tat org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:683)\n\tat java.lang.Thread.run(Thread.java:748)\n",
+      "dateStarted": "2020-06-19 07:52:28.164",
+      "dateFinished": "2020-06-19 07:52:36.564",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Clustering with Gaussian Mixture Model (GMM)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-15 18:41:03.934",
+      "dateUpdated": "2020-06-19 07:41:16.059",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3678,15 +4182,15 @@
       "jobName": "paragraph_1591360614004_217257177",
       "id": "20200605-123654_995248947",
       "dateCreated": "2020-06-05 12:36:54.004",
-      "dateStarted": "2020-06-15 18:41:03.934",
-      "dateFinished": "2020-06-15 18:41:03.937",
+      "dateStarted": "2020-06-19 07:41:16.158",
+      "dateFinished": "2020-06-19 07:41:16.161",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nimport org.apache.spark.ml.clustering.GaussianMixture\nimport org.apache.spark.ml.feature.VectorAssembler\n\nval dataSet \u003d mbArtistCleanDF.filter($\"begin_date_year\" rlike \"^[0-9]*$\") // Regex to filter digits only\n\n\nval setsArray \u003d dataSet.randomSplit(Array(0.9, 0.1))\nval trainDataSet \u003d setsArray(0).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\nval testDataSet \u003d setsArray(1).withColumn(\"begin_date_year\", col(\"begin_date_year\").cast(IntegerType))\n\n// trainDataSet.printSchema\n// trainDataSet.show(100)\n\n\n// transform datasetDf with VectorAssembler to add feature column\nval cols \u003d Array(\"begin_date_year\")\nval assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\nval featureDfTrain \u003d assembler.transform(trainDataSet)\nval featureDfTest \u003d assembler.transform(testDataSet)\n\n\n// Trains Gaussian Mixture Model\nval gmm \u003d new GaussianMixture()\n  .setK(5)\nval model \u003d gmm.fit(featureDfTrain)\n\nval predictDf \u003d model.transform(featureDfTest)\n\n// output parameters of mixture model model\nfor (i \u003c- 0 until model.getK) {\n  println(s\"Gaussian $i:\\nweight\u003d${model.weights(i)}\\n\" +\n      s\"mu\u003d${model.gaussians(i).mean}\\nsigma\u003d\\n${model.gaussians(i).cov}\\n\")\n}",
       "user": "anonymous",
-      "dateUpdated": "2020-06-18 22:21:07.805",
+      "dateUpdated": "2020-06-19 07:52:47.842",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3705,27 +4209,141 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
+        "code": "SUCCESS",
         "msg": [
           {
             "type": "TEXT",
-            "data": "\u003cconsole\u003e:68: error: not found: type VectorAssembler\n       val assembler \u003d new VectorAssembler().setInputCols(cols).setOutputCol(\"features\")\n                           ^\n\u003cconsole\u003e:77: error: type mismatch;\n found   : List[Nothing]\n required: org.apache.spark.sql.Dataset[_]\n       val predictDf \u003d model.transform(testData)\n                                       ^\n"
+            "data": "Gaussian 0:\nweight\u003d0.5791479084589599\nmu\u003d[1991.7791199841777]\nsigma\u003d\n314.4290885008718  \n\nGaussian 1:\nweight\u003d0.1716278699352491\nmu\u003d[1947.3520062402445]\nsigma\u003d\n1243.857828326532  \n\nGaussian 2:\nweight\u003d0.008924245277060441\nmu\u003d[1615.8152281415798]\nsigma\u003d\n57259.11462460605  \n\nGaussian 3:\nweight\u003d0.035190547311153904\nmu\u003d[1856.7930488460454]\nsigma\u003d\n5570.017418367924  \n\nGaussian 4:\nweight\u003d0.20510942901757664\nmu\u003d[1954.4190284035842]\nsigma\u003d\n951.6804902789996  \n\nimport org.apache.spark.ml.clustering.GaussianMixture\nimport org.apache.spark.ml.feature.VectorAssembler\ndataSet: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [id: int, name: string ... 10 more fields]\nsetsArray: Array[org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]] \u003d Array([id: int, name: string ... 10 more fields], [id: int, name: string ... 10 more fields])\ntrainDataSet: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 10 more fields]\ntestDataSet: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 10 more fields]\ncols: Array[String] \u003d Array(begin_date_year)\nassembler: org.apache.spark.ml.feature.VectorAssembler \u003d vecAssembler_7aa60be6cd10\nfeatureDfTrain: org.apache.spark.sql.DataFrame \u003d [id: int, name: string ... 11 more fields]\nfeatureDfTest: ..."
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d358",
+            "http://192.168.1.129:4040/jobs/job?id\u003d359",
+            "http://192.168.1.129:4040/jobs/job?id\u003d360",
+            "http://192.168.1.129:4040/jobs/job?id\u003d361",
+            "http://192.168.1.129:4040/jobs/job?id\u003d362",
+            "http://192.168.1.129:4040/jobs/job?id\u003d363",
+            "http://192.168.1.129:4040/jobs/job?id\u003d364",
+            "http://192.168.1.129:4040/jobs/job?id\u003d365",
+            "http://192.168.1.129:4040/jobs/job?id\u003d366",
+            "http://192.168.1.129:4040/jobs/job?id\u003d367",
+            "http://192.168.1.129:4040/jobs/job?id\u003d368",
+            "http://192.168.1.129:4040/jobs/job?id\u003d369",
+            "http://192.168.1.129:4040/jobs/job?id\u003d370",
+            "http://192.168.1.129:4040/jobs/job?id\u003d371",
+            "http://192.168.1.129:4040/jobs/job?id\u003d372",
+            "http://192.168.1.129:4040/jobs/job?id\u003d373",
+            "http://192.168.1.129:4040/jobs/job?id\u003d374",
+            "http://192.168.1.129:4040/jobs/job?id\u003d375",
+            "http://192.168.1.129:4040/jobs/job?id\u003d376",
+            "http://192.168.1.129:4040/jobs/job?id\u003d377",
+            "http://192.168.1.129:4040/jobs/job?id\u003d378",
+            "http://192.168.1.129:4040/jobs/job?id\u003d379",
+            "http://192.168.1.129:4040/jobs/job?id\u003d380",
+            "http://192.168.1.129:4040/jobs/job?id\u003d381",
+            "http://192.168.1.129:4040/jobs/job?id\u003d382",
+            "http://192.168.1.129:4040/jobs/job?id\u003d383",
+            "http://192.168.1.129:4040/jobs/job?id\u003d384",
+            "http://192.168.1.129:4040/jobs/job?id\u003d385",
+            "http://192.168.1.129:4040/jobs/job?id\u003d386",
+            "http://192.168.1.129:4040/jobs/job?id\u003d387",
+            "http://192.168.1.129:4040/jobs/job?id\u003d388",
+            "http://192.168.1.129:4040/jobs/job?id\u003d389",
+            "http://192.168.1.129:4040/jobs/job?id\u003d390",
+            "http://192.168.1.129:4040/jobs/job?id\u003d391",
+            "http://192.168.1.129:4040/jobs/job?id\u003d392",
+            "http://192.168.1.129:4040/jobs/job?id\u003d393",
+            "http://192.168.1.129:4040/jobs/job?id\u003d394",
+            "http://192.168.1.129:4040/jobs/job?id\u003d395",
+            "http://192.168.1.129:4040/jobs/job?id\u003d396",
+            "http://192.168.1.129:4040/jobs/job?id\u003d397",
+            "http://192.168.1.129:4040/jobs/job?id\u003d398",
+            "http://192.168.1.129:4040/jobs/job?id\u003d399",
+            "http://192.168.1.129:4040/jobs/job?id\u003d400",
+            "http://192.168.1.129:4040/jobs/job?id\u003d401",
+            "http://192.168.1.129:4040/jobs/job?id\u003d402",
+            "http://192.168.1.129:4040/jobs/job?id\u003d403",
+            "http://192.168.1.129:4040/jobs/job?id\u003d404",
+            "http://192.168.1.129:4040/jobs/job?id\u003d405",
+            "http://192.168.1.129:4040/jobs/job?id\u003d406",
+            "http://192.168.1.129:4040/jobs/job?id\u003d407",
+            "http://192.168.1.129:4040/jobs/job?id\u003d408",
+            "http://192.168.1.129:4040/jobs/job?id\u003d409",
+            "http://192.168.1.129:4040/jobs/job?id\u003d410",
+            "http://192.168.1.129:4040/jobs/job?id\u003d411",
+            "http://192.168.1.129:4040/jobs/job?id\u003d412",
+            "http://192.168.1.129:4040/jobs/job?id\u003d413",
+            "http://192.168.1.129:4040/jobs/job?id\u003d414",
+            "http://192.168.1.129:4040/jobs/job?id\u003d415",
+            "http://192.168.1.129:4040/jobs/job?id\u003d416",
+            "http://192.168.1.129:4040/jobs/job?id\u003d417",
+            "http://192.168.1.129:4040/jobs/job?id\u003d418",
+            "http://192.168.1.129:4040/jobs/job?id\u003d419",
+            "http://192.168.1.129:4040/jobs/job?id\u003d420",
+            "http://192.168.1.129:4040/jobs/job?id\u003d421",
+            "http://192.168.1.129:4040/jobs/job?id\u003d422",
+            "http://192.168.1.129:4040/jobs/job?id\u003d423",
+            "http://192.168.1.129:4040/jobs/job?id\u003d424",
+            "http://192.168.1.129:4040/jobs/job?id\u003d425",
+            "http://192.168.1.129:4040/jobs/job?id\u003d426",
+            "http://192.168.1.129:4040/jobs/job?id\u003d427",
+            "http://192.168.1.129:4040/jobs/job?id\u003d428",
+            "http://192.168.1.129:4040/jobs/job?id\u003d429",
+            "http://192.168.1.129:4040/jobs/job?id\u003d430",
+            "http://192.168.1.129:4040/jobs/job?id\u003d431",
+            "http://192.168.1.129:4040/jobs/job?id\u003d432",
+            "http://192.168.1.129:4040/jobs/job?id\u003d433",
+            "http://192.168.1.129:4040/jobs/job?id\u003d434",
+            "http://192.168.1.129:4040/jobs/job?id\u003d435",
+            "http://192.168.1.129:4040/jobs/job?id\u003d436",
+            "http://192.168.1.129:4040/jobs/job?id\u003d437",
+            "http://192.168.1.129:4040/jobs/job?id\u003d438",
+            "http://192.168.1.129:4040/jobs/job?id\u003d439",
+            "http://192.168.1.129:4040/jobs/job?id\u003d440",
+            "http://192.168.1.129:4040/jobs/job?id\u003d441",
+            "http://192.168.1.129:4040/jobs/job?id\u003d442",
+            "http://192.168.1.129:4040/jobs/job?id\u003d443",
+            "http://192.168.1.129:4040/jobs/job?id\u003d444",
+            "http://192.168.1.129:4040/jobs/job?id\u003d445",
+            "http://192.168.1.129:4040/jobs/job?id\u003d446",
+            "http://192.168.1.129:4040/jobs/job?id\u003d447",
+            "http://192.168.1.129:4040/jobs/job?id\u003d448",
+            "http://192.168.1.129:4040/jobs/job?id\u003d449",
+            "http://192.168.1.129:4040/jobs/job?id\u003d450",
+            "http://192.168.1.129:4040/jobs/job?id\u003d451",
+            "http://192.168.1.129:4040/jobs/job?id\u003d452",
+            "http://192.168.1.129:4040/jobs/job?id\u003d453",
+            "http://192.168.1.129:4040/jobs/job?id\u003d454",
+            "http://192.168.1.129:4040/jobs/job?id\u003d455",
+            "http://192.168.1.129:4040/jobs/job?id\u003d456",
+            "http://192.168.1.129:4040/jobs/job?id\u003d457",
+            "http://192.168.1.129:4040/jobs/job?id\u003d458",
+            "http://192.168.1.129:4040/jobs/job?id\u003d459",
+            "http://192.168.1.129:4040/jobs/job?id\u003d460"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1592246465165_12398519",
       "id": "20200615-184105_1703327789",
       "dateCreated": "2020-06-15 18:41:05.165",
-      "dateStarted": "2020-06-15 18:41:16.249",
-      "dateFinished": "2020-06-15 18:41:16.350",
-      "status": "ERROR",
+      "dateStarted": "2020-06-19 07:52:47.898",
+      "dateFinished": "2020-06-19 07:53:29.028",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Building a First Model",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:55.861",
+      "dateUpdated": "2020-06-19 07:41:56.057",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3758,15 +4376,15 @@
       "jobName": "paragraph_1590404072119_591799774",
       "id": "20200525-105432_1663212423",
       "dateCreated": "2020-05-25 10:54:32.119",
-      "dateStarted": "2020-06-17 17:28:55.861",
-      "dateFinished": "2020-06-17 17:28:55.864",
+      "dateStarted": "2020-06-19 07:41:56.124",
+      "dateFinished": "2020-06-19 07:41:56.129",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nimport org.apache.spark.ml.recommendation._\nimport scala.util.Random\n\nval model \u003d new ALS().\n    setSeed(Random.nextLong()).\n    setImplicitPrefs(true).\n    setRank(10).\n    setRegParam(0.01).\n    setAlpha(1.0).\n    setMaxIter(5).\n    setUserCol(\"user\").\n    setItemCol(\"artist\").\n    setRatingCol(\"count\").\n    setPredictionCol(\"prediction\").\n    fit(trainData)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:55.999",
+      "dateUpdated": "2020-06-19 08:12:25.695",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3789,23 +4407,49 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_4b32218a30b9\n"
+            "data": "import org.apache.spark.ml.recommendation._\nimport scala.util.Random\nmodel: org.apache.spark.ml.recommendation.ALSModel \u003d als_658220b33303\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d466",
+            "http://192.168.1.129:4040/jobs/job?id\u003d467",
+            "http://192.168.1.129:4040/jobs/job?id\u003d468",
+            "http://192.168.1.129:4040/jobs/job?id\u003d469",
+            "http://192.168.1.129:4040/jobs/job?id\u003d470",
+            "http://192.168.1.129:4040/jobs/job?id\u003d471",
+            "http://192.168.1.129:4040/jobs/job?id\u003d472",
+            "http://192.168.1.129:4040/jobs/job?id\u003d473",
+            "http://192.168.1.129:4040/jobs/job?id\u003d474",
+            "http://192.168.1.129:4040/jobs/job?id\u003d475",
+            "http://192.168.1.129:4040/jobs/job?id\u003d476",
+            "http://192.168.1.129:4040/jobs/job?id\u003d477",
+            "http://192.168.1.129:4040/jobs/job?id\u003d478",
+            "http://192.168.1.129:4040/jobs/job?id\u003d479",
+            "http://192.168.1.129:4040/jobs/job?id\u003d480"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1590405875128_638740172",
       "id": "20200525-112435_1359988035",
       "dateCreated": "2020-05-25 11:24:35.128",
-      "dateStarted": "2020-06-17 17:28:56.071",
-      "dateFinished": "2020-06-17 17:32:33.035",
+      "dateStarted": "2020-06-19 08:12:25.751",
+      "dateFinished": "2020-06-19 08:15:33.384",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nmodel.userFactors.show(1, truncate \u003d false)",
       "user": "anonymous",
-      "dateUpdated": "2020-06-15 08:13:21.914",
+      "dateUpdated": "2020-06-19 08:12:29.574",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3828,23 +4472,35 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+---+------------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                      |\n+---+------------------------------------------------------------------------------------------------------------------------------+\n|90 |[-0.024483252, -0.5611283, 0.89746916, -0.9148582, -0.3860571, -0.05776278, -0.5234345, -0.3919565, -0.48920786, -0.017184306]|\n+---+------------------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
+            "data": "+---+----------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                    |\n+---+----------------------------------------------------------------------------------------------------------------------------+\n|90 |[-0.6795491, -0.61022717, 0.21111332, -0.0059552714, -0.8236459, 0.29737046, 0.5449772, -0.19145739, -0.6512419, 0.31366622]|\n+---+----------------------------------------------------------------------------------------------------------------------------+\nonly showing top 1 row\n\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d481"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1590406015054_509388477",
       "id": "20200525-112655_1737810644",
       "dateCreated": "2020-05-25 11:26:55.054",
-      "dateStarted": "2020-06-15 08:13:21.962",
-      "dateFinished": "2020-06-15 08:13:22.272",
+      "dateStarted": "2020-06-19 08:12:29.633",
+      "dateFinished": "2020-06-19 08:15:34.045",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Spot Checking Recommendations",
       "user": "anonymous",
-      "dateUpdated": "2020-06-15 08:13:22.362",
+      "dateUpdated": "2020-06-19 07:46:17.098",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3877,15 +4533,15 @@
       "jobName": "paragraph_1590414421056_1572219800",
       "id": "20200525-134701_1337255895",
       "dateCreated": "2020-05-25 13:47:01.056",
-      "dateStarted": "2020-06-15 08:13:22.406",
-      "dateFinished": "2020-06-15 08:13:22.409",
+      "dateStarted": "2020-06-19 07:46:17.151",
+      "dateFinished": "2020-06-19 07:46:17.154",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\nval userID \u003d 1059637\nval existingArtistIDs \u003d trainData.filter($\"user\" \u003d\u003d\u003d userID).select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (existingArtistIDs:_*)).show()",
+      "text": "%spark\nval userID \u003d 2093760\nval existingArtistIDs \u003d trainData.filter($\"user\" \u003d\u003d\u003d userID).select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (existingArtistIDs:_*)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:56.071",
+      "dateUpdated": "2020-06-19 08:12:34.501",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3908,23 +4564,36 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+--------------------+\n|     id|                name|\n+-------+--------------------+\n|1002584|                Nena|\n|1247913|       JamisonParker|\n|1257062|    The Spill Canvas|\n|1257410|tomandandy (ft. K...|\n|1260489|        The Exciters|\n|1260572|    Nightmare Of You|\n|1261496|              J-Kwon|\n|6992072|               angle|\n|   5496| Echo \u0026 the Bunnymen|\n|1150039|        Letter Kills|\n|1283493|            An Angle|\n|1006354|      Pedro the Lion|\n|1085052|             Cordero|\n|     78|             Sublime|\n|1233389|The American Anal...|\n|1234850|         The Hollies|\n|1009156|                 Mae|\n|1003853|        Les Savy Fav|\n|1044920|   Matchbook Romance|\n|   5659|             Midtown|\n+-------+--------------------+\nonly showing top 20 rows\n\nuserID: Int \u003d 1059637\nexistingArtistIDs: Array[Int] \u003d Array(1000010, 1000049, 1000056, 1000062, 1000094, 1000112, 1000113, 1000114, 1000123, 1000130, 1000139, 1000241, 1000263, 1000289, 1000305, 1000320, 1000340, 1000427, 1000428, 1000433, 1000445, 1000527, 1000617, 1000632, 1000676, 1000790, 1000877, 1000890, 1000926, 1000999, 1001007, 1001027, 1001066, 1001068, 1001107, 1001117, 1001130, 1001198, 1001233, 1001249, 1001412, 1001439, 1001482, 1001487, 1001523, 1001530, 1001779, 1001809, 1001828, 1001894, 1002128, 1002204, 1002216, 1002223, 1002225, 1002269, 1002289, 1002326, 1002560, 1002584, 1002723, 1002734, 1002742, 1002850, 1002912, 1003159, 1003176, 1003241, 1003250, 1003568, 1003673, 1003681, 1003689, 1003727, 1003794, 1003853, 1003928, 1004201, 1004226, 1004274, 1004278, 1004294,..."
+            "data": "+-------+---------------+\n|     id|           name|\n+-------+---------------+\n|   1180|     David Gray|\n|    378|  Blackalicious|\n|    813|     Jurassic 5|\n|1255340|The Saw Doctors|\n|    942|         Xzibit|\n+-------+---------------+\n\nuserID: Int \u003d 2093760\nexistingArtistIDs: Array[Int] \u003d Array(1180, 1255340, 378, 813, 942)\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d482",
+            "http://192.168.1.129:4040/jobs/job?id\u003d483"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1590414312973_773327109",
       "id": "20200525-134512_2071793608",
       "dateCreated": "2020-05-25 13:45:12.973",
-      "dateStarted": "2020-06-17 17:28:56.231",
-      "dateFinished": "2020-06-17 17:32:34.866",
+      "dateStarted": "2020-06-19 08:15:33.955",
+      "dateFinished": "2020-06-19 08:15:36.096",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%spark\ndef makeRecommendations(model: ALSModel, userID: Int, howMany: Int): DataFrame \u003d {\n    val toRecommend \u003d model.itemFactors.select($\"id\".as(\"artist\")).withColumn(\"user\", lit(userID))\n    model.transform(toRecommend).select(\"artist\", \"prediction\").orderBy($\"prediction\".desc).limit(howMany)\n}\n\nval topRecommendations \u003d makeRecommendations(model, userID, 5)\ntopRecommendations.show()",
+      "text": "%spark\ndef makeRecommendations(model: ALSModel, userID: Int, howMany: Int): DataFrame \u003d {\n    val toRecommend \u003d model.itemFactors.select($\"id\".as(\"artist\")).withColumn(\"user\", lit(userID))\n    model.transform(toRecommend).select(\"artist\", \"prediction\").orderBy($\"prediction\".desc).limit(howMany)\n}\n\nval topRecommendations \u003d makeRecommendations(model, userID, 5)\ntopRecommendations.show()\n\nval recommendedArtistIDs \u003d topRecommendations.select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (recommendedArtistIDs:_*)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:56.147",
+      "dateUpdated": "2020-06-19 08:12:41.246",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3947,23 +4616,37 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+----------+\n| artist|prediction|\n+-------+----------+\n|1022288| 1.2619828|\n|1045916| 1.2422141|\n|1000388| 1.1622376|\n|1240051| 1.1542941|\n|1233244| 1.1490035|\n+-------+----------+\n\nmakeRecommendations: (model: org.apache.spark.ml.recommendation.ALSModel, userID: Int, howMany: Int)org.apache.spark.sql.DataFrame\ntopRecommendations: org.apache.spark.sql.DataFrame \u003d [artist: int, prediction: float]\n"
+            "data": "+-------+-----------+\n| artist| prediction|\n+-------+-----------+\n|1300642|0.030489009|\n|   2814|0.030214254|\n|1001819|0.029848594|\n|   4605|0.029544951|\n|1037970| 0.02945667|\n+-------+-----------+\n\n+-------+----------+\n|     id|      name|\n+-------+----------+\n|   2814|   50 Cent|\n|   4605|Snoop Dogg|\n|1037970|Kanye West|\n|1001819|      2Pac|\n|1300642|  The Game|\n+-------+----------+\n\nmakeRecommendations: (model: org.apache.spark.ml.recommendation.ALSModel, userID: Int, howMany: Int)org.apache.spark.sql.DataFrame\ntopRecommendations: org.apache.spark.sql.DataFrame \u003d [artist: int, prediction: float]\nrecommendedArtistIDs: Array[Int] \u003d Array(1300642, 2814, 1001819, 4605, 1037970)\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d484",
+            "http://192.168.1.129:4040/jobs/job?id\u003d485",
+            "http://192.168.1.129:4040/jobs/job?id\u003d486"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1590414339594_-358168064",
       "id": "20200525-134539_310376515",
       "dateCreated": "2020-05-25 13:45:39.594",
-      "dateStarted": "2020-06-17 17:32:33.128",
-      "dateFinished": "2020-06-17 17:32:46.016",
+      "dateStarted": "2020-06-19 08:15:34.176",
+      "dateFinished": "2020-06-19 08:15:55.996",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval recommendedArtistIDs \u003d topRecommendations.select(\"artist\").as[Int].collect()\nartistByID.filter($\"id\" isin (recommendedArtistIDs:_*)).show()",
       "user": "anonymous",
-      "dateUpdated": "2020-06-17 17:28:56.225",
+      "dateUpdated": "2020-06-19 08:09:22.270",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -3986,23 +4669,36 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "+-------+-----------------+\n|     id|             name|\n+-------+-----------------+\n|1233244|The Rocket Summer|\n|1045916|    Mitch Hedberg|\n|1000388|        Ben Folds|\n|1022288|        Dane Cook|\n|1240051|       The Format|\n+-------+-----------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1022288, 1045916, 1000388, 1240051, 1233244)\n"
+            "data": "+-------+------------+\n|     id|        name|\n+-------+------------+\n|1002061|Jack Johnson|\n|1000113| The Beatles|\n|1002287|  John Mayer|\n|1000388|   Ben Folds|\n|1066962|Jamie Cullum|\n+-------+------------+\n\nrecommendedArtistIDs: Array[Int] \u003d Array(1002061, 1002287, 1066962, 1000113, 1000388)\n"
           }
         ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://192.168.1.129:4040/jobs/job?id\u003d464",
+            "http://192.168.1.129:4040/jobs/job?id\u003d465"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
       "jobName": "paragraph_1590414893842_841620200",
       "id": "20200525-135453_1946076405",
       "dateCreated": "2020-05-25 13:54:53.842",
-      "dateStarted": "2020-06-17 17:32:35.451",
-      "dateFinished": "2020-06-17 17:32:55.908",
+      "dateStarted": "2020-06-19 08:09:22.330",
+      "dateFinished": "2020-06-19 08:09:41.512",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n",
       "user": "anonymous",
-      "dateUpdated": "2020-06-15 08:13:44.658",
+      "dateUpdated": "2020-06-19 07:46:40.635",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -4026,7 +4722,11 @@
   "id": "2F8JB848Y",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": []
+  },
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
